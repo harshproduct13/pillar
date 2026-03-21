@@ -118,6 +118,7 @@ export default function ChatScreen() {
   const navigate = useNavigate()
   const initialPillarId = location.state?.pillarId || 'mira'
   const situation = location.state?.situation || null
+  const entryMessage = location.state?.entryMessage || null
 
   const [activePillarId, setActivePillarId] = useState(initialPillarId)
   const [drawerOpen, setDrawerOpen] = useState(false)
@@ -126,7 +127,10 @@ export default function ChatScreen() {
   const textareaRef = useRef(null)
 
   const pillar = allPillars.find((p) => p.id === activePillarId) || allPillars[0]
-  const messages = sampleMessages[activePillarId] || []
+  // If arriving from onboarding with an entryMessage, start fresh with just that message
+  const messages = entryMessage
+    ? [{ id: 1, from: 'pillar', text: entryMessage, time: 'Just now' }]
+    : (sampleMessages[activePillarId] || [])
   const isCoach = coaches.some((c) => c.id === activePillarId)
 
   useEffect(() => {

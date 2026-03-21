@@ -1,6 +1,8 @@
 import { ChevronRight, LogOut, Globe, User, Phone, Mail, HelpCircle, FileText, Shield } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 
 export default function ProfileScreen() {
+  const navigate = useNavigate()
   return (
     <div className="min-h-screen pb-28 overflow-x-hidden" style={{ backgroundColor: '#141412' }}>
 
@@ -118,7 +120,9 @@ export default function ProfileScreen() {
 
       {/* Log out */}
       <div className="mx-5">
-        <button className="flex items-center justify-center gap-2 w-full py-4 rounded-2xl active:opacity-60 transition-opacity"
+        <button
+          onClick={() => navigate('/auth')}
+          className="flex items-center justify-center gap-2 w-full py-4 rounded-2xl active:opacity-60 transition-opacity"
           style={{ border: '1px solid #ef444430', backgroundColor: '#ef444408' }}>
           <LogOut size={16} color="#ef4444" strokeWidth={1.8} />
           <p className="text-[14px] font-semibold text-red-400">Log Out</p>
