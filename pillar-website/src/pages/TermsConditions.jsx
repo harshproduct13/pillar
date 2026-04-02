@@ -196,7 +196,7 @@ export default function TermsConditions() {
           <Section title="12. Contact">
             <P>For questions about these Terms, please contact us:</P>
             <Ul items={[
-              'Email: legal@pillar.app',
+              'Email: getinclined@gmail.com',
               'We aim to respond within 5 business days.',
             ]} />
           </Section>

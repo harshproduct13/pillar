@@ -78,7 +78,7 @@ export default function PrivacyPolicy() {
         >
           <Section title="1. Who We Are">
             <P>Pillar ("we", "us", "our") is an AI companion application designed to provide emotional support, coaching, and companionship to users. We are committed to protecting your personal information and being transparent about how we handle it.</P>
-            <P>For privacy-related inquiries, you may contact us at: <span style={{ color: '#f97316' }}>privacy@pillar.app</span></P>
+            <P>For privacy-related inquiries, you may contact us at: <span style={{ color: '#f97316' }}>getinclined@gmail.com</span></P>
           </Section>
 
           <Section title="2. Information We Collect">
@@ -144,7 +144,7 @@ export default function PrivacyPolicy() {
               'Objection: Object to certain types of data processing.',
               'Withdrawal of consent: Withdraw consent where processing is based on consent.',
             ]} />
-            <P>To exercise any of these rights, please contact us at <span style={{ color: '#f97316' }}>privacy@pillar.app</span>. We will respond to your request within 30 days.</P>
+            <P>To exercise any of these rights, please contact us at <span style={{ color: '#f97316' }}>getinclined@gmail.com</span>. We will respond to your request within 30 days.</P>
           </Section>
 
           <Section title="7. Conversation Privacy">
@@ -158,7 +158,7 @@ export default function PrivacyPolicy() {
           </Section>
 
           <Section title="8. Children's Privacy">
-            <P>Pillar is intended for users aged 18 and older. We do not knowingly collect personal information from individuals under 18. If we learn that we have collected data from a person under 18, we will promptly delete that information. If you believe a minor has provided us with personal information, please contact us immediately at <span style={{ color: '#f97316' }}>privacy@pillar.app</span>.</P>
+            <P>Pillar is intended for users aged 18 and older. We do not knowingly collect personal information from individuals under 18. If we learn that we have collected data from a person under 18, we will promptly delete that information. If you believe a minor has provided us with personal information, please contact us immediately at <span style={{ color: '#f97316' }}>getinclined@gmail.com</span>.</P>
           </Section>
 
           <Section title="9. Changes to This Policy">
@@ -169,7 +169,7 @@ export default function PrivacyPolicy() {
           <Section title="10. Contact Us">
             <P>If you have any questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact us:</P>
             <Ul items={[
-              'Email: privacy@pillar.app',
+              'Email: getinclined@gmail.com',
               'Response time: We aim to respond within 5 business days.',
             ]} />
           </Section>
