@@ -10,7 +10,7 @@ const features = [
   },
   {
     number: '02',
-    title: 'Human-Feeling AI',
+    title: 'Human AI',
     body: 'Coaches and friends that actually listen. Warm, real conversations — not scripted responses, not robotic deflections.',
     color: '#4ade80',
     bg: 'rgba(74,222,128,0.07)',
