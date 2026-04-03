@@ -190,7 +190,7 @@ export default function TermsConditions() {
 
           <Section title="11. Governing Law and Disputes">
             <P>These Terms shall be governed by and construed in accordance with the laws of India, without regard to conflict of law provisions.</P>
-            <P>Any disputes arising from or relating to these Terms or the Service shall first be attempted to be resolved through good-faith negotiation. If that fails, disputes shall be subject to the exclusive jurisdiction of the courts in Bangalore, Karnataka, India.</P>
+            <P>Any disputes arising from or relating to these Terms or the Service shall first be attempted to be resolved through good-faith negotiation. If that fails, disputes shall be subject to the exclusive jurisdiction of the courts in Gurgaon, Haryana, India.</P>
           </Section>
 
           <Section title="12. Contact">
