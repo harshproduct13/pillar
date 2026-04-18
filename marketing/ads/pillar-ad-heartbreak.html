@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pillar — You can't live like this</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;0,800;1,400&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #111;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .card {
+      width: 1080px;
+      height: 1920px;
+      background: #080806;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Noise texture overlay */
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Deep red glow behind heart */
+    .glow-red {
+      position: absolute;
+      width: 900px;
+      height: 900px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(180, 30, 30, 0.28) 0%, rgba(120, 10, 10, 0.12) 40%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -40%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Subtle warm glow top */
+    .glow-top {
+      position: absolute;
+      width: 600px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(249, 115, 22, 0.06) 0%, transparent 70%);
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      padding: 0 120px;
+      gap: 0;
+    }
+
+    /* Top label */
+    .top-label {
+      position: absolute;
+      top: 120px;
+      left: 120px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 2;
+    }
+    .top-label span {
+      width: 32px;
+      height: 2px;
+      background: rgba(249, 115, 22, 0.5);
+      display: block;
+    }
+    .top-label p {
+      color: rgba(249, 115, 22, 0.6);
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    /* Main headline */
+    .headline {
+      font-family: 'Playfair Display', serif;
+      font-size: 128px;
+      font-weight: 800;
+      color: #f5f0ea;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      text-align: center;
+      margin-bottom: 80px;
+    }
+    .headline em {
+      font-style: italic;
+      color: #f97316;
+    }
+
+    /* Heart SVG */
+    .heart-wrap {
+      position: relative;
+      margin-bottom: 80px;
+    }
+    .heart-glow {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(180, 30, 30, 0.5) 0%, transparent 65%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .heart-svg {
+      width: 200px;
+      height: 200px;
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 0 40px rgba(180, 30, 30, 0.6));
+    }
+
+    /* Subtitle */
+    .subtitle {
+      text-align: center;
+      max-width: 720px;
+    }
+    .subtitle p {
+      color: #55554f;
+      font-size: 34px;
+      line-height: 1.65;
+      font-weight: 400;
+    }
+    .subtitle p strong {
+      color: #88887f;
+      font-weight: 500;
+    }
+
+    /* Divider line */
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: rgba(249, 115, 22, 0.3);
+      border-radius: 2px;
+      margin: 80px auto;
+    }
+
+    /* Bottom message */
+    .bottom-message {
+      text-align: center;
+      padding: 0 120px;
+    }
+    .bottom-message p {
+      color: #88887f;
+      font-size: 30px;
+      line-height: 1.7;
+    }
+    .bottom-message strong {
+      color: #c0c0b8;
+      font-weight: 500;
+    }
+
+    /* Pillar logo */
+    .logo {
+      position: absolute;
+      bottom: 100px;
+      right: 120px;
+      z-index: 2;
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+    }
+    .logo-text {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 52px;
+      font-weight: 800;
+      color: #f5f0ea;
+      letter-spacing: -0.01em;
+    }
+    .logo-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #f97316;
+      margin-bottom: 8px;
+      flex-shrink: 0;
+    }
+
+    /* Bottom left tag */
+    .bottom-tag {
+      position: absolute;
+      bottom: 112px;
+      left: 120px;
+      z-index: 2;
+    }
+    .bottom-tag p {
+      color: #33332f;
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <div class="glow-top"></div>
+  <div class="glow-red"></div>
+
+  <!-- Top label -->
+  <div class="top-label">
+    <span></span>
+    <p>Pillar</p>
+  </div>
+
+  <!-- Main content -->
+  <div class="content">
+
+    <h1 class="headline">
+      You can't live<br><em>like this.</em>
+    </h1>
+
+    <!-- Broken heart -->
+    <div class="heart-wrap">
+      <div class="heart-glow"></div>
+      <svg class="heart-svg" viewBox="0 0 100 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Left half -->
+        <path d="M50 85 C50 85 5 55 5 28 C5 14 16 5 27 5 C36 5 44 10 50 18" fill="#8B1A1A"/>
+        <!-- Right half -->
+        <path d="M50 85 C50 85 95 55 95 28 C95 14 84 5 73 5 C64 5 56 10 50 18" fill="#6B1414"/>
+        <!-- Crack -->
+        <path d="M50 18 L44 38 L52 42 L46 62 L50 85" stroke="#1a0a0a" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <!-- Highlight -->
+        <path d="M50 18 L44 38 L52 42 L46 62" stroke="rgba(255,100,100,0.15)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+      </svg>
+    </div>
+
+    <!-- Subtitle -->
+    <div class="subtitle">
+      <p>
+        <strong>Carrying it alone is exhausting.</strong><br>
+        Fights that won't resolve. Nights that won't end.<br>
+        Feelings you can't explain to anyone.
+      </p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Bottom message -->
+    <div class="bottom-message">
+      <p>
+        <strong>You don't have to figure it out alone.</strong><br>
+        Pillar is always here — judgment free,<br>available at 2am, and remembers your story.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- Bottom tag -->
+  <div class="bottom-tag">
+    <p>Available on Google Play</p>
+  </div>
+
+  <!-- Logo -->
+  <div class="logo">
+    <span class="logo-text">Pillar</span>
+    <div class="logo-dot"></div>
+  </div>
+
+</div>
+
+</body>
+</html>

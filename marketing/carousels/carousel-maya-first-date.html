@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pillar — Carousel: First Date (Maya)</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #e8e4df;
+      font-family: 'DM Sans', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+      padding: 40px 20px;
+    }
+
+    .slide-label {
+      color: #888;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: -22px;
+      align-self: flex-start;
+      margin-left: calc(50% - 270px);
+    }
+
+    /* ─── SHARED SLIDE SHELL ─── */
+    .slide {
+      width: 540px;
+      height: 675px;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+      border-radius: 4px;
+    }
+
+    /* Slide dots */
+    .dots {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 5px;
+      z-index: 5;
+    }
+    .dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.15);
+    }
+    .dot.active {
+      background: #c084fc;
+      width: 16px;
+      border-radius: 3px;
+    }
+
+    /* Pillar logo */
+    .logo {
+      position: absolute;
+      bottom: 36px;
+      right: 44px;
+      z-index: 5;
+      display: flex;
+      align-items: baseline;
+      gap: 2px;
+    }
+    .logo-text {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      color: #1c1c1a;
+      letter-spacing: -0.01em;
+    }
+    .logo-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #f97316;
+      margin-bottom: 3px;
+      flex-shrink: 0;
+    }
+
+    /* ═══════════════════════════════
+       SLIDE 1 — COVER
+    ═══════════════════════════════ */
+    #slide1 {
+      background: #f3eaff;
+    }
+
+    #slide1 .content {
+      position: absolute;
+      inset: 0;
+      padding: 52px 44px 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    #slide1 .top-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(192, 132, 252, 0.15);
+      border-radius: 100px;
+      padding: 6px 14px;
+      align-self: flex-start;
+    }
+    #slide1 .top-tag span {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #c084fc;
+      flex-shrink: 0;
+    }
+    #slide1 .top-tag p {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #9333ea;
+    }
+
+    #slide1 .headline {
+      font-size: 66px;
+      font-weight: 900;
+      color: #1c1c1a;
+      line-height: 0.97;
+      letter-spacing: -0.03em;
+    }
+
+    #slide1 .sub-tag {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(255,255,255,0.7);
+      border-radius: 100px;
+      padding: 10px 20px;
+      align-self: flex-start;
+      margin-top: -20px;
+    }
+    #slide1 .sub-tag p {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: #1c1c1a;
+    }
+
+    #slide1 .emoji-wrap {
+      font-size: 96px;
+      line-height: 1;
+      text-align: center;
+    }
+
+    /* ═══════════════════════════════
+       SLIDE 2 — SETUP
+    ═══════════════════════════════ */
+    #slide2 {
+      background: #faf8ff;
+    }
+
+    #slide2 .content {
+      position: absolute;
+      inset: 0;
+      padding: 52px 44px 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 36px;
+    }
+
+    #slide2 .eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #c084fc;
+    }
+
+    #slide2 .setup-text {
+      font-size: 38px;
+      font-weight: 800;
+      color: #1c1c1a;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+    #slide2 .setup-text em {
+      font-style: italic;
+      color: #9333ea;
+    }
+
+    #slide2 .divider {
+      width: 40px;
+      height: 2px;
+      background: rgba(192,132,252,0.4);
+      border-radius: 2px;
+    }
+
+    #slide2 .sub-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      color: #6b6b64;
+      line-height: 1.6;
+      font-weight: 400;
+    }
+
+    /* ═══════════════════════════════
+       SLIDE 3 — SIGNS 1 & 2
+    ═══════════════════════════════ */
+    #slide3 {
+      background: #faf8ff;
+    }
+
+    #slide3 .content,
+    #slide4 .content {
+      position: absolute;
+      inset: 0;
+      padding: 48px 44px 52px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .sign-block {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 14px;
+      padding: 0 0 24px;
+    }
+    .sign-block:first-of-type {
+      border-bottom: 1px solid rgba(192,132,252,0.2);
+      padding-bottom: 32px;
+      padding-top: 8px;
+    }
+    .sign-block:last-of-type {
+      padding-top: 32px;
+      padding-bottom: 8px;
+    }
+
+    .sign-block .sign-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .sign-block .sign-num {
+      font-size: 13px;
+      font-weight: 800;
+      color: #c084fc;
+      letter-spacing: 0.05em;
+      flex-shrink: 0;
+      min-width: 24px;
+    }
+    .sign-block .sign-emoji {
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+    .sign-block .sign-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #1c1c1a;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .sign-block .sign-body {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      color: #6b6b64;
+      line-height: 1.6;
+      padding-left: 0;
+    }
+    .sign-block .sign-body strong {
+      color: #1c1c1a;
+      font-weight: 600;
+    }
+
+    .sign-block .sign-callout {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(192,132,252,0.12);
+      border-radius: 8px;
+      padding: 8px 14px;
+      align-self: flex-start;
+    }
+    .sign-block .sign-callout p {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: #7c22c8;
+      line-height: 1.3;
+    }
+
+    /* ═══════════════════════════════
+       SLIDE 4 — SIGNS 3 & 4
+    ═══════════════════════════════ */
+    #slide4 {
+      background: #faf8ff;
+    }
+
+    /* ═══════════════════════════════
+       SLIDE 5 — SIGN 5 + REFRAME
+    ═══════════════════════════════ */
+    #slide5 {
+      background: #faf8ff;
+    }
+
+    #slide5 .content {
+      position: absolute;
+      inset: 0;
+      padding: 44px 44px 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    #slide5 .section-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #c084fc;
+    }
+
+    #slide5 .reframe-card {
+      background: rgba(192,132,252,0.1);
+      border-radius: 20px;
+      padding: 28px 26px;
+      border: 1px solid rgba(192,132,252,0.2);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 12px;
+    }
+    #slide5 .reframe-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #9333ea;
+    }
+    #slide5 .reframe-text {
+      font-size: 26px;
+      font-weight: 800;
+      color: #1c1c1a;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+    }
+    #slide5 .reframe-text em {
+      font-style: italic;
+      color: #9333ea;
+    }
+
+    /* ═══════════════════════════════
+       SLIDE 6 — CTA
+    ═══════════════════════════════ */
+    #slide6 {
+      background: #f3eaff;
+    }
+
+    #slide6 .content {
+      position: absolute;
+      inset: 0;
+      padding: 52px 44px 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    #slide6 .coach-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    #slide6 .coach-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6b3fa0, #4a1a7a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 800;
+      color: #c084fc;
+      flex-shrink: 0;
+    }
+    #slide6 .coach-info p {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1c1c1a;
+    }
+    #slide6 .coach-info span {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: #6b6b64;
+    }
+
+    #slide6 .headline {
+      font-size: 60px;
+      font-weight: 900;
+      color: #1c1c1a;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+    }
+    #slide6 .headline em {
+      font-style: italic;
+      color: #9333ea;
+    }
+
+    #slide6 .sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 17px;
+      font-weight: 500;
+      color: #6b6b64;
+      line-height: 1.5;
+    }
+
+    #slide6 .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #9333ea;
+      border-radius: 100px;
+      padding: 14px 28px;
+      align-self: flex-start;
+    }
+    #slide6 .cta-btn p {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ─── SLIDE 1: COVER ─── -->
+<p class="slide-label">Slide 1 / 6</p>
+<div class="slide" id="slide1">
+  <div class="content">
+    <div class="top-tag">
+      <span></span>
+      <p>Coach Maya</p>
+    </div>
+
+    <h1 class="headline">5 things<br>to watch<br>on your<br>first date</h1>
+
+    <div class="sub-tag">
+      <p>Before you catch feelings 👀</p>
+    </div>
+
+    <div class="emoji-wrap">💜</div>
+  </div>
+
+  <div class="dots">
+    <div class="dot active"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
+</div>
+
+<!-- ─── SLIDE 2: SETUP ─── -->
+<p class="slide-label">Slide 2 / 6</p>
+<div class="slide" id="slide2">
+  <div class="content">
+    <p class="eyebrow">Here's the truth</p>
+
+    <h2 class="setup-text">
+      On a first date, we're so busy trying<br>
+      <em>to impress them</em> —
+    </h2>
+
+    <div class="divider"></div>
+
+    <p class="sub-text">
+      That we forget we're supposed to be watching them too. The date is not just their interview. It's yours.
+    </p>
+  </div>
+
+  <div class="dots">
+    <div class="dot"></div>
+    <div class="dot active"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
+</div>
+
+<!-- ─── SLIDE 3: SIGNS 1 & 2 ─── -->
+<p class="slide-label">Slide 3 / 6</p>
+<div class="slide" id="slide3">
+  <div class="content">
+
+    <div class="sign-block">
+      <div class="sign-top">
+        <span class="sign-num">01</span>
+        <span class="sign-emoji">💬</span>
+        <p class="sign-title">Do they ask questions back?</p>
+      </div>
+      <p class="sign-body">Talking about yourself is one thing. Showing curiosity is another.</p>
+      <div class="sign-callout">
+        <p>One-sided conversation = one-sided interest.</p>
+      </div>
+    </div>
+
+    <div class="sign-block">
+      <div class="sign-top">
+        <span class="sign-num">02</span>
+        <span class="sign-emoji">💔</span>
+        <p class="sign-title">How do they talk about their ex?</p>
+      </div>
+      <p class="sign-body">If every ex was "crazy" or "the worst" —</p>
+      <div class="sign-callout">
+        <p>The pattern is theirs. Not the ex's.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="dots">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot active"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
+</div>
+
+<!-- ─── SLIDE 4: SIGNS 3 & 4 ─── -->
+<p class="slide-label">Slide 4 / 6</p>
+<div class="slide" id="slide4">
+  <div class="content">
+
+    <div class="sign-block">
+      <div class="sign-top">
+        <span class="sign-num">03</span>
+        <span class="sign-emoji">📱</span>
+        <p class="sign-title">How many times did they check their phone?</p>
+      </div>
+      <p class="sign-body">Phone on the table is a signal.</p>
+      <div class="sign-callout">
+        <p>Someone else is more important to them right now.</p>
+      </div>
+    </div>
+
+    <div class="sign-block">
+      <div class="sign-top">
+        <span class="sign-num">04</span>
+        <span class="sign-emoji">👀</span>
+        <p class="sign-title">How did they treat the waiter?</p>
+      </div>
+      <p class="sign-body">People who are rude to those who can't do anything for them —</p>
+      <div class="sign-callout">
+        <p>That's their real character. Unfiltered.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="dots">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot active"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
+</div>
+
+<!-- ─── SLIDE 5: SIGN 5 + REFRAME ─── -->
+<p class="slide-label">Slide 5 / 6</p>
+<div class="slide" id="slide5">
+  <div class="content">
+    <p class="section-label">The most important one</p>
+
+    <div class="sign-card">
+      <div class="sign-header">
+        <div class="sign-number">5</div>
+        <p class="sign-title">Are you yourself around them — or performing?</p>
+      </div>
+      <p class="sign-body">
+        If you're already a filtered version of yourself on the first date —<br>
+        <strong>that's not sustainable. Your gut already knows.</strong>
+      </p>
+    </div>
+
+    <div class="reframe-card">
+      <p class="reframe-label">Remember this</p>
+      <p class="reframe-text">
+        This isn't about <em>judging</em> them.<br>
+        It's about choosing the right thing for yourself.
+      </p>
+    </div>
+  </div>
+
+  <div class="dots">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot active"></div>
+    <div class="dot"></div>
+  </div>
+</div>
+
+<!-- ─── SLIDE 6: CTA ─── -->
+<p class="slide-label">Slide 6 / 6</p>
+<div class="slide" id="slide6">
+  <div class="content">
+    <div class="coach-row">
+      <div class="coach-avatar">M</div>
+      <div class="coach-info">
+        <p>Coach Maya</p>
+        <span>Your Personal Dating Coach</span>
+      </div>
+    </div>
+
+    <h2 class="headline">Confused<br>about<br>someone?<br><em>Talk<br>it out.</em></h2>
+
+    <p class="sub">Maya is always available — no judgment, whenever you need.</p>
+
+    <div class="cta-btn">
+      <p>Pillar App — Coming to Playstore soon</p>
+    </div>
+  </div>
+
+  <div class="logo"><span class="logo-text">Pillar</span><div class="logo-dot"></div></div>
+
+  <div class="dots">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot active"></div>
+  </div>
+</div>
+
+</body>
+</html>

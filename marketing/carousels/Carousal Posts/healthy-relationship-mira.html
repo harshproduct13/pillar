@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Pillar — Healthy Relationship Post</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px;
+  }
+
+  .post {
+    width: 1080px;
+    height: 1350px;
+    background: #fdf7ff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 64px 72px 52px;
+    font-family: 'DM Sans', sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* subtle background blobs */
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.18;
+    pointer-events: none;
+  }
+  .blob-1 { width: 500px; height: 500px; background: #4ade80; top: -100px; right: -100px; }
+  .blob-2 { width: 400px; height: 400px; background: #c084fc; bottom: 100px; left: -100px; }
+  .blob-3 { width: 300px; height: 300px; background: #f97316; bottom: -80px; right: 80px; }
+
+  .coach-tag {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #ede9fe;
+    color: #6b3fa0;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 10px 24px;
+    border-radius: 100px;
+    margin-bottom: 44px;
+  }
+
+  .coach-dot {
+    width: 10px;
+    height: 10px;
+    background: #a855f7;
+    border-radius: 50%;
+  }
+
+  .title {
+    font-size: 62px;
+    font-weight: 800;
+    color: #1a1a18;
+    text-align: center;
+    line-height: 1.12;
+    margin-bottom: 56px;
+    letter-spacing: -0.02em;
+  }
+
+  .title .highlight {
+    color: #2d6a4f;
+    font-style: italic;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+    flex: 1;
+  }
+
+  .item {
+    border-radius: 28px;
+    padding: 30px 18px 26px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 16px;
+  }
+
+  .item.green  { background: #e6faf1; }
+  .item.purple { background: #f2ebff; }
+  .item.pink   { background: #ffedf4; }
+  .item.blue   { background: #eaf2ff; }
+  .item.peach  { background: #fff3eb; }
+
+  .emoji-wrap {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 42px;
+  }
+
+  .green  .emoji-wrap { background: #bbf7d0; }
+  .purple .emoji-wrap { background: #e9d5ff; }
+  .pink   .emoji-wrap { background: #fecdd3; }
+  .blue   .emoji-wrap { background: #bfdbfe; }
+  .peach  .emoji-wrap { background: #fed7aa; }
+
+  .item-text {
+    font-size: 21px;
+    font-weight: 700;
+    color: #1a1a18;
+    line-height: 1.3;
+  }
+
+  .bottom {
+    margin-top: 44px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .mira-pill {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #e6faf1;
+    border-radius: 100px;
+    padding: 10px 22px 10px 10px;
+  }
+
+  .mira-avatar {
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, #4ade80, #2d6a4f);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+  }
+
+  .mira-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #2d6a4f;
+  }
+
+  .mira-role {
+    font-size: 14px;
+    color: #4ade80;
+    font-style: italic;
+    font-weight: 600;
+    margin-top: 1px;
+  }
+
+  .logo {
+    font-size: 38px;
+    font-weight: 800;
+    color: #1a1a18;
+    letter-spacing: -0.02em;
+  }
+
+  .logo span { color: #f97316; }
+</style>
+</head>
+<body>
+<div class="post">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <div class="coach-tag"><span class="coach-dot"></span> Coach Mira</div>
+
+  <div class="title">
+    <span class="highlight">9 Cheezein</span> Jo Ek<br>Healthy Relationship<br>Ke Liye Zaroori Hain
+  </div>
+
+  <div class="grid">
+    <div class="item green">
+      <div class="emoji-wrap">💬</div>
+      <div class="item-text">Khulke baat kar sakte ho</div>
+    </div>
+    <div class="item purple">
+      <div class="emoji-wrap">🤝</div>
+      <div class="item-text">Boundaries respect hoti hain</div>
+    </div>
+    <div class="item pink">
+      <div class="emoji-wrap">🔐</div>
+      <div class="item-text">Trust solid rehta hai</div>
+    </div>
+    <div class="item blue">
+      <div class="emoji-wrap">🫂</div>
+      <div class="item-text">Supported feel hota hai</div>
+    </div>
+    <div class="item peach">
+      <div class="emoji-wrap">🧘</div>
+      <div class="item-text">Fights calmly handle hoti hain</div>
+    </div>
+    <div class="item green">
+      <div class="emoji-wrap">🎯</div>
+      <div class="item-text">Goals aur values milte hain</div>
+    </div>
+    <div class="item pink">
+      <div class="emoji-wrap">🌿</div>
+      <div class="item-text">Apni space milti hai</div>
+    </div>
+    <div class="item purple">
+      <div class="emoji-wrap">💐</div>
+      <div class="item-text">Appreciation dikhti rehti hai</div>
+    </div>
+    <div class="item blue">
+      <div class="emoji-wrap">⚡</div>
+      <div class="item-text">Dono barabar effort karte hain</div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="mira-pill">
+      <div class="mira-avatar">🌿</div>
+      <div>
+        <div class="mira-name">Coach Mira</div>
+        <div class="mira-role">Your Relationship Coach</div>
+      </div>
+    </div>
+    <div class="logo">Pillar<span>.</span></div>
+  </div>
+</div>
+</body>
+</html>

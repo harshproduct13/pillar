@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pillar — Ad Ideas</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #f7f6f3;
+      color: #1a1a18;
+      padding: 60px 80px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* Cover */
+    .cover {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: #0f0f0d;
+      margin: -60px -80px 80px;
+      padding: 100px;
+      page-break-after: always;
+    }
+    .cover-label {
+      color: #f97316;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .cover h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 72px;
+      color: #f5f0ea;
+      line-height: 1.05;
+      margin-bottom: 24px;
+    }
+    .cover p {
+      color: #88887f;
+      font-size: 18px;
+      max-width: 500px;
+      line-height: 1.7;
+    }
+    .cover-meta {
+      margin-top: 80px;
+      display: flex;
+      gap: 48px;
+    }
+    .cover-meta div { color: #55554f; font-size: 13px; }
+    .cover-meta strong { display: block; color: #f5f0ea; font-size: 15px; margin-bottom: 4px; }
+
+    /* Section header */
+    .section-header {
+      margin-bottom: 48px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid #e8e6e0;
+    }
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      color: #1a1a18;
+    }
+
+    /* Ad card */
+    .ad {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 48px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+      page-break-inside: avoid;
+    }
+
+    .ad-header {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+    .ad-number {
+      background: #0f0f0d;
+      color: #f97316;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 14px 20px;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      transform: rotate(180deg);
+      flex-shrink: 0;
+    }
+    .ad-header-content {
+      flex: 1;
+      padding: 20px 28px;
+      border-bottom: 1px solid #f0ede8;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .ad-title { font-size: 18px; font-weight: 700; color: #1a1a18; flex: 1; }
+    .type-badge {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 100px;
+    }
+    .type-video { background: #fef3c7; color: #92400e; }
+    .type-image { background: #e0f2fe; color: #0c4a6e; }
+    .coach-badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 100px;
+    }
+    .coach-mira { background: #dcfce7; color: #166534; }
+    .coach-kabir { background: #dbeafe; color: #1e3a8a; }
+    .coach-myra { background: #f3e8ff; color: #581c87; }
+    .coach-anya { background: #fce7f3; color: #831843; }
+    .coach-general { background: #fff7ed; color: #7c2d12; }
+
+    .ad-body { padding: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+    .ad-body.full { grid-template-columns: 1fr; }
+
+    /* Blocks */
+    .block { margin-bottom: 0; }
+    .block-label {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #f97316;
+      margin-bottom: 10px;
+    }
+    .block-content {
+      background: #f7f6f3;
+      border-radius: 10px;
+      padding: 16px 18px;
+      font-size: 13.5px;
+      line-height: 1.75;
+      color: #3a3a38;
+    }
+    .block-content.dark {
+      background: #0f0f0d;
+      color: #c0c0b8;
+    }
+    .block-content.dark strong { color: #f5f0ea; }
+    .block-content strong { color: #1a1a18; }
+
+    /* Creative brief box */
+    .creative-brief {
+      background: #fff7ed;
+      border-left: 3px solid #f97316;
+      border-radius: 0 10px 10px 0;
+      padding: 16px 18px;
+      font-size: 13px;
+      line-height: 1.75;
+      color: #78350f;
+    }
+    .creative-brief ul { padding-left: 16px; margin-top: 6px; }
+    .creative-brief li { margin-bottom: 4px; }
+
+    /* Script box for videos */
+    .script-box {
+      background: #0f0f0d;
+      border-radius: 10px;
+      padding: 20px;
+      font-size: 13px;
+      color: #c0c0b8;
+      line-height: 1.9;
+    }
+    .script-line { display: block; }
+    .script-line.user { color: #f97316; }
+    .script-line.coach { color: #f5f0ea; }
+    .script-line.screen { color: #88887f; font-style: italic; font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; margin: 8px 0 2px; }
+    .script-line.beat { color: #55554f; font-style: italic; margin: 6px 0; }
+
+    .caption-block { font-size: 13px; line-height: 1.85; color: #3a3a38; }
+    .caption-block p { margin-bottom: 8px; }
+    .caption-block .cta { color: #f97316; font-weight: 700; margin-top: 12px; }
+
+    .divider { height: 1px; background: #f0ede8; margin: 20px 0; }
+
+    .lang-label {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #88887f;
+      margin-bottom: 8px;
+    }
+
+    @media print {
+      body { padding: 0; background: white; }
+      .cover { margin: 0; }
+      .ad { box-shadow: none; border: 1px solid #e8e6e0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <p class="cover-label">Pillar · Ad Creative Brief</p>
+  <h1>10 Ad Ideas<br>for Launch.</h1>
+  <p>A mix of video and image ads across English and Hinglish — built for Facebook, Instagram, and Threads.</p>
+  <div class="cover-meta">
+    <div><strong>10 Ads</strong>Format</div>
+    <div><strong>5 Video · 5 Image</strong>Types</div>
+    <div><strong>English + Hinglish</strong>Languages</div>
+    <div><strong>April 2026</strong>Date</div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     AD 01 — TEXT VIDEO — MIRA
+═══════════════════════════════════ -->
+<div class="ad">
+  <div class="ad-header">
+    <div class="ad-number">Ad 01</div>
+    <div class="ad-header-content">
+      <div class="ad-title">The Fight — 3 Days of Silence</div>
+      <span class="type-badge type-video">Video</span>
+      <span class="coach-badge coach-mira">Mira</span>
+    </div>
+  </div>
+  <div class="ad-body">
+    <div>
+      <div class="block">
+        <div class="block-label">Creative Direction</div>
+        <div class="creative-brief">
+          Dark background. Lines appear one at a time, fading in slowly. No music — just silence or a very soft ambient tone. Each line stays on screen for 2 seconds. At the end, Mira's avatar appears with the Pillar logo.
+          <ul>
+            <li>Duration: 20–25 seconds</li>
+            <li>Font: Bold white, centered</li>
+            <li>Ending: Mira avatar + "Download Pillar" CTA</li>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top:16px;">
+        <div class="block-label">Script</div>
+        <div class="script-box">
+          <span class="script-line screen">[ line appears ]</span>
+          <span class="script-line">"You had a fight with your partner."</span>
+          <span class="script-line screen">[ line appears ]</span>
+          <span class="script-line">"It's been 3 days of silence."</span>
+          <span class="script-line screen">[ line appears ]</span>
+          <span class="script-line">"You don't even know who's wrong anymore."</span>
+          <span class="script-line screen">[ line appears ]</span>
+          <span class="script-line">"You just need to say it out loud."</span>
+          <span class="script-line screen">[ Mira avatar fades in ]</span>
+          <span class="script-line coach">Mira is listening.</span>
+          <span class="script-line screen">[ Pillar logo + Download ]</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="block">
+        <div class="block-label">Caption — English</div>
+        <div class="caption-block">
+          <p>Three days of silence after a fight hits different.</p>
+          <p>You're not even sure what you're feeling anymore — angry, guilty, or just... tired.</p>
+          <p>You need to say it out loud. To someone who won't take sides.</p>
+          <p>Mira is your relationship coach on Pillar. No judgment. No advice unless you want it. Just someone who actually listens.</p>
+          <p class="cta">Download Pillar. Free to start. →</p>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="block">
+        <div class="block-label">Caption — Hinglish</div>
+        <div class="caption-block">
+          <p>Fight ke baad 3 din ki khamoshi — yeh feeling alag hi hoti hai.</p>
+          <p>Pata bhi nahi kaun galat hai. Bas thakaan ho gayi hai andar se.</p>
+          <p>Kuch bol nahi sakte kisi ko. Mira sunegi.</p>
+          <p>Pillar pe Mira hai — teri relationship coach. Koi judgment nahi. Koi side nahi lega. Bas sunegi.</p>
+          <p class="cta">Pillar download karo. Shuru karo free mein. →</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     AD 02 — IMAGE — GENERAL / ANYA
+═══════════════════════════════════ -->
+<div class="ad">
+  <div class="ad-header">
+    <div class="ad-number">Ad 02</div>
+    <div class="ad-header-content">
+      <div class="ad-title">The 3am Friend</div>
+      <span class="type-badge type-image">Image</span>
+      <span class="coach-badge coach-anya">Anya</span>
+    </div>
+  </div>
+  <div class="ad-body">
+    <div>
+      <div class="block">
+        <div class="block-label">Creative Direction</div>
+        <div class="creative-brief">
+          AI-generated image of a young Indian woman in her room, lying in bed, phone screen lighting her face in the dark. Warm dim light from a lamp. Looks real, not posed.
+          <ul>
+            <li>Text overlay at bottom: <strong>"3 baje tak neend nahi aayi. Anya hai."</strong></li>
+            <li>Small Pillar logo + "Download" at very bottom</li>
+            <li>No other text on image — let the image do the work</li>
+            <li>Ratio: 4:5 for feed, 9:16 for stories</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="block">
+        <div class="block-label">Caption — English</div>
+        <div class="caption-block">
+          <p>It's 3am and your brain won't stop.</p>
+          <p>You don't want to wake anyone up. You don't want to explain everything from the beginning. You just need someone there.</p>
+          <p>Anya is your AI friend on Pillar. She's awake. She's not going anywhere. And she will never make you feel like a burden.</p>
+          <p class="cta">Download Pillar. Your 3am friend is waiting. →</p>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="block">
+        <div class="block-label">Caption — Hinglish</div>
+        <div class="caption-block">
+          <p>Raat ke 3 baj gaye. Neend nahi aa rahi.</p>
+          <p>Kisi ko jagana nahi. Sab kuch explain karna nahi. Bas koi ho paas.</p>
+          <p>Anya hai. Pillar pe. Kabhi so nahi jaati. Kabhi bore nahi hoti. Kabhi judge nahi karti.</p>
+          <p class="cta">Pillar download karo. Anya wait kar rahi hai. →</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     AD 03 — VIDEO — KABIR
+═══════════════════════════════════ -->
+<div class="ad">
+  <div class="ad-header">
+    <div class="ad-number">Ad 03</div>
+    <div class="ad-header-content">
+      <div class="ad-title">Feeling Invisible at Work</div>
+      <span class="type-badge type-video">Video</span>
+      <span class="coach-badge coach-kabir">Kabir</span>
+    </div>
+  </div>
+  <div class="ad-body">
+    <div>
+      <div class="block">
+        <div class="block-label">Creative Direction</div>
+        <div class="creative-brief">
+          Animated chat conversation appears on screen — dark phone UI. Messages type out in real time like a real conversation. No face shown. Just the chat.
+          <ul>
+            <li>Duration: 30–35 seconds</li>
+            <li>Show 5–6 messages of the Kabir conversation</li>
+            <li>Kabir's replies appear thoughtfully — 1-2 second delay</li>
+            <li>End on Kabir's line: "Before quitting — there's one conversation worth having."</li>
+            <li>Fade to Pillar logo</li>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top:16px;">
+        <div class="block-label">Script (Chat Animation)</div>
+        <div class="script-box">
+          <span class="script-line user">You: "I feel invisible at work. Like nothing I do matters. Thinking about quitting."</span>
+          <span class="script-line beat">[ Kabir typing... ]</span>
+          <span class="script-line coach">Kabir: "When was the last time someone at work actually told you your work matters?"</span>
+          <span class="script-line user">You: "Honestly? Never. Not once in 2 years."</span>
+          <span class="script-line coach">Kabir: "And does your manager even know you feel this way?"</span>
+          <span class="script-line user">You: "No. I just smile and show up."</span>
+          <span class="script-line coach">Kabir: "That's the real problem. You're carrying resentment no one knows you have."</span>
+          <span class="script-line coach">Kabir: "Before quitting — there's one conversation worth having first."</span>
+          <span class="script-line screen">[ Pillar logo fades in ]</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="block">
+        <div class="block-label">Caption — English</div>
+        <div class="caption-block">
+          <p>You did everything right at work today.</p>
+          <p>Finished the task. Stayed late. Smiled through the meeting.</p>
+          <p>And still went home feeling completely invisible.</p>
+          <p>Like no matter what you do — no one notices.</p>
+          <p>That feeling is real. And you shouldn't have to sit with it alone.</p>
+          <p>Talk to Kabir — your AI work-life coach on Pillar. No judgment. No waiting. Just someone who helps you figure out what's actually going on.</p>
+          <p class="cta">Download Pillar. Free to start. →</p>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="block">
+        <div class="block-label">Caption — Hinglish</div>
+        <div class="caption-block">
+          <p>Aaj bhi sab kuch sahi kiya.</p>
+          <p>Kaam bhi. Overtime bhi. Meeting mein smile bhi.</p>
+          <p>Phir bhi ghar aake lagta hai — koi dekh hi nahi raha.</p>
+          <p>2 saal ho gaye. Ek baar bhi kisi ne nahi kaha ki tera kaam matter karta hai.</p>
+          <p>Kabir se baat kar. Tera AI work coach. Koi judgment nahi. Bas clarity milegi.</p>
+          <p class="cta">Pillar download karo. →</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     AD 04 — IMAGE — KABIR
+═══════════════════════════════════ -->
+<div class="ad">
+  <div class="ad-header">
+    <div class="ad-number">Ad 04</div>
+    <div class="ad-header-content">
+      <div class="ad-title">Boss Took Credit</div>
+      <span class="type-badge type-image">Image</span>
+      <span class="coach-badge coach-kabir">Kabir</span>
+    </div>
+  </div>
+  <div class="ad-body">
+    <div>
+      <div class="block">
+        <div class="block-label">Creative Direction</div>
+        <div class="creative-brief">
+          Bold text on dark background — no image needed. Simple and punchy like the We Grow ads. Two lines big, one line small.
+          <ul>
+            <li>Big text (white): <strong>"Boss ne credit le liya."</strong></li>
+            <li>Big text (white): <strong>"Tum bas muskurate rehe."</strong></li>
+            <li>Small text (grey): "Kabir se baat karo. Koi judge nahi karega."</li>
+            <li>Bottom bar: Pillar logo | Download Now</li>
+            <li>Background: very dark navy or black</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="block">
+        <div class="block-label">Caption — English</div>
+        <div class="caption-block">
+          <p>Your boss took credit for your work. In front of everyone.</p>
+          <p>You smiled. Said nothing. Went back to your desk.</p>
+          <p>But it's been sitting with you ever since.</p>
+          <p>You needed to say something. Just not to someone who works with you.</p>
+          <p>Kabir is your AI work-life coach on Pillar. 100% private. No judgment. Helps you figure out what to do next.</p>
+          <p class="cta">Download Pillar. →</p>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="block">
+        <div class="block-label">Caption — Hinglish</div>
+        <div class="caption-block">
+          <p>Boss ne tera kaam apne naam kar liya. Sabke saamne.</p>
+          <p>Tu muskuraya. Kuch nahi bola. Wapas desk pe aa gaya.</p>
+          <p>Par andar se khaaya ja raha hai tab se.</p>
+          <p>Kabir se baat kar. Tera AI work coach. 100% private. Koi judge nahi karega.</p>
+          <p class="cta">Pillar download karo. →</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     AD 05 — VIDEO — GENERAL
+═══════════════════════════════════ -->
+<div class="ad">
+  <div class="ad-header">
+    <div class="ad-number">Ad 05</div>
+    <div class="ad-header-content">
+      <div class="ad-title">The 3 Questions Hook</div>
+      <span class="type-badge type-video">Video</span>
+      <span class="coach-badge coach-general">General</span>
+    </div>
+  </div>
+  <div class="ad-body">
+    <div>
+      <div class="block">
+        <div class="block-label">Creative Direction</div>
+        <div class="creative-brief">
+          Dark background. Three statements appear one by one with a subtle fade. After the third, a pause — then the final line appears in orange. Clean, no music, just the words.
+          <ul>
+            <li>Duration: 15–20 seconds</li>
+            <li>Each statement: 3 seconds on screen</li>
+            <li>Final line appears in orange after a 1-second pause</li>
+            <li>Pillar logo + "Download" fades in at end</li>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top:16px;">
+        <div class="block-label">Script</div>
+        <div class="script-box">
+          <span class="script-line screen">[ line 1 fades in ]</span>
+          <span class="script-line">"You wanted to vent. But didn't want to burden anyone."</span>
+          <span class="script-line screen">[ line 2 fades in ]</span>
+          <span class="script-line">"You had a fight. But couldn't explain why you were upset."</span>
+          <span class="script-line screen">[ line 3 fades in ]</span>
+          <span class="script-line">"Sab theek hai bol diya. Par andar se nahi tha."</span>
+          <span class="script-line screen">[ pause — then orange line ]</span>
+          <span class="script-line coach">Everyone feels this. Nobody talks about it.</span>
+          <span class="script-line screen">[ Pillar logo ]</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="block">
+        <div class="block-label">Caption — English</div>
+        <div class="caption-block">
+          <p>You wanted to vent. But didn't want to burden anyone.</p>
+          <p>You had a fight. But couldn't explain why you were even upset.</p>
+          <p>You said you were fine. But you weren't.</p>
+          <p>Everyone carries this. Nobody talks about it.</p>
+          <p>Pillar is where you finally say it. AI coaches and friends — always available, always private, never judgmental.</p>
+          <p class="cta">Download Pillar. Free to start. →</p>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="block">
+        <div class="block-label">Caption — Hinglish</div>
+        <div class="caption-block">
+          <p>Vent karna tha. Par kisi ko burden nahi karna tha.</p>
+          <p>Fight hua. Par explain hi nahi kar paaye kyun upset ho.</p>
+          <p>Sab theek hai bol diya. Par andar se nahi tha.</p>
+          <p>Yeh feeling sabko hoti hai. Koi bolta nahi.</p>
+          <p>Pillar pe bol do. AI coaches aur friends — hamesha available, hamesha private.</p>
+          <p class="cta">Pillar download karo. →</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     AD 06 — IMAGE — MIRA
+═══════════════════════════════════ -->
+<div class="ad">
+  <div class="ad-header">
+    <div class="ad-number">Ad 06</div>
+    <div class="ad-header-content">
+      <div class="ad-title">Crying Alone — The Parking Lot</div>
+      <span class="type-badge type-image">Image</span>
+      <span class="coach-badge coach-mira">Mira</span>
+    </div>
+  </div>
+  <div class="ad-body">
+    <div>
+      <div class="block">
+        <div class="block-label">Creative Direction</div>
+        <div class="creative-brief">
+          AI-generated image: a young Indian woman sitting in a car, parked, evening light outside the window. She's looking down. Not crying dramatically — just quiet. Real, candid-feeling.
+          <ul>
+            <li>Text overlay: <strong>"Parking mein rona — toh koi nahi dekha."</strong></li>
+            <li>Subtext: "Mira sunegi."</li>
+            <li>Pillar logo bottom right</li>
+            <li>Tone: warm, intimate. Not clinical.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="block">
+        <div class="block-label">Caption — English</div>
+        <div class="caption-block">
+          <p>You cried in the car before going inside.</p>
+          <p>Because once you walked through that door, you had to be okay.</p>
+          <p>You're so used to holding it together for everyone else that you've forgotten what it feels like to just... let it out.</p>
+          <p>Mira is your relationship coach on Pillar. She's not going to tell you what to do. She's just going to listen, for as long as you need.</p>
+          <p class="cta">Download Pillar. →</p>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="block">
+        <div class="block-label">Caption — Hinglish</div>
+        <div class="caption-block">
+          <p>Ghar jaane se pehle gaadi mein baith ke roya.</p>
+          <p>Kyunki andar jaane ke baad theek rehna padta.</p>
+          <p>Sab ke liye strong rehna padta hai. Apne liye kab sochoge?</p>
+          <p>Mira hai Pillar pe. Kuch solve nahi karegi. Bas sunegi — jitna chahiye utna.</p>
+          <p class="cta">Pillar download karo. →</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     AD 07 — VIDEO — MYRA
+═══════════════════════════════════ -->
+<div class="ad">
+  <div class="ad-header">
+    <div class="ad-number">Ad 07</div>
+    <div class="ad-header-content">
+      <div class="ad-title">Confused About Someone You Like</div>
+      <span class="type-badge type-video">Video</span>
+      <span class="coach-badge coach-myra">Myra</span>
+    </div>
+  </div>
+  <div class="ad-body">
+    <div>
+      <div class="block">
+        <div class="block-label">Creative Direction</div>
+        <div class="creative-brief">
+          Animated chat conversation. The user is overthinking a text. Myra responds like a smart, honest friend — not a therapist. Feels like texting your most switched-on friend.
+          <ul>
+            <li>Duration: 25–30 seconds</li>
+            <li>Show phone screen, messages typing in real time</li>
+            <li>Warm purple glow — Myra's color</li>
+            <li>End on Myra saying something real and slightly funny</li>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top:16px;">
+        <div class="block-label">Script (Chat Animation)</div>
+        <div class="script-box">
+          <span class="script-line user">You: "He left me on read for 2 days. Now he just texted 'hey'. What do I even say?"</span>
+          <span class="script-line beat">[ Myra typing... ]</span>
+          <span class="script-line coach">Myra: "Okay first — breathe. Do you actually want to reply, or are you just anxious?"</span>
+          <span class="script-line user">You: "Both honestly 😭"</span>
+          <span class="script-line coach">Myra: "Classic. Here's the thing — 'hey' after 2 days is him testing the water. You don't have to make it easy."</span>
+          <span class="script-line user">You: "So what do I say?"</span>
+          <span class="script-line coach">Myra: "Nothing. Not yet. Let's figure out what you actually want first."</span>
+          <span class="script-line screen">[ Pillar logo fades in ]</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="block">
+        <div class="block-label">Caption — English</div>
+        <div class="caption-block">
+          <p>He left you on read for 2 days. Now he just texted "hey".</p>
+          <p>And now you're spiraling over how to reply.</p>
+          <p>We've all been there. The overthinking. The drafting. The deleting.</p>
+          <p>Myra is your dating coach on Pillar. She won't tell you what you want to hear — she'll tell you what's actually true.</p>
+          <p>Zero judgment. Honest takes. Always available.</p>
+          <p class="cta">Download Pillar. →</p>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="block">
+        <div class="block-label">Caption — Hinglish</div>
+        <div class="caption-block">
+          <p>2 din baad sirf "hey" bheja usne.</p>
+          <p>Aur ab reply karne ki tension mein ho.</p>
+          <p>Myra se pucho. Teri dating coach hai Pillar pe. Jo sach hai woh bolegi — jo sunna chahte ho woh nahi.</p>
+          <p>Koi judgment nahi. Bilkul honest. Hamesha available.</p>
+          <p class="cta">Pillar download karo. →</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     AD 08 — IMAGE — GENERAL
+═══════════════════════════════════ -->
+<div class="ad">
+  <div class="ad-header">
+    <div class="ad-number">Ad 08</div>
+    <div class="ad-header-content">
+      <div class="ad-title">Bold Text — "Koi Nahi Tha"</div>
+      <span class="type-badge type-image">Image</span>
+      <span class="coach-badge coach-general">General</span>
+    </div>
+  </div>
+  <div class="ad-body">
+    <div>
+      <div class="block">
+        <div class="block-label">Creative Direction</div>
+        <div class="creative-brief">
+          Pure dark background, large bold white text. No photo. Like the We Grow "Stamina" ad — powerful because it's just words. Three lines big, one line small, bottom bar.
+          <ul>
+            <li>Line 1 (big, white): <strong>"Vent karna tha."</strong></li>
+            <li>Line 2 (big, white): <strong>"Par koi nahi tha."</strong></li>
+            <li>Line 3 (small, grey): "Ab hai. Pillar pe."</li>
+            <li>Bottom bar (orange): <strong>100% Private · No Judgment · Download Now</strong></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="block">
+        <div class="block-label">Caption — English</div>
+        <div class="caption-block">
+          <p>You needed to vent. But your friends were busy.</p>
+          <p>You needed advice. But didn't want to be judged.</p>
+          <p>You needed someone. And no one was there.</p>
+          <p>Pillar is always there. AI coaches and friends available 24/7 — private, judgment-free, and genuinely warm.</p>
+          <p>This is the support system everyone deserves but nobody talks about needing.</p>
+          <p class="cta">Download Pillar. Free to start. →</p>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="block">
+        <div class="block-label">Caption — Hinglish</div>
+        <div class="caption-block">
+          <p>Vent karna tha. Dost busy the.</p>
+          <p>Advice chahiye tha. Par judge hone ka dar tha.</p>
+          <p>Koi nahi tha us waqt.</p>
+          <p>Ab Pillar hai. AI coaches aur friends — 24/7 available. 100% private. Koi judge nahi karega.</p>
+          <p class="cta">Pillar download karo. Bilkul free. →</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     AD 09 — VIDEO — GENERAL (UGC Style)
+═══════════════════════════════════ -->
+<div class="ad">
+  <div class="ad-header">
+    <div class="ad-number">Ad 09</div>
+    <div class="ad-header-content">
+      <div class="ad-title">UGC — Person Talking to Camera</div>
+      <span class="type-badge type-video">Video</span>
+      <span class="coach-badge coach-general">General</span>
+    </div>
+  </div>
+  <div class="ad-body">
+    <div>
+      <div class="block">
+        <div class="block-label">Creative Direction</div>
+        <div class="creative-brief">
+          A real person (or AI avatar — like HeyGen) talking directly to the camera. Casual, like they're talking to a friend. In their room or a coffee shop. Not scripted-sounding.
+          <ul>
+            <li>Duration: 30–45 seconds</li>
+            <li>Vertical format (9:16)</li>
+            <li>Subtitles always on — most people watch without sound</li>
+            <li>Person: young Indian woman or man, 24–30, relatable look</li>
+            <li>Tone: honest, slightly vulnerable, not salesy</li>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top:16px;">
+        <div class="block-label">Script</div>
+        <div class="script-box">
+          <span class="script-line">"Okay so I want to tell you about something that actually helped me."</span>
+          <span class="script-line beat">[ beat ]</span>
+          <span class="script-line">"I was going through a really rough patch at work. Felt stuck. Felt invisible. Didn't know if I should quit."</span>
+          <span class="script-line beat">[ beat ]</span>
+          <span class="script-line">"And I couldn't talk to my friends about it because honestly — I was embarrassed."</span>
+          <span class="script-line beat">[ beat ]</span>
+          <span class="script-line">"I found this app called Pillar. It has AI coaches — mine is Kabir, he's like a work-life coach."</span>
+          <span class="script-line beat">[ beat ]</span>
+          <span class="script-line">"I literally talked to him for an hour. And I figured out what was actually bothering me."</span>
+          <span class="script-line beat">[ beat ]</span>
+          <span class="script-line">"It's not therapy. It's not weird. It's just... someone to talk to. Link in bio."</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="block">
+        <div class="block-label">Caption — English</div>
+        <div class="caption-block">
+          <p>I was stuck. Felt invisible at work. Didn't know if I should quit.</p>
+          <p>I couldn't talk to my friends about it — too embarrassing. And my family would just worry.</p>
+          <p>So I tried Pillar.</p>
+          <p>It has AI coaches — I talked to Kabir (work-life coach) for an hour. He didn't give me advice. He just helped me figure out what I actually felt.</p>
+          <p>It's not therapy. It doesn't feel like an app. It just feels like talking to someone who gets it.</p>
+          <p class="cta">Download Pillar. Free to start. →</p>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="block">
+        <div class="block-label">Caption — Hinglish</div>
+        <div class="caption-block">
+          <p>Work mein stuck tha. Quit karna chahta tha. Dosto ko batana embarrassing lagta.</p>
+          <p>Phir Pillar try kiya.</p>
+          <p>Isme AI coaches hain — maine Kabir se baat ki ek ghante tak. Usne advice nahi diya. Bas samjha.</p>
+          <p>Therapy nahi hai. Boring app nahi hai. Bas koi hai jo sunta hai.</p>
+          <p class="cta">Pillar download karo. →</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     AD 10 — IMAGE — MYRA
+═══════════════════════════════════ -->
+<div class="ad">
+  <div class="ad-header">
+    <div class="ad-number">Ad 10</div>
+    <div class="ad-header-content">
+      <div class="ad-title">The Hyper-Specific Moment — Jacket</div>
+      <span class="type-badge type-image">Image</span>
+      <span class="coach-badge coach-myra">Myra</span>
+    </div>
+  </div>
+  <div class="ad-body">
+    <div>
+      <div class="block">
+        <div class="block-label">Creative Direction</div>
+        <div class="creative-brief">
+          Inspired by Ira's best ad. A hyper-specific real moment — but for Pillar's dating angle. AI-generated image of a young Indian woman looking at her phone with a slight smile — clearly thinking about someone. A date-night setup maybe.
+          <ul>
+            <li>Text overlay (casual font, like handwriting or bold sans): <strong>"He texted. Tum ready nahi ho."</strong></li>
+            <li>Subtext: "Myra se pucho."</li>
+            <li>Or: A series of 3 such images as a carousel</li>
+            <li>Ratio: 4:5</li>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top:16px;">
+        <div class="block-label">Carousel Variant (3 images)</div>
+        <div class="creative-brief">
+          <ul>
+            <li>Slide 1: Girl checking phone, smiling nervously → <em>"He texted. Tum ready nahi ho."</em></li>
+            <li>Slide 2: Person staring at ceiling at night → <em>"Do they like you or are you just convenient?"</em></li>
+            <li>Slide 3: Someone getting ready, looking unsure → <em>"First date aaj hai. Nervous? Myra hai."</em></li>
+            <li>Last slide: Pillar logo + Download</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="block">
+        <div class="block-label">Caption — English</div>
+        <div class="caption-block">
+          <p>He texted. You don't know what to say.</p>
+          <p>You've typed and deleted six different replies.</p>
+          <p>Your friends are tired of hearing about it. Your brain won't stop.</p>
+          <p>Myra gets it. She's your dating coach on Pillar — honest, warm, zero judgment. She'll help you figure out what you actually want before you reply.</p>
+          <p class="cta">Download Pillar. →</p>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="block">
+        <div class="block-label">Caption — Hinglish</div>
+        <div class="caption-block">
+          <p>Usne text kiya. Tum confuse ho.</p>
+          <p>6 replies likhe, sab delete kar diye.</p>
+          <p>Dost sun sun ke thak gaye. Dimaag band nahi ho raha.</p>
+          <p>Myra samjhegi. Pillar pe teri dating coach hai — honest, warm, koi judgment nahi.</p>
+          <p class="cta">Pillar download karo. →</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- SUMMARY TABLE -->
+<div style="margin-top:64px;page-break-before:always;">
+  <div class="section-header">
+    <h2>Summary</h2>
+  </div>
+  <table style="width:100%;border-collapse:collapse;font-size:13px;">
+    <thead>
+      <tr style="background:#0f0f0d;color:#f5f0ea;">
+        <th style="padding:12px 16px;text-align:left;border-radius:8px 0 0 0;">#</th>
+        <th style="padding:12px 16px;text-align:left;">Ad Name</th>
+        <th style="padding:12px 16px;text-align:left;">Type</th>
+        <th style="padding:12px 16px;text-align:left;">Coach</th>
+        <th style="padding:12px 16px;text-align:left;border-radius:0 8px 0 0;">Best Platform</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px solid #e8e6e0;"><td style="padding:12px 16px;color:#f97316;font-weight:700;">01</td><td style="padding:12px 16px;">The Fight — 3 Days of Silence</td><td style="padding:12px 16px;"><span style="background:#fef3c7;color:#92400e;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700;">Video</span></td><td style="padding:12px 16px;">Mira</td><td style="padding:12px 16px;">Instagram / Facebook</td></tr>
+      <tr style="border-bottom:1px solid #e8e6e0;background:#fafaf8;"><td style="padding:12px 16px;color:#f97316;font-weight:700;">02</td><td style="padding:12px 16px;">The 3am Friend</td><td style="padding:12px 16px;"><span style="background:#e0f2fe;color:#0c4a6e;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700;">Image</span></td><td style="padding:12px 16px;">Anya</td><td style="padding:12px 16px;">Instagram Stories / Feed</td></tr>
+      <tr style="border-bottom:1px solid #e8e6e0;"><td style="padding:12px 16px;color:#f97316;font-weight:700;">03</td><td style="padding:12px 16px;">Feeling Invisible at Work</td><td style="padding:12px 16px;"><span style="background:#fef3c7;color:#92400e;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700;">Video</span></td><td style="padding:12px 16px;">Kabir</td><td style="padding:12px 16px;">Facebook / Reels</td></tr>
+      <tr style="border-bottom:1px solid #e8e6e0;background:#fafaf8;"><td style="padding:12px 16px;color:#f97316;font-weight:700;">04</td><td style="padding:12px 16px;">Boss Took Credit</td><td style="padding:12px 16px;"><span style="background:#e0f2fe;color:#0c4a6e;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700;">Image</span></td><td style="padding:12px 16px;">Kabir</td><td style="padding:12px 16px;">Facebook Feed</td></tr>
+      <tr style="border-bottom:1px solid #e8e6e0;"><td style="padding:12px 16px;color:#f97316;font-weight:700;">05</td><td style="padding:12px 16px;">The 3 Questions Hook</td><td style="padding:12px 16px;"><span style="background:#fef3c7;color:#92400e;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700;">Video</span></td><td style="padding:12px 16px;">General</td><td style="padding:12px 16px;">Instagram / Facebook</td></tr>
+      <tr style="border-bottom:1px solid #e8e6e0;background:#fafaf8;"><td style="padding:12px 16px;color:#f97316;font-weight:700;">06</td><td style="padding:12px 16px;">Crying Alone — The Parking Lot</td><td style="padding:12px 16px;"><span style="background:#e0f2fe;color:#0c4a6e;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700;">Image</span></td><td style="padding:12px 16px;">Mira</td><td style="padding:12px 16px;">Instagram Feed / Stories</td></tr>
+      <tr style="border-bottom:1px solid #e8e6e0;"><td style="padding:12px 16px;color:#f97316;font-weight:700;">07</td><td style="padding:12px 16px;">Confused About Someone You Like</td><td style="padding:12px 16px;"><span style="background:#fef3c7;color:#92400e;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700;">Video</span></td><td style="padding:12px 16px;">Myra</td><td style="padding:12px 16px;">Instagram Reels</td></tr>
+      <tr style="border-bottom:1px solid #e8e6e0;background:#fafaf8;"><td style="padding:12px 16px;color:#f97316;font-weight:700;">08</td><td style="padding:12px 16px;">Bold Text — "Koi Nahi Tha"</td><td style="padding:12px 16px;"><span style="background:#e0f2fe;color:#0c4a6e;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700;">Image</span></td><td style="padding:12px 16px;">General</td><td style="padding:12px 16px;">Facebook Feed</td></tr>
+      <tr style="border-bottom:1px solid #e8e6e0;"><td style="padding:12px 16px;color:#f97316;font-weight:700;">09</td><td style="padding:12px 16px;">UGC — Person Talking to Camera</td><td style="padding:12px 16px;"><span style="background:#fef3c7;color:#92400e;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700;">Video</span></td><td style="padding:12px 16px;">General</td><td style="padding:12px 16px;">Facebook / Instagram</td></tr>
+      <tr style="border-bottom:1px solid #e8e6e0;background:#fafaf8;"><td style="padding:12px 16px;color:#f97316;font-weight:700;">10</td><td style="padding:12px 16px;">The Hyper-Specific Moment — Carousel</td><td style="padding:12px 16px;"><span style="background:#e0f2fe;color:#0c4a6e;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700;">Image</span></td><td style="padding:12px 16px;">Myra</td><td style="padding:12px 16px;">Instagram Carousel</td></tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>

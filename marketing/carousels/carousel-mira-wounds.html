@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pillar — Carousel: 3 Wounds (Mira)</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Playfair+Display:ital,wght@0,700;0,800;1,700;1,800&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #111;
+      font-family: 'DM Sans', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+      padding: 40px 20px;
+    }
+
+    .slide-label {
+      color: #555;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: -30px;
+      align-self: flex-start;
+      margin-left: calc(50% - 270px);
+    }
+
+    /* ─── SHARED SLIDE SHELL ─── */
+    .slide {
+      width: 540px;
+      height: 960px;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    /* Noise texture */
+    .slide::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.3;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* Pillar logo (shared) */
+    .logo {
+      position: absolute;
+      bottom: 50px;
+      right: 60px;
+      z-index: 5;
+      display: flex;
+      align-items: baseline;
+      gap: 3px;
+    }
+    .logo-text {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 26px;
+      font-weight: 800;
+      color: #f5f0ea;
+      letter-spacing: -0.01em;
+    }
+    .logo-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #f97316;
+      margin-bottom: 4px;
+      flex-shrink: 0;
+    }
+
+    /* Slide counter dots */
+    .dots {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+      z-index: 5;
+    }
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+    }
+    .dot.active {
+      background: #4ade80;
+      width: 18px;
+      border-radius: 3px;
+    }
+
+    /* ═══════════════════════════════
+       SLIDE 1 — COVER
+    ═══════════════════════════════ */
+    #slide1 {
+      background: #080806;
+    }
+
+    #slide1 .glow-green {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(45, 106, 79, 0.22) 0%, transparent 70%);
+      top: -80px;
+      right: -120px;
+      z-index: 0;
+    }
+
+    #slide1 .glow-orange {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(249, 115, 22, 0.07) 0%, transparent 70%);
+      bottom: 150px;
+      left: -80px;
+      z-index: 0;
+    }
+
+    #slide1 .top-tag {
+      position: absolute;
+      top: 60px;
+      left: 60px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 2;
+    }
+    #slide1 .top-tag span {
+      width: 28px;
+      height: 2px;
+      background: #4ade80;
+      opacity: 0.6;
+      display: block;
+    }
+    #slide1 .top-tag p {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #4ade80;
+      opacity: 0.7;
+    }
+
+    #slide1 .headline-wrap {
+      position: absolute;
+      top: 130px;
+      left: 60px;
+      right: 60px;
+      z-index: 2;
+    }
+    #slide1 .eyebrow {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: #88887f;
+      margin-bottom: 28px;
+      text-transform: uppercase;
+    }
+    #slide1 .headline {
+      font-family: 'Playfair Display', serif;
+      font-size: 72px;
+      font-weight: 800;
+      color: #f5f0ea;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+    #slide1 .headline em {
+      font-style: italic;
+      color: #4ade80;
+    }
+    #slide1 .headline .num {
+      color: #4ade80;
+    }
+
+    #slide1 .divider {
+      position: absolute;
+      top: 580px;
+      left: 60px;
+      width: 50px;
+      height: 2px;
+      background: rgba(74, 222, 128, 0.3);
+      z-index: 2;
+    }
+
+    #slide1 .sub {
+      position: absolute;
+      top: 610px;
+      left: 60px;
+      right: 60px;
+      z-index: 2;
+    }
+    #slide1 .sub p {
+      color: #55554f;
+      font-size: 20px;
+      line-height: 1.6;
+      font-weight: 400;
+    }
+
+    #slide1 .coach-card {
+      position: absolute;
+      bottom: 80px;
+      left: 60px;
+      right: 60px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 20px 24px;
+      z-index: 2;
+    }
+    #slide1 .coach-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #2d6a4f, #1a3d2e);
+      border: 2px solid rgba(74,222,128,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: 800;
+      color: #4ade80;
+      flex-shrink: 0;
+    }
+    #slide1 .coach-info p {
+      color: #f5f0ea;
+      font-size: 17px;
+      font-weight: 700;
+    }
+    #slide1 .coach-info span {
+      color: #4ade80;
+      font-size: 14px;
+      font-weight: 500;
+      font-style: italic;
+    }
+
+    /* ═══════════════════════════════
+       SLIDE 2 — COACH QUOTE
+    ═══════════════════════════════ */
+    #slide2 {
+      background: #0b2419;
+    }
+
+    #slide2 .bg-glow {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(45, 106, 79, 0.35) 0%, transparent 65%);
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 0;
+    }
+
+    #slide2 .photo-card {
+      position: absolute;
+      top: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 360px;
+      height: 320px;
+      border-radius: 24px;
+      background: linear-gradient(160deg, #1a3d2e 0%, #0f2419 100%);
+      border: 1px solid rgba(74, 222, 128, 0.15);
+      overflow: hidden;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #slide2 .photo-card .coach-photo-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    #slide2 .photo-card .avatar-big {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #2d6a4f, #1a3d2e);
+      border: 3px solid rgba(74,222,128,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      font-weight: 800;
+      color: #4ade80;
+    }
+    #slide2 .photo-card .avatar-name {
+      color: #f5f0ea;
+      font-size: 20px;
+      font-weight: 700;
+    }
+    #slide2 .photo-card .avatar-role {
+      color: #4ade80;
+      font-size: 14px;
+      font-weight: 500;
+      font-style: italic;
+    }
+
+    /* App icon badge */
+    #slide2 .badge {
+      position: absolute;
+      top: 358px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 60px;
+      background: #080806;
+      border-radius: 15px;
+      border: 1px solid rgba(74,222,128,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 3;
+      font-size: 28px;
+    }
+
+    #slide2 .quote-wrap {
+      position: absolute;
+      top: 450px;
+      left: 60px;
+      right: 60px;
+      z-index: 2;
+    }
+    #slide2 .quote-mark {
+      font-family: 'Playfair Display', serif;
+      font-size: 80px;
+      line-height: 0.6;
+      color: #4ade80;
+      opacity: 0.4;
+      margin-bottom: 12px;
+    }
+    #slide2 .quote-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 34px;
+      font-weight: 700;
+      font-style: italic;
+      color: #f5f0ea;
+      line-height: 1.35;
+    }
+    #slide2 .quote-text em {
+      font-style: normal;
+      color: #4ade80;
+    }
+
+    /* ═══════════════════════════════
+       SLIDE 3 — HOW THEY SHOW UP
+    ═══════════════════════════════ */
+    #slide3 {
+      background: #080806;
+    }
+
+    #slide3 .glow-subtle {
+      position: absolute;
+      width: 500px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(45,106,79,0.12) 0%, transparent 70%);
+      bottom: 200px;
+      right: -100px;
+      z-index: 0;
+    }
+
+    #slide3 .section-label {
+      position: absolute;
+      top: 80px;
+      left: 60px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #55554f;
+      z-index: 2;
+    }
+
+    #slide3 .bullets-wrap {
+      position: absolute;
+      top: 130px;
+      left: 60px;
+      right: 60px;
+      z-index: 2;
+    }
+
+    #slide3 .bullet-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 22px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    #slide3 .bullet-item:last-child {
+      border-bottom: none;
+    }
+    #slide3 .arrow {
+      color: #4ade80;
+      font-size: 22px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    #slide3 .bullet-text {
+      color: #c0c0b8;
+      font-size: 26px;
+      font-weight: 500;
+      line-height: 1.35;
+    }
+    #slide3 .bullet-text strong {
+      color: #f5f0ea;
+      font-weight: 700;
+    }
+
+    #slide3 .big-statement {
+      position: absolute;
+      bottom: 130px;
+      left: 60px;
+      right: 60px;
+      z-index: 2;
+    }
+    #slide3 .big-statement .divider-line {
+      width: 40px;
+      height: 2px;
+      background: rgba(74, 222, 128, 0.4);
+      margin-bottom: 36px;
+    }
+    #slide3 .big-statement h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 52px;
+      font-weight: 800;
+      color: #f5f0ea;
+      line-height: 1.1;
+    }
+    #slide3 .big-statement h2 em {
+      font-style: italic;
+      color: #4ade80;
+    }
+
+    /* ═══════════════════════════════
+       SLIDE 4 — WHAT TO DO
+    ═══════════════════════════════ */
+    #slide4 {
+      background: #080806;
+    }
+
+    #slide4 .bg-layer {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, #0b2419 0%, #080806 50%);
+      z-index: 0;
+    }
+
+    #slide4 .top-label {
+      position: absolute;
+      top: 60px;
+      left: 60px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #4ade80;
+      opacity: 0.6;
+      z-index: 2;
+    }
+
+    #slide4 .headline {
+      position: absolute;
+      top: 100px;
+      left: 60px;
+      right: 60px;
+      z-index: 2;
+    }
+    #slide4 .headline h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 60px;
+      font-weight: 800;
+      color: #f5f0ea;
+      line-height: 1.1;
+    }
+    #slide4 .headline h1 em {
+      font-style: italic;
+      color: #4ade80;
+    }
+
+    #slide4 .tips-wrap {
+      position: absolute;
+      top: 390px;
+      left: 60px;
+      right: 60px;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    #slide4 .tip-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(74,222,128,0.1);
+      border-radius: 20px;
+      padding: 32px 32px;
+      margin-bottom: 16px;
+    }
+    #slide4 .tip-icon {
+      font-size: 32px;
+      margin-bottom: 12px;
+      display: block;
+    }
+    #slide4 .tip-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #4ade80;
+      opacity: 0.7;
+      margin-bottom: 10px;
+    }
+    #slide4 .tip-text {
+      font-size: 24px;
+      color: #c0c0b8;
+      line-height: 1.45;
+      font-weight: 500;
+    }
+    #slide4 .tip-text strong {
+      color: #f5f0ea;
+    }
+
+    /* ═══════════════════════════════
+       SLIDE 5 — ACTION + CTA
+    ═══════════════════════════════ */
+    #slide5 {
+      background: #080806;
+    }
+
+    #slide5 .glow-bottom {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(45,106,79,0.2) 0%, transparent 70%);
+      bottom: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 0;
+    }
+
+    #slide5 .top-badge {
+      position: absolute;
+      top: 60px;
+      left: 60px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(74,222,128,0.1);
+      border: 1px solid rgba(74,222,128,0.2);
+      border-radius: 100px;
+      padding: 8px 18px;
+      z-index: 2;
+    }
+    #slide5 .top-badge span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #4ade80;
+      flex-shrink: 0;
+    }
+    #slide5 .top-badge p {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #4ade80;
+    }
+
+    #slide5 .headline {
+      position: absolute;
+      top: 130px;
+      left: 60px;
+      right: 60px;
+      z-index: 2;
+    }
+    #slide5 .headline h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 58px;
+      font-weight: 800;
+      color: #f5f0ea;
+      line-height: 1.1;
+    }
+    #slide5 .headline h1 em {
+      font-style: italic;
+      color: #4ade80;
+    }
+
+    #slide5 .actions-wrap {
+      position: absolute;
+      top: 390px;
+      left: 60px;
+      right: 60px;
+      z-index: 2;
+    }
+    #slide5 .action-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    #slide5 .action-item:last-child {
+      border-bottom: none;
+    }
+    #slide5 .action-arrow {
+      color: #4ade80;
+      font-size: 20px;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+    #slide5 .action-text {
+      color: #c0c0b8;
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 1.35;
+    }
+    #slide5 .action-text strong {
+      color: #f5f0ea;
+      font-weight: 700;
+    }
+
+    #slide5 .cta-block {
+      position: absolute;
+      bottom: 100px;
+      left: 60px;
+      right: 60px;
+      z-index: 2;
+    }
+    #slide5 .cta-block .cta-text {
+      color: #55554f;
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+    #slide5 .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(74,222,128,0.1);
+      border: 1px solid rgba(74,222,128,0.25);
+      border-radius: 100px;
+      padding: 16px 28px;
+    }
+    #slide5 .cta-button p {
+      color: #4ade80;
+      font-size: 18px;
+      font-weight: 700;
+    }
+    #slide5 .cta-button .arrow-icon {
+      color: #4ade80;
+      font-size: 18px;
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ─── SLIDE 1: COVER ─── -->
+<p class="slide-label">Slide 1 / 5</p>
+<div class="slide" id="slide1">
+  <div class="glow-green"></div>
+  <div class="glow-orange"></div>
+
+  <div class="top-tag">
+    <span></span>
+    <p>Coach Mira</p>
+  </div>
+
+  <div class="headline-wrap">
+    <p class="eyebrow">Relationship Insight</p>
+    <h1 class="headline">
+      <span class="num">3</span> cheezein<br>
+      jo silently<br>
+      aapki<br>
+      <em>relationships</em><br>
+      ko hurt<br>
+      karti hain
+    </h1>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="sub">
+    <p>In zaroori baaton pe baat karna zaroori hai.</p>
+  </div>
+
+  <div class="coach-card">
+    <div class="coach-avatar">M</div>
+    <div class="coach-info">
+      <p>Coach Mira</p>
+      <span>Your Personal Relationship Coach</span>
+    </div>
+  </div>
+
+  <div class="logo"><span class="logo-text">Pillar</span><div class="logo-dot"></div></div>
+  <div class="dots">
+    <div class="dot active"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
+</div>
+
+<!-- ─── SLIDE 2: MIRA QUOTE ─── -->
+<p class="slide-label">Slide 2 / 5</p>
+<div class="slide" id="slide2">
+  <div class="bg-glow"></div>
+
+  <div class="photo-card">
+    <div class="coach-photo-placeholder">
+      <div class="avatar-big">M</div>
+      <p class="avatar-name">Coach Mira</p>
+      <span class="avatar-role">Relationship Coach</span>
+    </div>
+  </div>
+
+  <div class="badge">💬</div>
+
+  <div class="quote-wrap">
+    <div class="quote-mark">"</div>
+    <p class="quote-text">
+      Bahut saare logon mein main yeh dekhti hoon —
+      <em>khud ko worth it na samajhna,</em>
+      chhod diye jaane ka darr, aur
+      <em>burden ban jaane ka darr.</em>"
+    </p>
+  </div>
+
+  <div class="logo"><span class="logo-text">Pillar</span><div class="logo-dot"></div></div>
+  <div class="dots">
+    <div class="dot"></div>
+    <div class="dot active"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
+</div>
+
+<!-- ─── SLIDE 3: HOW THEY SHOW UP ─── -->
+<p class="slide-label">Slide 3 / 5</p>
+<div class="slide" id="slide3">
+  <div class="glow-subtle"></div>
+
+  <p class="section-label">Yeh dikhte hain kuch aisa</p>
+
+  <div class="bullets-wrap">
+    <div class="bullet-item">
+      <span class="arrow">→</span>
+      <p class="bullet-text"><strong>Har fight mein</strong> khud ko blame karna — chahe galti na bhi ho</p>
+    </div>
+    <div class="bullet-item">
+      <span class="arrow">→</span>
+      <p class="bullet-text"><strong>Sorry bol dena</strong> sirf taakit wapas laane ke liye — feelings samjhe bina</p>
+    </div>
+    <div class="bullet-item">
+      <span class="arrow">→</span>
+      <p class="bullet-text">Apni feelings <strong>dabaate rehna</strong> kyunki "woh samjhenge nahi"</p>
+    </div>
+  </div>
+
+  <div class="big-statement">
+    <div class="divider-line"></div>
+    <h2>🔒 Yeh kamzori<br>nahi hai.<br><em>Yeh protection hai.</em></h2>
+  </div>
+
+  <div class="logo"><span class="logo-text">Pillar</span><div class="logo-dot"></div></div>
+  <div class="dots">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot active"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
+</div>
+
+<!-- ─── SLIDE 4: WHAT TO DO ─── -->
+<p class="slide-label">Slide 4 / 5</p>
+<div class="slide" id="slide4">
+  <div class="bg-layer"></div>
+
+  <p class="top-label">Jab chhota feel ho ya guilty lagey</p>
+
+  <div class="headline">
+    <h1>Jab dil<br>heavy ho<br>ya<br><em>guilt aaye</em></h1>
+  </div>
+
+  <div class="tips-wrap">
+    <div class="tip-card">
+      <span class="tip-icon">💭</span>
+      <p class="tip-label">Apne aap se pucho</p>
+      <p class="tip-text"><strong>"Yeh feeling kya kehna chahti hai?"</strong> Blame mat karo — samjhne ki koshish karo.</p>
+    </div>
+    <div class="tip-card">
+      <span class="tip-icon">🌱</span>
+      <p class="tip-label">Ek seedha sawaal</p>
+      <p class="tip-text"><strong>"Agar main sach mein worth it hoon —</strong> toh abhi main kya karta/karti?"</p>
+    </div>
+  </div>
+
+  <div class="logo"><span class="logo-text">Pillar</span><div class="logo-dot"></div></div>
+  <div class="dots">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot active"></div>
+    <div class="dot"></div>
+  </div>
+</div>
+
+<!-- ─── SLIDE 5: ACTION + CTA ─── -->
+<p class="slide-label">Slide 5 / 5</p>
+<div class="slide" id="slide5">
+  <div class="glow-bottom"></div>
+
+  <div class="top-badge">
+    <span></span>
+    <p>Start Here</p>
+  </div>
+
+  <div class="headline">
+    <h1>Har roz<br><em>thoda sa</em><br>apne aap<br>ko choose<br>karo</h1>
+  </div>
+
+  <div class="actions-wrap">
+    <div class="action-item">
+      <span class="action-arrow">→</span>
+      <p class="action-text"><strong>Apne aap se gently baat karo</strong> — waise jaise kisi dost se karte</p>
+    </div>
+    <div class="action-item">
+      <span class="action-arrow">→</span>
+      <p class="action-text">Apni feelings ko <strong>valid karo</strong> — kisi ko prove mat karo</p>
+    </div>
+    <div class="action-item">
+      <span class="action-arrow">→</span>
+      <p class="action-text">Baat karo <strong>bina judge hue</strong> — jab bhi chahte ho</p>
+    </div>
+  </div>
+
+  <div class="cta-block">
+    <p class="cta-text">Coach Mira hamesha available hai.</p>
+    <div class="cta-button">
+      <p>Pillar App — Coming to Playstore soon</p>
+      <span class="arrow-icon">→</span>
+    </div>
+  </div>
+
+  <div class="logo"><span class="logo-text">Pillar</span><div class="logo-dot"></div></div>
+  <div class="dots">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot active"></div>
+  </div>
+</div>
+
+</body>
+</html>

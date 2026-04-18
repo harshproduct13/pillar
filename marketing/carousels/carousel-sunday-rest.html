@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pillar — Carousel: Sunday Rest (Kabir)</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #e8e4df;
+      font-family: 'DM Sans', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+      padding: 40px 20px;
+    }
+
+    .slide-label {
+      color: #888;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: -22px;
+      align-self: flex-start;
+      margin-left: calc(50% - 270px);
+    }
+
+    /* ─── SHARED SLIDE SHELL ─── */
+    .slide {
+      width: 540px;
+      height: 675px; /* 4:5 ratio */
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+      border-radius: 4px;
+    }
+
+    /* Slide dots */
+    .dots {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 5px;
+      z-index: 5;
+    }
+    .dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.15);
+    }
+    .dot.active {
+      background: #f97316;
+      width: 16px;
+      border-radius: 3px;
+    }
+
+    /* Pillar logo */
+    .logo {
+      position: absolute;
+      bottom: 36px;
+      right: 44px;
+      z-index: 5;
+      display: flex;
+      align-items: baseline;
+      gap: 2px;
+    }
+    .logo-text {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      color: #1c1c1a;
+      letter-spacing: -0.01em;
+    }
+    .logo-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #f97316;
+      margin-bottom: 3px;
+      flex-shrink: 0;
+    }
+
+    /* ═══════════════════════════════
+       SLIDE 1 — COVER
+    ═══════════════════════════════ */
+    #slide1 {
+      background: #fdefd9;
+    }
+
+    #slide1 .content {
+      position: absolute;
+      inset: 0;
+      padding: 52px 44px 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    #slide1 .top-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(249,115,22,0.12);
+      border-radius: 100px;
+      padding: 6px 14px;
+      align-self: flex-start;
+    }
+    #slide1 .top-tag span {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #f97316;
+    }
+    #slide1 .top-tag p {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #f97316;
+    }
+
+    #slide1 .headline {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 60px;
+      font-weight: 900;
+      color: #1c1c1a;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+    }
+
+    #slide1 .sub-tag {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(255,255,255,0.7);
+      border-radius: 100px;
+      padding: 10px 20px;
+      align-self: flex-start;
+      margin-top: -16px;
+    }
+    #slide1 .sub-tag p {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: #1c1c1a;
+    }
+
+    #slide1 .emoji-wrap {
+      font-size: 100px;
+      line-height: 1;
+      text-align: center;
+    }
+
+    /* ═══════════════════════════════
+       SLIDE 2 — RELATABLE STORY
+    ═══════════════════════════════ */
+    #slide2 {
+      background: #f5f0ea;
+    }
+
+    #slide2 .content {
+      position: absolute;
+      inset: 0;
+      padding: 52px 44px 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    #slide2 .headline {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 52px;
+      font-weight: 900;
+      color: #1c1c1a;
+      line-height: 1.0;
+      letter-spacing: -0.025em;
+    }
+
+    #slide2 .quote-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 28px 28px 28px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+      position: relative;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    #slide2 .chat-icon {
+      position: absolute;
+      top: -20px;
+      left: 28px;
+      font-size: 36px;
+    }
+    #slide2 .quote-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 19px;
+      font-weight: 500;
+      color: #1c1c1a;
+      line-height: 1.55;
+      margin-top: 12px;
+    }
+    #slide2 .quote-text span {
+      font-weight: 700;
+    }
+
+    /* ═══════════════════════════════
+       SLIDE 3 — NOT ALL REST
+    ═══════════════════════════════ */
+    #slide3 {
+      background: #f5f0ea;
+    }
+
+    #slide3 .content {
+      position: absolute;
+      inset: 0;
+      padding: 52px 44px 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    #slide3 .headline {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 56px;
+      font-weight: 900;
+      color: #1c1c1a;
+      line-height: 1.0;
+      letter-spacing: -0.025em;
+    }
+
+    #slide3 .body-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 20px;
+      font-weight: 500;
+      color: #3a3a36;
+      line-height: 1.6;
+      text-align: center;
+    }
+    #slide3 .body-text .highlight {
+      color: #f97316;
+      font-weight: 700;
+    }
+
+    #slide3 .divider {
+      width: 40px;
+      height: 2px;
+      background: rgba(249,115,22,0.3);
+      border-radius: 2px;
+      margin: 0 auto;
+    }
+
+    #slide3 .insight-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 24px 28px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+    }
+    #slide3 .insight-card .icon {
+      font-size: 32px;
+    }
+    #slide3 .insight-card p {
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      color: #3a3a36;
+      line-height: 1.5;
+    }
+    #slide3 .insight-card p strong {
+      color: #1c1c1a;
+    }
+
+    /* ═══════════════════════════════
+       SLIDE 4 — WHY YOU WAKE UP DRAINED
+    ═══════════════════════════════ */
+    #slide4 {
+      background: #f5f0ea;
+    }
+
+    #slide4 .content {
+      position: absolute;
+      inset: 0;
+      padding: 52px 44px 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    #slide4 .headline {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 54px;
+      font-weight: 900;
+      color: #1c1c1a;
+      line-height: 1.0;
+      letter-spacing: -0.025em;
+    }
+
+    #slide4 .body-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 19px;
+      font-weight: 500;
+      color: #3a3a36;
+      line-height: 1.6;
+      text-align: center;
+    }
+    #slide4 .body-text .highlight {
+      color: #f97316;
+      font-weight: 700;
+    }
+
+    #slide4 .cards-row {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+      justify-content: center;
+    }
+
+    #slide4 .reason-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 16px 20px;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    #slide4 .reason-icon {
+      font-size: 26px;
+      flex-shrink: 0;
+    }
+    #slide4 .reason-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      color: #1c1c1a;
+      font-weight: 600;
+      line-height: 1.35;
+    }
+    #slide4 .reason-text span {
+      display: block;
+      font-weight: 400;
+      color: #6b6b64;
+      font-size: 14px;
+      margin-top: 2px;
+    }
+
+    /* ═══════════════════════════════
+       SLIDE 5 — SMALL THINGS THAT RESTORE
+    ═══════════════════════════════ */
+    #slide5 {
+      background: #f5f0ea;
+    }
+
+    #slide5 .content {
+      position: absolute;
+      inset: 0;
+      padding: 52px 44px 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    #slide5 .headline {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 52px;
+      font-weight: 900;
+      color: #1c1c1a;
+      line-height: 1.0;
+      letter-spacing: -0.025em;
+    }
+
+    #slide5 .tip-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 1;
+      justify-content: center;
+    }
+
+    #slide5 .tip-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 18px 20px;
+      box-shadow: 0 1px 10px rgba(0,0,0,0.05);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    #slide5 .tip-icon {
+      font-size: 32px;
+      flex-shrink: 0;
+    }
+    #slide5 .tip-info p {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: #1c1c1a;
+    }
+    #slide5 .tip-info span {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: #6b6b64;
+      font-weight: 400;
+    }
+
+    /* ═══════════════════════════════
+       SLIDE 6 — CTA / CLOSING
+    ═══════════════════════════════ */
+    #slide6 {
+      background: #fdefd9;
+    }
+
+    #slide6 .content {
+      position: absolute;
+      inset: 0;
+      padding: 52px 44px 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    #slide6 .headline {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 68px;
+      font-weight: 900;
+      color: #1c1c1a;
+      line-height: 0.97;
+      letter-spacing: -0.03em;
+    }
+
+    #slide6 .sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: #6b6b64;
+    }
+
+    #slide6 .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #f97316;
+      border-radius: 100px;
+      padding: 14px 28px;
+      align-self: flex-start;
+    }
+    #slide6 .cta-btn p {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    #slide6 .coach-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    #slide6 .coach-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1e3a5f, #0f2240);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 800;
+      color: #60a5fa;
+      flex-shrink: 0;
+      font-family: 'DM Sans', sans-serif;
+    }
+    #slide6 .coach-info p {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: #1c1c1a;
+    }
+    #slide6 .coach-info span {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: #6b6b64;
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ─── SLIDE 1: COVER ─── -->
+<p class="slide-label">Slide 1 / 6</p>
+<div class="slide" id="slide1">
+  <div class="content">
+    <div class="top-tag">
+      <span></span>
+      <p>Coach Kabir</p>
+    </div>
+
+    <h1 class="headline">Kyun uthte<br>ho thake<br>thake —<br>8 ghante<br>sone ke<br>baad bhi</h1>
+
+    <div class="sub-tag">
+      <p>Neend hoti hai. Sukoon nahi.</p>
+    </div>
+
+    <div class="emoji-wrap">😩</div>
+  </div>
+
+  <div class="dots">
+    <div class="dot active"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
+</div>
+
+<!-- ─── SLIDE 2: RELATABLE STORY ─── -->
+<p class="slide-label">Slide 2 / 6</p>
+<div class="slide" id="slide2">
+  <div class="content">
+    <h2 class="headline">Ek Sunday<br>jo kaam<br>nahi aaya</h2>
+
+    <div class="quote-card">
+      <span class="chat-icon">💬</span>
+      <p class="quote-text">
+        Poora din ghar pe tha. Shows dekhe, scroll kiya, kuch nahi kiya.<br><br>
+        Shaam ko ek ajeeb si guilt aayi — <span>lagaa din waste kar diya.</span><br><br>
+        Agle din uthaa toh aisa lagaa jaise Sunday hua hi nahi.
+      </p>
+    </div>
+  </div>
+
+  <div class="dots">
+    <div class="dot"></div>
+    <div class="dot active"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
+</div>
+
+<!-- ─── SLIDE 3: NOT ALL REST ─── -->
+<p class="slide-label">Slide 3 / 6</p>
+<div class="slide" id="slide3">
+  <div class="content">
+    <h2 class="headline">Passive rest<br>aur real<br>recovery<br>alag hain</h2>
+
+    <p class="body-text">
+      Agar tumhara dimaag <span class="highlight">switched on</span> hai —<br>
+      toh tumhara body bhi<br><span class="highlight">switched on</span> rehta hai.
+    </p>
+
+    <div class="divider"></div>
+
+    <div class="insight-card">
+      <span class="icon">🧠</span>
+      <p>Emails ka darr. Kal ki to-do list. News ka scroll. <strong>Yeh sab tumhare brain ko rest nahi karne dete.</strong></p>
+    </div>
+  </div>
+
+  <div class="dots">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot active"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
+</div>
+
+<!-- ─── SLIDE 4: WHY YOU WAKE UP DRAINED ─── -->
+<p class="slide-label">Slide 4 / 6</p>
+<div class="slide" id="slide4">
+  <div class="content">
+    <h2 class="headline">Kyun tum<br>thake<br>uthte ho</h2>
+
+    <p class="body-text">
+      Chronic stress tumhara brain ko<br>
+      <span class="highlight">survival mode</span> mein lock kar deta hai.<br>
+      Recovery kabhi poori nahi hoti.
+    </p>
+
+    <div class="cards-row">
+      <div class="reason-card">
+        <span class="reason-icon">📱</span>
+        <div class="reason-text">
+          Sone se pehle phone
+          <span>Brain alert mode mein rehta hai</span>
+        </div>
+      </div>
+      <div class="reason-card">
+        <span class="reason-icon">📋</span>
+        <div class="reason-text">
+          To-do list dimag mein chalta rehta hai
+          <span>Body lete hue bhi mentally kaam karti hai</span>
+        </div>
+      </div>
+      <div class="reason-card">
+        <span class="reason-icon">😶</span>
+        <div class="reason-text">
+          Feelings process nahi hoti
+          <span>Emotional weight nींद mein bhi saath rehti hai</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dots">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot active"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
+</div>
+
+<!-- ─── SLIDE 5: SMALL THINGS THAT RESTORE ─── -->
+<p class="slide-label">Slide 5 / 6</p>
+<div class="slide" id="slide5">
+  <div class="content">
+    <h2 class="headline">Choti cheezein<br>jo tumhe<br>restore<br>karti hain</h2>
+
+    <div class="tip-list">
+      <div class="tip-card">
+        <span class="tip-icon">☀️</span>
+        <div class="tip-info">
+          <p>10 minute bahar niklo</p>
+          <span>Sunlight mood aur energy regulate karta hai</span>
+        </div>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">🫁</span>
+        <div class="tip-info">
+          <p>Slow, deliberate breathing try karo</p>
+          <span>Brain ko signal milta hai ki safe ho</span>
+        </div>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">🌙</span>
+        <div class="tip-info">
+          <p>Sone se pehle phone band karo</p>
+          <span>Scrolling brain ko alert rakhta hai</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dots">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot active"></div>
+    <div class="dot"></div>
+  </div>
+</div>
+
+<!-- ─── SLIDE 6: CTA ─── -->
+<p class="slide-label">Slide 6 / 6</p>
+<div class="slide" id="slide6">
+  <div class="content">
+    <div class="coach-row">
+      <div class="coach-avatar">K</div>
+      <div class="coach-info">
+        <p>Coach Kabir</p>
+        <span>Your Personal Work-Life Coach</span>
+      </div>
+    </div>
+
+    <h2 class="headline">Asal rest<br>tumhare<br>dimaag se<br>shuru<br>hoti hai 🌿</h2>
+
+    <p class="sub">Kabir se baat karo. Samjho kya chal raha hai.</p>
+
+    <div class="cta-btn">
+      <p>Pillar App — Coming to Playstore soon</p>
+    </div>
+  </div>
+
+  <div class="logo"><span class="logo-text">Pillar</span><div class="logo-dot"></div></div>
+
+  <div class="dots">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot active"></div>
+  </div>
+</div>
+
+</body>
+</html>

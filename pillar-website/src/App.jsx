@@ -5,6 +5,7 @@ import Footer from './components/Footer'
 import LandingPage from './pages/LandingPage'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 import TermsConditions from './pages/TermsConditions'
+import Screenshots, { Screenshot1, Screenshot2, Screenshot3, Screenshot4, Screenshot5 } from './pages/Screenshots'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -32,6 +33,12 @@ export default function App() {
         <Route path="/" element={<Layout><LandingPage /></Layout>} />
         <Route path="/privacy-policy" element={<Layout><PrivacyPolicy /></Layout>} />
         <Route path="/terms" element={<Layout><TermsConditions /></Layout>} />
+        <Route path="/screenshots" element={<Screenshots />} />
+        <Route path="/screenshots/1" element={<Screenshot1 />} />
+        <Route path="/screenshots/2" element={<Screenshot2 />} />
+        <Route path="/screenshots/3" element={<Screenshot3 />} />
+        <Route path="/screenshots/4" element={<Screenshot4 />} />
+        <Route path="/screenshots/5" element={<Screenshot5 />} />
       </Routes>
     </BrowserRouter>
   )
