@@ -68,7 +68,9 @@ export default function DownloadCTA() {
           style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16 }}
         >
           <a
-            href="#"
+            href="https://play.google.com/store/apps/details?id=com.incline.pillar"
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
               display: 'inline-flex',
               alignItems: 'center',

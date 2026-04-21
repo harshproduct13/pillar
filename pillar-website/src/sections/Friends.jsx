@@ -140,8 +140,9 @@ function FriendCard({ friend, index }) {
 
       {/* CTA */}
       <a
-        href="#download"
-        onClick={e => { e.preventDefault(); document.querySelector('#download')?.scrollIntoView({ behavior: 'smooth' }) }}
+        href="https://play.google.com/store/apps/details?id=com.incline.pillar"
+        target="_blank"
+        rel="noopener noreferrer"
         style={{
           display: 'block',
           textAlign: 'center',

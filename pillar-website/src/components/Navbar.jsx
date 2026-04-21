@@ -81,8 +81,9 @@ export default function Navbar() {
 
         {/* CTA */}
         <a
-          href="#download"
-          onClick={e => handleAnchor(e, '#download')}
+          href="https://play.google.com/store/apps/details?id=com.incline.pillar"
+          target="_blank"
+          rel="noopener noreferrer"
           style={{
             display: 'inline-flex',
             alignItems: 'center',

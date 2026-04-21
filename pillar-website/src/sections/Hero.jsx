@@ -151,7 +151,9 @@ export default function Hero() {
           style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 20, flexWrap: 'wrap' }}
         >
           <a
-            href="#"
+            href="https://play.google.com/store/apps/details?id=com.incline.pillar"
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
               display: 'inline-flex',
               alignItems: 'center',
