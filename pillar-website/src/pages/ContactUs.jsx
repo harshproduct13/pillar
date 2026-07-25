@@ -111,13 +111,13 @@ export default function ContactUs() {
             Back to home
           </Link>
           <Link
-            to="/cancellation-exchange"
+            to="/cancellation-refund"
             className="text-sm transition-colors"
             style={{ color: '#88887f' }}
             onMouseEnter={e => e.currentTarget.style.color = '#f5f0ea'}
             onMouseLeave={e => e.currentTarget.style.color = '#88887f'}
           >
-            Cancellation &amp; Exchange &rarr;
+            Cancellation &amp; Refund &rarr;
           </Link>
         </div>
       </div>

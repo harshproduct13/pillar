@@ -6,6 +6,7 @@ import LandingPage from './pages/LandingPage'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 import TermsConditions from './pages/TermsConditions'
 import CancellationRefund from './pages/CancellationRefund'
+import ShippingExchange from './pages/ShippingExchange'
 import ContactUs from './pages/ContactUs'
 import Screenshots, { Screenshot1, Screenshot2, Screenshot3, Screenshot4, Screenshot5 } from './pages/Screenshots'
 
@@ -35,7 +36,8 @@ export default function App() {
         <Route path="/" element={<Layout><LandingPage /></Layout>} />
         <Route path="/privacy-policy" element={<Layout><PrivacyPolicy /></Layout>} />
         <Route path="/terms" element={<Layout><TermsConditions /></Layout>} />
-        <Route path="/cancellation-exchange" element={<Layout><CancellationRefund /></Layout>} />
+        <Route path="/cancellation-refund" element={<Layout><CancellationRefund /></Layout>} />
+        <Route path="/shipping-exchange" element={<Layout><ShippingExchange /></Layout>} />
         <Route path="/contact" element={<Layout><ContactUs /></Layout>} />
         <Route path="/screenshots" element={<Screenshots />} />
         <Route path="/screenshots/1" element={<Screenshot1 />} />

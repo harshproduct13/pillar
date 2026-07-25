@@ -33,7 +33,7 @@ function Ul({ items }) {
   )
 }
 
-export default function CancellationRefund() {
+export default function ShippingExchange() {
   return (
     <div style={{ backgroundColor: '#0f0f0d', paddingTop: 120, paddingBottom: 80, minHeight: '100vh' }}>
       <div style={{ maxWidth: 720, margin: '0 auto', paddingLeft: 24, paddingRight: 24 }}>
@@ -46,7 +46,7 @@ export default function CancellationRefund() {
         >
           <Link to="/" style={{ color: '#88887f' }} className="hover:text-white transition-colors">Pillar</Link>
           <span>/</span>
-          <span>Cancellation &amp; Refund</span>
+          <span>Shipping &amp; Exchange</span>
         </motion.div>
 
         {/* Header */}
@@ -59,13 +59,13 @@ export default function CancellationRefund() {
           <h1
             style={{ color: '#f5f0ea', fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 700, lineHeight: 1.15, marginBottom: 16 }}
           >
-            Cancellation &amp; Refund
+            Shipping &amp; Exchange
           </h1>
           <p style={{ color: '#55554f', fontSize: 14, marginBottom: 24 }}>
             Last updated: July 25, 2026
           </p>
           <p style={{ fontSize: 16, color: '#c0c0b8', lineHeight: 1.7 }}>
-            This policy explains how Pillar subscriptions work, how you can cancel, and how cancellations and refunds are handled for payments made through UPI and other supported methods.
+            Pillar is a fully digital product. There is nothing to ship physically — access is delivered instantly through the app. This page explains how delivery works and how you can exchange or change your subscription plan.
           </p>
         </motion.div>
 
@@ -75,39 +75,32 @@ export default function CancellationRefund() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.15 }}
         >
-          <Section title="1. Subscriptions">
-            <P>Pillar offers a free tier and paid subscription plans. Paid plans unlock extended access to your AI coaches and friends. Subscriptions are billed in advance on a recurring basis (for example, monthly or annually) depending on the plan you choose at the time of purchase.</P>
-            <P>Payments are processed securely through supported methods, including UPI. By subscribing, you authorise Pillar and its payment partners to charge the applicable fees for your chosen plan.</P>
-          </Section>
-
-          <Section title="2. Cancelling Your Subscription">
-            <P>You can cancel your subscription at any time. When you cancel:</P>
+          <Section title="1. Digital Delivery — No Physical Shipping">
+            <P>Pillar is a digital subscription service. We do not sell or ship any physical goods, so no shipping, courier, or delivery charges ever apply.</P>
             <Ul items={[
-              'Your subscription remains active until the end of your current billing period.',
-              'You will continue to have access to paid features until that period ends.',
-              'You will not be charged for the next billing cycle.',
-              'Auto-renewal is turned off, so no further payments are taken.',
+              'When your payment is successful, access to your paid features is granted instantly within the app.',
+              'There is no waiting period, tracking number, or physical delivery involved.',
+              'Your subscription is tied to your Pillar account and is available on your device as soon as payment is confirmed.',
             ]} />
-            <P>To cancel, open the Pillar app and go to Settings &rarr; Subscription, or email us at getinclined@gmail.com and we will help you cancel.</P>
           </Section>
 
-          <Section title="3. Refunds">
-            <P>As Pillar provides digital access that is available immediately upon subscribing, payments are generally non-refundable once a billing period has begun, except where required by applicable law.</P>
-            <P>We may, at our discretion, consider a refund in cases such as:</P>
+          <Section title="2. When Access Is Activated">
+            <P>Paid access is activated automatically the moment your UPI or other payment is confirmed by our payment partner. In rare cases where a payment is delayed or held for verification, access is granted as soon as the payment is confirmed.</P>
+            <P>If you have completed a payment but do not see your paid features within a few minutes, please close and reopen the app. If it still does not appear, contact us and we will resolve it promptly.</P>
+          </Section>
+
+          <Section title="3. Exchanging or Changing Your Plan">
+            <P>Because Pillar is a digital service, there are no physical items to return or exchange. &ldquo;Exchange&rdquo; here means changing your subscription plan — for example, switching between monthly and annual, or upgrading and downgrading.</P>
             <Ul items={[
-              'You were charged more than once for the same subscription period (duplicate payment).',
-              'You were charged after cancelling and did not use the paid features in the new period.',
-              'A verified technical issue on our side prevented you from accessing the service you paid for.',
+              'You can change your plan any time from the app under Settings → Subscription, or by contacting us.',
+              'Upgrades take effect immediately, and any applicable difference is adjusted at the time of change.',
+              'Downgrades take effect from your next billing cycle, so you keep your current benefits until then.',
             ]} />
-            <P>Approved refunds are processed back to your original payment method (including the UPI account used) within 5–7 business days. The time it takes to reflect in your account depends on your bank or UPI provider.</P>
+            <P>For details on cancelling a plan or getting a refund, please see our Cancellation &amp; Refund policy.</P>
           </Section>
 
-          <Section title="4. Failed or Incorrect Payments">
-            <P>If a UPI or other payment fails but an amount is debited from your account, the amount is typically reversed automatically by your bank or UPI provider within a few business days. If you do not see the reversal, please contact us with your transaction details and we will assist you.</P>
-          </Section>
-
-          <Section title="5. Contact Us">
-            <P>For any questions about cancellations or refunds, please reach out:</P>
+          <Section title="4. Contact Us">
+            <P>For any questions about delivery, activation, or changing your plan, please reach out:</P>
             <Ul items={[
               'Email: getinclined@gmail.com',
               'We aim to respond within 5 business days.',
@@ -130,13 +123,13 @@ export default function CancellationRefund() {
             Back to home
           </Link>
           <Link
-            to="/terms"
+            to="/cancellation-refund"
             className="text-sm transition-colors"
             style={{ color: '#88887f' }}
             onMouseEnter={e => e.currentTarget.style.color = '#f5f0ea'}
             onMouseLeave={e => e.currentTarget.style.color = '#88887f'}
           >
-            Terms &amp; Conditions &rarr;
+            Cancellation &amp; Refund &rarr;
           </Link>
         </div>
       </div>

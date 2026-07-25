@@ -47,13 +47,23 @@ export default function Footer() {
             </Link>
             <span style={{ color: '#55554f' }}>|</span>
             <Link
-              to="/cancellation-exchange"
+              to="/cancellation-refund"
               className="transition-colors duration-200"
               style={{ color: '#88887f' }}
               onMouseEnter={e => e.target.style.color = '#f5f0ea'}
               onMouseLeave={e => e.target.style.color = '#88887f'}
             >
-              Cancellation &amp; Exchange
+              Cancellation &amp; Refund
+            </Link>
+            <span style={{ color: '#55554f' }}>|</span>
+            <Link
+              to="/shipping-exchange"
+              className="transition-colors duration-200"
+              style={{ color: '#88887f' }}
+              onMouseEnter={e => e.target.style.color = '#f5f0ea'}
+              onMouseLeave={e => e.target.style.color = '#88887f'}
+            >
+              Shipping &amp; Exchange
             </Link>
             <span style={{ color: '#55554f' }}>|</span>
             <Link
