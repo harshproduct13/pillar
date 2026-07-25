@@ -5,6 +5,8 @@ import Footer from './components/Footer'
 import LandingPage from './pages/LandingPage'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 import TermsConditions from './pages/TermsConditions'
+import CancellationRefund from './pages/CancellationRefund'
+import ContactUs from './pages/ContactUs'
 import Screenshots, { Screenshot1, Screenshot2, Screenshot3, Screenshot4, Screenshot5 } from './pages/Screenshots'
 
 function ScrollToTop() {
@@ -33,6 +35,8 @@ export default function App() {
         <Route path="/" element={<Layout><LandingPage /></Layout>} />
         <Route path="/privacy-policy" element={<Layout><PrivacyPolicy /></Layout>} />
         <Route path="/terms" element={<Layout><TermsConditions /></Layout>} />
+        <Route path="/cancellation-exchange" element={<Layout><CancellationRefund /></Layout>} />
+        <Route path="/contact" element={<Layout><ContactUs /></Layout>} />
         <Route path="/screenshots" element={<Screenshots />} />
         <Route path="/screenshots/1" element={<Screenshot1 />} />
         <Route path="/screenshots/2" element={<Screenshot2 />} />

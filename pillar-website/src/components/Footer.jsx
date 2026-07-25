@@ -45,6 +45,26 @@ export default function Footer() {
             >
               Terms &amp; Conditions
             </Link>
+            <span style={{ color: '#55554f' }}>|</span>
+            <Link
+              to="/cancellation-exchange"
+              className="transition-colors duration-200"
+              style={{ color: '#88887f' }}
+              onMouseEnter={e => e.target.style.color = '#f5f0ea'}
+              onMouseLeave={e => e.target.style.color = '#88887f'}
+            >
+              Cancellation &amp; Exchange
+            </Link>
+            <span style={{ color: '#55554f' }}>|</span>
+            <Link
+              to="/contact"
+              className="transition-colors duration-200"
+              style={{ color: '#88887f' }}
+              onMouseEnter={e => e.target.style.color = '#f5f0ea'}
+              onMouseLeave={e => e.target.style.color = '#88887f'}
+            >
+              Contact Us
+            </Link>
           </div>
 
           {/* Copyright */}
