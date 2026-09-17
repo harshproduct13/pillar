@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /screenshots
+
+Sitemap: https://www.pillarapp.site/sitemap.xml
