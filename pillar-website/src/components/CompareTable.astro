@@ -1,0 +1,21 @@
+---
+import data from '../data/competitors.json';
+interface Props { include: string[]; caption?: string }
+const { include, caption = "As stated on each app's Google Play listing, checked September 2026. '—' = not mentioned on the listing." } = Astro.props;
+const all = [...data.apps, ...data.global];
+const rows = include.map((n) => all.find((a) => a.name === n)).filter(Boolean);
+---
+<div style="overflow-x:auto; margin: 1rem 0 0.4rem;">
+  <table class="cmp">
+    <thead><tr><th>App</th>{data.columns.map((c) => <th>{c}</th>)}</tr></thead>
+    <tbody>
+      {rows.map((r) => (
+        <tr>
+          <th>{r.play ? <a href={r.play} rel="noopener nofollow" target="_blank" style="color:var(--color-cream)">{r.name}</a> : r.name}</th>
+          {r.cells.map((c) => <td class={c.startsWith('✓') ? 'y' : ''}>{c}</td>)}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+<p style="color:var(--color-dim); font-size:0.82rem; margin-bottom:1.5rem;">{caption}</p>

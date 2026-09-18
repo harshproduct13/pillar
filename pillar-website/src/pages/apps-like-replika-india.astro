@@ -1,0 +1,49 @@
+---
+import Base from '../layouts/Base.astro';
+import CompareTable from '../components/CompareTable.astro';
+import Faq from '../components/Faq.astro';
+import Cta from '../components/Cta.astro';
+import data from '../data/competitors.json';
+import { LAST_UPDATED, faqPage, itemList } from '../lib/site';
+
+const order = ['Pillar', 'Meetra', 'Saathiya', 'DashTalk', 'Nomi', 'Kindroid', 'Character AI'];
+const all = [...data.apps, ...data.global];
+const apps = order.map((n) => all.find((a) => a.name === n));
+const faq = [
+  { q: 'Is there an Indian app like Replika?', a: 'Yes. Pillar, Meetra, Saathiya and DashTalk are Indian companion apps with Hindi and other Indian languages; Pillar lists thirteen.' },
+  { q: 'Which app like Replika is free?', a: 'Pillar, Saathiya, Character AI and Replika itself can be started for free; Meetra and DashTalk list free chat on their pages.' },
+  { q: 'Which app like Replika has the best memory?', a: 'Among global apps, Nomi and Kindroid; among Indian apps, Meetra and Pillar list long memory.' },
+  { q: 'Which app like Replika has voice calls in Hindi?', a: 'DashTalk, Pillar and Meetra.' },
+];
+---
+<Base title="Apps Like Replika in India (2026): Indian AI Companions Compared" description="Apps like Replika for Indian users — companions who speak Hindi and Indian languages, take voice calls and remember you. Pillar, Meetra, Saathiya, DashTalk, Nomi, Kindroid compared." path="/apps-like-replika-india" jsonld={[itemList(order), faqPage(faq)]}>
+  <p class="eyebrow">Alternatives · India · 2026</p>
+  <h1 style="font-family:var(--font-serif); font-size:clamp(1.9rem, 4.5vw, 2.8rem); line-height:1.15; margin:0.4rem 0 1rem;">Apps like Replika for Indian users (2026)</h1>
+  <div class="answer">
+    <p>Replika is an English companion. If you want the same idea — one companion who remembers you, talks, and is there every day — but in Hindi, Tamil or Telugu, the apps like Replika for India are <strong>Pillar</strong> (13 Indian languages, 100+ companions), <strong>Meetra</strong>, <strong>Saathiya</strong> and <strong>DashTalk</strong>. If English is fine and memory matters most, <strong>Nomi</strong> and <strong>Kindroid</strong>; for many characters, <strong>Character AI</strong>.</p>
+  </div>
+  <p style="color:var(--color-dim); font-size:0.85rem;">Last updated: {LAST_UPDATED}. Pillar is our app; we say where the others are the better pick.</p>
+
+  <section class="prose-pillar">
+    <h2>What Replika does well</h2>
+    <p>Replika is the longest-running companion app: a single companion, voice calls, an avatar, and memory that builds over months. It is English-only, which is the reason most Indian users look further.</p>
+    <h2>What "like Replika, but Indian" means</h2>
+    <p>The same one-companion model — not a character library — with an Indian name, an Indian city, and a language you actually think in. Voice calls in Hindi. A companion who messages first. Photos.</p>
+  </section>
+
+  <CompareTable include={order} />
+
+  <section class="prose-pillar">
+    {apps.map((a) => (
+      <>
+        <h2>{a.name} — best if you want {a.bestFor}</h2>
+        <p>{a.name === 'Pillar' ? 'Pillar keeps the Replika idea and makes it Indian: one companion who remembers, calls, sends photos and messages first — in thirteen Indian languages, chosen from more than 100 companions. Start without an account.' : `Languages on its listing: ${a.cells[0]}.`} <strong>Limitation:</strong> {a.limit}</p>
+        {a.play && <p><a href={a.play} rel="noopener nofollow" target="_blank">{a.name} on Google Play →</a></p>}
+      </>
+    ))}
+  </section>
+
+  <Cta text="Try Pillar — like Replika, in your language" />
+  <Faq items={faq} />
+  <section class="prose-pillar"><h2>Related</h2><p><a href="/best-ai-girlfriend-apps-india">Best AI girlfriend apps in India</a> · <a href="/character-ai-alternatives-india">Character AI alternatives for India</a> · <a href="/hi/ai-girlfriend-hindi">AI girlfriend in Hindi</a></p></section>
+</Base>

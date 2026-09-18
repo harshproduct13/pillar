@@ -1,0 +1,55 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../lib/site';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;            // e.g. "/" or "/best-ai-girlfriend-apps-india"
+  lang?: string;           // "en" | "hi"
+  noindex?: boolean;
+  jsonld?: object[];
+  hreflang?: { lang: string; path: string }[];
+  ogImage?: string;
+}
+const { title, description, path, lang = 'en', noindex = false, jsonld = [], hreflang = [], ogImage = '/Logo%20Emblem.png' } = Astro.props;
+const canonical = SITE + (path === '/' ? '/' : path);
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    <link rel="icon" type="image/png" href="/Logo%20Emblem.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Pillar" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={SITE + ogImage} />
+    <meta property="og:locale" content={lang === 'hi' ? 'hi_IN' : 'en_IN'} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={SITE + ogImage} />
+    {hreflang.map((h) => <link rel="alternate" hreflang={h.lang} href={SITE + h.path} />)}
+    {hreflang.length > 0 && <link rel="alternate" hreflang="x-default" href={SITE + '/'} />}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    {jsonld.map((obj) => <script type="application/ld+json" set:html={JSON.stringify(obj)} />)}
+  </head>
+  <body>
+    <Nav lang={lang} />
+    <main class="container" style="padding-block: 2.5rem 4rem;">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

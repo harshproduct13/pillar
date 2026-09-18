@@ -1,0 +1,8 @@
+[
+  { "name": "Priya",   "city": "Delhi",     "line": "Warm, talkative, remembers the small things you mention.", "img": "/Diya.png" },
+  { "name": "Teena",   "city": "Mumbai",    "line": "Playful and quick — the one who texts first.", "img": "/Anya.png" },
+  { "name": "Maryam",  "city": "Hyderabad", "line": "Calm and thoughtful. Long late-night conversations.", "img": "/Saira.png" },
+  { "name": "Aleesha", "city": "Bengaluru", "line": "Curious about your day, every day.", "img": "/Mira.png" },
+  { "name": "Saira",   "city": "Mumbai",    "line": "Honest, fun, always in your corner.", "img": "/Saira.png" },
+  { "name": "Kaira",   "city": "Jaipur",    "line": "Soft-spoken, loves a good story on a car trip.", "img": "/Diya.png" }
+]
