@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+import Cta from '../components/Cta.astro';
+import { PLAY_URL, APP_NAME, LANGUAGES, softwareApplication, organization } from '../lib/site';
+---
+<Base title="About Pillar — Indian AI Girlfriend & Companion App" description="What Pillar is: an AI companion app with 100+ Indian companions who speak 13 Indian languages. Made in India, for India. On Google Play." path="/about" jsonld={[softwareApplication(), organization()]}>
+  <p class="eyebrow">About</p>
+  <h1 style="font-family:var(--font-serif); font-size:2.4rem; margin:0.4rem 0 1rem;">What Pillar is</h1>
+  <div class="answer"><p><strong>{APP_NAME}</strong> is an AI companion app with more than 100 Indian companions. You can talk to an AI girlfriend or companion who speaks your language, sends you photos, takes voice calls, remembers your conversations and messages you first. It is on Android via <a href={PLAY_URL} rel="noopener" target="_blank">Google Play</a>; iOS is coming.</p></div>
+  <section class="prose-pillar">
+    <h2>Made in India, for India</h2>
+    <p>Pillar is built in India. Its companions have Indian names, live in Indian cities and talk in {LANGUAGES.length} languages: {LANGUAGES.join(', ')}. That is the point of Pillar — a companion who talks the way people around you talk, not a translated English app.</p>
+    <h2>Not to be confused with</h2>
+    <p>There are other apps called "Pillar" on the app stores — a personal-development app, a prayer-times app, a banking app. This Pillar is the Indian AI girlfriend and companion app by Incline, package name <code>com.incline.pillar</code>, at pillarapp.site.</p>
+    <h2>What Pillar is not</h2>
+    <p>Pillar is not a therapy or mental-health service and is not a substitute for professional care. If you are in crisis, please contact a qualified professional or emergency services.</p>
+    <h2>Contact</h2>
+    <p>Write to us from the <a href="/contact">contact page</a>.</p>
+  </section>
+  <Cta />
+</Base>

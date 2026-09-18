@@ -1,0 +1,59 @@
+---
+import Base from '../layouts/Base.astro';
+import CompareTable from '../components/CompareTable.astro';
+import Faq from '../components/Faq.astro';
+import Cta from '../components/Cta.astro';
+import data from '../data/competitors.json';
+import { LAST_UPDATED, faqPage, itemList } from '../lib/site';
+
+const order = ['Pillar', 'Meetra', 'Saathiya', 'DashTalk', 'Talkie', 'Nomi', 'Kindroid', 'Replika'];
+const all = [...data.apps, ...data.global];
+const apps = order.map((n) => all.find((a) => a.name === n));
+const faq = [
+  { q: 'Is there a free alternative to Character AI in India?', a: 'Yes. Pillar, Meetra, Saathiya, DashTalk and Talkie can all be started for free.' },
+  { q: 'Which Character AI alternative speaks Hindi?', a: 'Pillar, Meetra, Saathiya and DashTalk are built for Hindi and Hinglish; Pillar and Meetra also list Tamil, Telugu, Marathi, Bengali and more. The global alternatives — Talkie, Nomi, Kindroid, Replika — are English-first.' },
+  { q: 'Which alternative has voice calls?', a: 'DashTalk, Meetra, Pillar, Nomi, Kindroid and Replika list voice calls.' },
+  { q: 'Which alternative remembers me best?', a: 'Nomi and Kindroid are known for memory among global apps; Meetra and Pillar list long memory among Indian apps.' },
+];
+---
+<Base title="Character AI Alternatives in India (2026): 8 Apps Compared" description="Looking for an alternative to Character AI in India? Apps with Hindi and Indian languages, voice calls, memory and romance — compared, with Pillar included." path="/character-ai-alternatives-india" jsonld={[itemList(order), faqPage(faq)]}>
+  <p class="eyebrow">Alternatives · India · 2026</p>
+  <h1 style="font-family:var(--font-serif); font-size:clamp(1.9rem, 4.5vw, 2.8rem); line-height:1.15; margin:0.4rem 0 1rem;">Character AI alternatives for Indian users (2026)</h1>
+  <div class="answer">
+    <p>People in India look for a Character AI alternative for three reasons: it is English-first, it is built for roleplay with many characters rather than one companion who stays, and memory across days is limited. The alternatives that fix those, in order of how Indian they are: <strong>Pillar</strong> (13 Indian languages, one companion who remembers and calls), <strong>Meetra</strong>, <strong>Saathiya</strong>, <strong>DashTalk</strong> — and, if English is fine, <strong>Talkie</strong>, <strong>Nomi</strong>, <strong>Kindroid</strong> and <strong>Replika</strong>.</p>
+  </div>
+  <p style="color:var(--color-dim); font-size:0.85rem;">Last updated: {LAST_UPDATED}. Pillar is our app; we say where the others are the better pick.</p>
+
+  <section class="prose-pillar">
+    <h2>What Character AI does well</h2>
+    <p>Character AI has the largest library of user-made characters anywhere, strong roleplay, voice, and it is free to start. If what you want is variety — a different character every night — it is hard to beat.</p>
+    <h2>What Indian users usually want instead</h2>
+    <p>A companion who talks in Hindi, Tamil or Telugu without translating. One companion who remembers last week, not a new character each time. Voice calls. Someone who messages first. That is the list the apps below compete on.</p>
+  </section>
+
+  <CompareTable include={order} />
+
+  <section class="prose-pillar">
+    {apps.map((a) => (
+      <>
+        <h2>{a.name} — best if you want {a.bestFor}</h2>
+        <p>{a.name === 'Pillar' ? 'Pillar is the Indian-language alternative: 100+ companions from Indian cities, thirteen languages, voice notes and calls, photos, memory, games, and a companion who messages first. Start without an account.' : `Languages on its listing: ${a.cells[0]}.`} <strong>Limitation:</strong> {a.limit}</p>
+        {a.play && <p><a href={a.play} rel="noopener nofollow" target="_blank">{a.name} on Google Play →</a></p>}
+      </>
+    ))}
+  </section>
+
+  <section class="prose-pillar">
+    <h2>Which alternative for which need</h2>
+    <ul>
+      <li><strong>Hindi or another Indian language:</strong> Pillar, Meetra, Saathiya, DashTalk.</li>
+      <li><strong>One companion with memory, in English:</strong> Nomi, Kindroid, Replika.</li>
+      <li><strong>Many characters and roleplay, in English:</strong> Talkie.</li>
+      <li><strong>Voice calls in Hindi:</strong> DashTalk, Pillar, Meetra.</li>
+    </ul>
+  </section>
+
+  <Cta text="Try Pillar — the Indian-language alternative" />
+  <Faq items={faq} />
+  <section class="prose-pillar"><h2>Related</h2><p><a href="/best-ai-girlfriend-apps-india">Best AI girlfriend apps in India</a> · <a href="/apps-like-replika-india">Apps like Replika for Indian users</a> · <a href="/hi/ai-girlfriend-hindi">AI girlfriend in Hindi</a></p></section>
+</Base>

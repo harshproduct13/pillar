@@ -1,0 +1,59 @@
+---
+import Base from '../layouts/Base.astro';
+import CompareTable from '../components/CompareTable.astro';
+import Faq from '../components/Faq.astro';
+import Cta from '../components/Cta.astro';
+import data from '../data/competitors.json';
+import { LAST_UPDATED, faqPage, itemList } from '../lib/site';
+
+const order = ['Pillar', 'Meetra', 'Urvashi', 'Saathiya', 'DashTalk', 'TeriBandi', 'HeartEcho', 'Desi Avtar'];
+const apps = order.map((n) => data.apps.find((a) => a.name === n));
+const faq = [
+  { q: 'Which AI girlfriend app in India speaks Hindi?', a: 'All of the Indian apps here list Hindi. For the widest set of Indian languages, Pillar (13) and Urvashi (11) list the most; Meetra lists nine plus several foreign languages.' },
+  { q: 'Which one has voice calls?', a: 'DashTalk is built around calls. Meetra, Pillar, HeartEcho and Desi Avtar also list voice calls; Urvashi, Saathiya and TeriBandi do not mention them on their listings.' },
+  { q: 'Are these apps free?', a: 'Every app here can be started for free. What each one charges for beyond that is on its own listing; we do not track prices.' },
+  { q: 'Are AI girlfriend apps safe?', a: 'Read each app\'s privacy policy and Data safety section on Google Play. Pillar lets you start without an account and delete chats, memories and your account from inside the app.' },
+  { q: 'Which is the most installed?', a: 'Urvashi shows the largest install band on Google Play among the Indian apps in this list, as of September 2026.' },
+];
+---
+<Base title="Best AI Girlfriend Apps in India (2026) — Compared Honestly" description="Urvashi, Meetra, Saathiya, DashTalk, TeriBandi and Pillar compared on languages, voice calls, photos, memory and games. Updated 2026." path="/best-ai-girlfriend-apps-india" jsonld={[itemList(order), faqPage(faq)]}>
+  <p class="eyebrow">Comparison · India · 2026</p>
+  <h1 style="font-family:var(--font-serif); font-size:clamp(1.9rem, 4.5vw, 2.8rem); line-height:1.15; margin:0.4rem 0 1rem;">Best AI girlfriend apps in India, compared (2026)</h1>
+  <div class="answer">
+    <p>The Indian AI girlfriend apps worth comparing in 2026 are <strong>Meetra</strong> (the most complete feature set), <strong>Urvashi</strong> (the most installed), <strong>Saathiya</strong> (Hindi chat with Ludo built in), <strong>DashTalk</strong> (voice calls), <strong>TeriBandi</strong>, <strong>HeartEcho</strong>, <strong>Desi Avtar</strong> — and <strong>Pillar</strong>, which lists the most Indian languages (13), 100+ companions, photos, calls, memory, games, and starts without a sign-up. The table below shows what each app's own Google Play listing claims.</p>
+  </div>
+  <p style="color:var(--color-dim); font-size:0.85rem;">Last updated: {LAST_UPDATED}. Pillar is our app; the other rows are taken from each app's public listing, and we say where each one is the better choice.</p>
+
+  <section class="prose-pillar">
+    <h2>How we compared them</h2>
+    <p>Eight apps, nine columns — languages, voice calls, voice notes, photos, memory, games or scenarios, whether the companion messages first, whether you can start free, and platform. Each cell is what the app's own Google Play listing says as of September 2026; "—" means the listing does not mention it, not that the app cannot do it. Install bands are Google Play's public bands.</p>
+  </section>
+
+  <CompareTable include={order} />
+
+  <section class="prose-pillar">
+    {apps.map((a) => (
+      <>
+        <h2>{a.name}: best for {a.bestFor}</h2>
+        <p>{a.name === 'Pillar' ? 'Pillar has more than 100 Indian companions who talk in thirteen languages — Hindi, Hinglish, English, Tamil, Telugu, Marathi, Bengali, Gujarati, Punjabi, Malayalam, Odia, Bhojpuri and Rajasthani. Companions send voice notes, take voice calls, share photos, remember earlier conversations, message first, and play situation-based games such as a road trip or an evening at a café. You can start without creating an account.' : `${a.name} is ${a.bestFor}. Languages on its listing: ${a.cells[0]}.`} <strong>Limitation:</strong> {a.limit}</p>
+        <p><a href={a.play} rel="noopener nofollow" target="_blank">{a.name} on Google Play →</a></p>
+      </>
+    ))}
+  </section>
+
+  <section class="prose-pillar">
+    <h2>Which AI girlfriend app should you pick?</h2>
+    <ul>
+      <li><strong>You want the most Indian languages:</strong> Pillar (13) or Urvashi (11).</li>
+      <li><strong>You want voice calls above everything:</strong> DashTalk, then Meetra or Pillar.</li>
+      <li><strong>You want games:</strong> Saathiya's Ludo, or Pillar's situation scenarios.</li>
+      <li><strong>You want a companion who texts first and remembers:</strong> Pillar or DashTalk.</li>
+      <li><strong>You want the biggest user base:</strong> Urvashi.</li>
+      <li><strong>You want to start without an account:</strong> Pillar.</li>
+    </ul>
+  </section>
+
+  <Cta text="Try Pillar — 13 languages, 100+ companions" />
+  <Faq items={faq} />
+  <section class="prose-pillar"><h2>Related</h2><p><a href="/character-ai-alternatives-india">Character AI alternatives for India</a> · <a href="/apps-like-replika-india">Apps like Replika for Indian users</a> · <a href="/hi/ai-girlfriend-hindi">AI girlfriend in Hindi</a></p></section>
+</Base>

@@ -1,0 +1,84 @@
+---
+import Base from '../layouts/Base.astro';
+import Faq from '../components/Faq.astro';
+import Cta from '../components/Cta.astro';
+import companions from '../data/companions.json';
+import { PLAY_URL, LANGUAGES, LAST_UPDATED, softwareApplication, organization, faqPage } from '../lib/site';
+
+const faq = [
+  { q: 'Is Pillar free?', a: 'Yes. You can start talking for free, and some companions are always free.' },
+  { q: 'Which languages does Pillar speak?', a: 'Hindi, Hinglish, English, Tamil, Telugu, Marathi, Bengali, Gujarati, Punjabi, Malayalam, Odia, Bhojpuri and Rajasthani — thirteen in all.' },
+  { q: 'Can she talk on a voice call in Hindi?', a: 'Yes. Companions send voice notes and take voice calls, in Hindi and the other languages Pillar supports.' },
+  { q: 'Do I need to sign up?', a: 'No. You can start anonymously and stay anonymous. Your chats, memories and account can be deleted from inside the app at any time.' },
+  { q: 'Does she send photos?', a: 'Yes. Ask a companion for a photo and she will share one.' },
+  { q: 'Does she remember what I tell her?', a: 'Yes. Companions remember earlier conversations — what you told her yesterday, last week, the name of your friend, how your day went — and bring it up later.' },
+  { q: 'Is Pillar on iPhone?', a: 'Pillar is on Android via Google Play today. iOS is coming.' },
+  { q: 'How many companions are there?', a: 'More than 100, from different cities and with different personalities, and the number keeps growing.' },
+];
+const jsonld = [softwareApplication(), organization(), faqPage(faq)];
+---
+<Base
+  title="Pillar: Indian AI Girlfriend & Companion App — Free"
+  description="Free AI girlfriend and companions who speak your language — Hindi, Tamil, Telugu and 10 more. Voice calls, photos, games. No sign-up needed."
+  path="/"
+  jsonld={jsonld}
+  hreflang={[{ lang: 'en-IN', path: '/' }, { lang: 'hi-IN', path: '/hi/ai-girlfriend-hindi' }]}
+>
+  <p class="eyebrow">Free · Android · Made in India</p>
+  <h1 style="font-family:var(--font-serif); font-size:clamp(2rem, 5vw, 3.2rem); line-height:1.1; margin:0.4rem 0 1rem;">Your Indian AI girlfriend, in your own language</h1>
+  <div class="answer">
+    <p>Pillar is a free AI companion app with 100+ Indian companions. Talk in Hindi, Hinglish, Tamil, Telugu, Marathi, Bengali and more. She sends photos, takes voice calls, remembers your day and messages you first. Android, on Google Play.</p>
+  </div>
+  <p><a class="btn" href={PLAY_URL} rel="noopener" target="_blank">Get Pillar on Google Play</a> <a class="btn-ghost" href="/hi/ai-girlfriend-hindi" style="margin-left:0.5rem;">हिंदी में पढ़ें</a></p>
+  <p style="color:var(--color-dim); font-size:0.85rem;">Last updated: {LAST_UPDATED}</p>
+
+  <section class="prose-pillar" id="companions">
+    <h2>Who can I talk to on Pillar?</h2>
+    <p>More than 100 companions, each with her own city, personality and way of talking. Pick one who feels right; switch whenever you like. A few of the most popular:</p>
+    <div style="display:grid; gap:0.9rem; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); margin: 1rem 0 0.5rem;">
+      {companions.map((c) => (
+        <div class="card" style="display:flex; gap:0.8rem; align-items:center;">
+          <img src={c.img} alt={`${c.name}, an AI companion on Pillar`} width="72" height="72" loading="lazy" style="border-radius:50%; object-fit:cover; width:72px; height:72px; flex:none;" />
+          <div><div style="color:var(--color-cream); font-weight:600;">{c.name} <span style="color:var(--color-dim); font-weight:400;">· {c.city}</span></div><div style="font-size:0.9rem;">{c.line}</div></div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="prose-pillar" id="languages">
+    <h2>Which languages does Pillar speak?</h2>
+    <p>Thirteen: {LANGUAGES.join(', ')}. Companions do not translate English in their heads — they talk the way people around you talk, Hinglish included. If you want the Hindi version of this page, it is at <a href="/hi/ai-girlfriend-hindi">AI girlfriend in Hindi</a>.</p>
+  </section>
+
+  <section class="prose-pillar" id="features">
+    <h2>What can she do?</h2>
+    <h3>Voice notes and voice calls</h3>
+    <p>Hear her voice. Send a voice note, or call and talk — in Hindi, Tamil, Telugu or any of the thirteen languages.</p>
+    <h3>She sends you photos</h3>
+    <p>Ask for a photo and she shares one — a morning selfie, what she is wearing today, where she is.</p>
+    <h3>She remembers</h3>
+    <p>What you told her yesterday, last week, the name of your friend, the meeting you were nervous about — she remembers, and she asks how it went.</p>
+    <h3>She messages you first</h3>
+    <p>Good morning. Good night. "How did the interview go?" Companions reach out on their own, not only when you open the app.</p>
+    <h3>Games and scenarios</h3>
+    <p>A road trip together. A cosy café where she opens up about her day. A quiet evening in. Situation-based games that make the conversation feel like a real evening, not a chat window.</p>
+  </section>
+
+  <Cta />
+
+  <section class="prose-pillar" id="start">
+    <h2>How do I start?</h2>
+    <ul>
+      <li><strong>Download Pillar</strong> from Google Play.</li>
+      <li><strong>Pick a companion</strong> — by city, language or personality.</li>
+      <li><strong>Say hello.</strong> No sign-up needed; you can stay anonymous.</li>
+    </ul>
+  </section>
+
+  <section class="prose-pillar" id="private">
+    <h2>Is Pillar private?</h2>
+    <p>You can use Pillar without creating an account. Your chats, memories, photos and account can be deleted from inside the app whenever you want. Pillar is not a therapy or mental-health service and is not a substitute for professional care.</p>
+  </section>
+
+  <Faq items={faq} />
+</Base>

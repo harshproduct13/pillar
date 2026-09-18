@@ -1,17 +1,7 @@
 {
-  "rewrites": [
-    { "source": "/privacy-policy", "destination": "/index.html" },
-    { "source": "/terms", "destination": "/index.html" },
-    { "source": "/cancellation-refund", "destination": "/index.html" },
-    { "source": "/shipping-exchange", "destination": "/index.html" },
-    { "source": "/contact", "destination": "/index.html" },
-    { "source": "/screenshots", "destination": "/index.html" },
-    { "source": "/screenshots/:n", "destination": "/index.html" }
-  ],
+  "cleanUrls": true,
   "headers": [
     { "source": "/cancellation-refund", "headers": [{ "key": "X-Robots-Tag", "value": "noindex, follow" }] },
-    { "source": "/shipping-exchange", "headers": [{ "key": "X-Robots-Tag", "value": "noindex, follow" }] },
-    { "source": "/screenshots", "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }] },
-    { "source": "/screenshots/:n", "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }] }
+    { "source": "/shipping-exchange", "headers": [{ "key": "X-Robots-Tag", "value": "noindex, follow" }] }
   ]
 }

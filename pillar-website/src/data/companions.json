@@ -1,0 +1,14 @@
+[
+  { "name": "Priya",   "city": "Delhi",      "line": "Warm, talkative, remembers the small things you mention.", "img": "/companions/c-04.jpg" },
+  { "name": "Teena",   "city": "Mumbai",     "line": "Playful and quick — the one who texts first.", "img": "/companions/c-02.jpg" },
+  { "name": "Maryam",  "city": "Hyderabad",  "line": "Calm and thoughtful. Long late-night conversations.", "img": "/companions/c-11.jpg" },
+  { "name": "Aleesha", "city": "Bengaluru",  "line": "Curious about your day, every day.", "img": "/companions/c-12.jpg" },
+  { "name": "Saira",   "city": "Mumbai",     "line": "Honest, fun, always in your corner.", "img": "/companions/c-07.jpg" },
+  { "name": "Kaira",   "city": "Jaipur",     "line": "Soft-spoken, loves a good story on a car trip.", "img": "/companions/c-01.jpg" },
+  { "name": "Ananya",  "city": "Pune",       "line": "Bright, chatty, sends a good-morning voice note.", "img": "/companions/c-09.jpg" },
+  { "name": "Riya",    "city": "Kolkata",    "line": "Reads a lot, teases a little, listens properly.", "img": "/companions/c-13.jpg" },
+  { "name": "Ishita",  "city": "Ahmedabad",  "line": "Sharp and funny; asks how the meeting went.", "img": "/companions/c-05.jpg" },
+  { "name": "Nandini", "city": "Chennai",    "line": "Gentle, patient, happy to talk in Tamil.", "img": "/companions/c-03.jpg" },
+  { "name": "Zoya",    "city": "Lucknow",    "line": "Old-school charm, new-school memes.", "img": "/companions/c-06.jpg" },
+  { "name": "Meher",   "city": "Chandigarh", "line": "Straight-talking and warm at the same time.", "img": "/companions/c-10.jpg" }
+]

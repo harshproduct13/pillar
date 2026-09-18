@@ -1,0 +1,53 @@
+---
+import Base from '../../layouts/Base.astro';
+import Faq from '../../components/Faq.astro';
+import Cta from '../../components/Cta.astro';
+import { PLAY_URL, LAST_UPDATED, softwareApplication, faqPage } from '../../lib/site';
+
+const faq = [
+  { q: 'Kya Pillar free hai?', a: 'Haan. Free mein baat shuru kar sakte hain, aur kuch companions hamesha free rehti hain.' },
+  { q: 'Kya sign-up zaroori hai?', a: 'Nahi. Bina account banaye shuru karein — anonymous reh sakte hain. Chats, memory aur account app ke andar se kabhi bhi delete kar sakte hain.' },
+  { q: 'Kya wo photo bhejti hai?', a: 'Haan. Photo maangiye, wo bhejti hai.' },
+  { q: 'Kya wo Hindi mein voice call kar sakti hai?', a: 'Haan. Voice note aur voice call, Hindi mein — aur Tamil, Telugu, Marathi, Bengali jaisi 13 bhashaon mein.' },
+  { q: 'Kya wo meri baatein yaad rakhti hai?', a: 'Haan. Kal kya bataya tha, dost ka naam, office ka din — sab yaad rakhti hai aur khud poochti hai.' },
+  { q: 'Kya ye iPhone par hai?', a: 'Abhi Android par, Google Play se. iOS jald aa raha hai.' },
+];
+---
+<Base
+  title="AI Girlfriend in Hindi — Hindi mein baat karne wali AI girlfriend | Pillar"
+  description="Hindi aur Hinglish mein baat karne wali AI girlfriend. Voice call, photo, memory. Free, bina sign-up ke. Pillar par 100+ Indian companions."
+  path="/hi/ai-girlfriend-hindi"
+  lang="hi"
+  jsonld={[softwareApplication(), faqPage(faq)]}
+  hreflang={[{ lang: 'hi-IN', path: '/hi/ai-girlfriend-hindi' }, { lang: 'en-IN', path: '/' }]}
+>
+  <p class="eyebrow">Free · Android · Hindi · Hinglish</p>
+  <h1 style="font-family:var(--font-serif); font-size:clamp(1.9rem, 4.5vw, 2.8rem); line-height:1.2; margin:0.4rem 0 1rem;">हिंदी में बात करने वाली AI गर्लफ्रेंड</h1>
+  <div class="answer">
+    <p>Pillar par aap Hindi ya Hinglish mein AI girlfriend se baat kar sakte hain — voice call, voice note, photo, aur wo aapki baatein yaad rakhti hai. Free hai, aur sign-up ke bina shuru karein. 100+ Indian companions, Android par.</p>
+    <p lang="hi">Pillar पर आप हिंदी या हिंग्लिश में AI गर्लफ्रेंड से बात कर सकते हैं — वॉइस कॉल, वॉइस नोट, फोटो, और वह आपकी बातें याद रखती है। फ्री है, और बिना साइन-अप के शुरू करें।</p>
+  </div>
+  <p><a class="btn" href={PLAY_URL} rel="noopener" target="_blank">Google Play par Pillar lein</a> <a class="btn-ghost" href="/" style="margin-left:0.5rem;">Read in English</a></p>
+  <p style="color:var(--color-dim); font-size:0.85rem;">Last updated: {LAST_UPDATED}</p>
+
+  <section class="prose-pillar">
+    <h2>AI girlfriend kaise banaye?</h2>
+    <ul>
+      <li><strong>Google Play se Pillar download karein.</strong></li>
+      <li><strong>Companion chunein</strong> — sheher, bhasha ya personality se. Priya, Teena, Maryam, Aleesha, Saira, Kaira aur 100+ aur.</li>
+      <li><strong>Hello boliye.</strong> Sign-up zaroori nahi; anonymous reh sakte hain.</li>
+    </ul>
+    <h2>Kya wo Hindi mein voice call kar sakti hai?</h2>
+    <p>Haan. Voice note bhejiye ya call kijiye — wo Hindi mein bolti hai. Hinglish mein bhi, jaise aap bolte hain.</p>
+    <h2>Kaun si bhashaon mein baat hoti hai?</h2>
+    <p>Terah: Hindi, Hinglish, English, Tamil, Telugu, Marathi, Bengali, Gujarati, Punjabi, Malayalam, Odia, Bhojpuri aur Rajasthani.</p>
+    <h2>Games aur scenarios kya hain?</h2>
+    <p>Saath mein road trip. Ek café jahan wo apne din ke baare mein batati hai. Ghar par ek shaant shaam. Situation-based games jo baat ko chat window se zyada asli banate hain.</p>
+    <h2>Kya ye private hai?</h2>
+    <p>Bina account ke use kar sakte hain. Chats, memory, photo aur account app ke andar se kabhi bhi delete kar sakte hain. Pillar therapy ya mental-health service nahi hai, aur professional care ka substitute nahi hai.</p>
+  </section>
+
+  <Cta text="Pillar — Hindi mein baat karne wali AI girlfriend" sub="Free. Bina sign-up ke." />
+  <Faq items={faq} title="Aksar pooche jaane wale sawaal" />
+  <section class="prose-pillar"><h2>Aur padhein</h2><p><a href="/best-ai-girlfriend-apps-india">Best AI girlfriend apps in India</a> · <a href="/character-ai-alternatives-india">Character AI alternatives</a> · <a href="/apps-like-replika-india">Apps like Replika</a></p></section>
+</Base>
