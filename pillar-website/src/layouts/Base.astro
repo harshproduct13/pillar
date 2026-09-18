@@ -14,7 +14,7 @@ interface Props {
   hreflang?: { lang: string; path: string }[];
   ogImage?: string;
 }
-const { title, description, path, lang = 'en', noindex = false, jsonld = [], hreflang = [], ogImage = '/Logo%20Emblem.png' } = Astro.props;
+const { title, description, path, lang = 'en', noindex = false, jsonld = [], hreflang = [], ogImage = '/og-image.jpg' } = Astro.props;
 const canonical = SITE + (path === '/' ? '/' : path);
 ---
 <!doctype html>

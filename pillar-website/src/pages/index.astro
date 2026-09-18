@@ -38,7 +38,7 @@ const jsonld = [softwareApplication(), organization(), faqPage(faq)];
     <div style="display:grid; gap:0.9rem; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); margin: 1rem 0 0.5rem;">
       {companions.map((c) => (
         <div class="card" style="display:flex; gap:0.8rem; align-items:center;">
-          <img src={c.img} alt={`${c.name}, an AI companion on Pillar`} width="56" height="56" loading="lazy" style="border-radius:50%; object-fit:cover; width:56px; height:56px;" />
+          <img src={c.img} alt={`${c.name}, an AI companion on Pillar`} width="72" height="72" loading="lazy" style="border-radius:50%; object-fit:cover; width:72px; height:72px; flex:none;" />
           <div><div style="color:var(--color-cream); font-weight:600;">{c.name} <span style="color:var(--color-dim); font-weight:400;">· {c.city}</span></div><div style="font-size:0.9rem;">{c.line}</div></div>
         </div>
       ))}
