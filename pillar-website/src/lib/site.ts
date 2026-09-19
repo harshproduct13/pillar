@@ -1,5 +1,6 @@
 export const SITE = 'https://www.pillarapp.site';
-export const PLAY_URL = 'https://play.google.com/store/apps/details?id=com.incline.pillar';
+// UTM in the Play referrer so Play Console's traffic-source report shows website installs as their own row.
+export const PLAY_URL = 'https://play.google.com/store/apps/details?id=com.incline.pillar&referrer=' + encodeURIComponent('utm_source=pillarapp.site&utm_medium=website&utm_campaign=site-v1');
 export const APP_NAME = 'Pillar: Indian AI Girlfriend';
 export const LAST_UPDATED = '18 September 2026';
 export const LANGUAGES = ['Hindi', 'Hinglish', 'English', 'Tamil', 'Telugu', 'Marathi', 'Bengali', 'Gujarati', 'Punjabi', 'Malayalam', 'Odia', 'Bhojpuri', 'Rajasthani'];
