@@ -1,0 +1,71 @@
+---
+import Base from '../layouts/Base.astro';
+import Cta from '../components/Cta.astro';
+import Faq from '../components/Faq.astro';
+import FocusedCompareTable from '../components/FocusedCompareTable.astro';
+import data from '../data/competitors.json';
+import { comparisonPages } from '../data/comparisonPages';
+import { PLAY_URL, faqPage, itemList } from '../lib/site';
+
+export function getStaticPaths() {
+  return comparisonPages.map((page) => ({ params: { slug: page.slug }, props: { page } }));
+}
+
+const { page } = Astro.props;
+const apps = page.include.map((name: string) => data.apps.find((app) => app.name === name)).filter(Boolean);
+const relatedPages = page.related.map((slug: string) => comparisonPages.find((candidate) => candidate.slug === slug)).filter(Boolean);
+const alternativePages = comparisonPages.filter((candidate) => candidate.slug.endsWith('-alternatives') && candidate.slug !== page.slug);
+const comparisonUpdated = '20 September 2026';
+---
+<Base title={page.title} description={page.description} path={`/${page.slug}`} jsonld={[itemList(page.include), faqPage(page.faqs)]}>
+  <p class="eyebrow">{page.eyebrow}</p>
+  <h1 style="font-family:var(--font-serif); font-size:clamp(1.9rem, 4.5vw, 2.8rem); line-height:1.15; margin:0.4rem 0 1rem;">{page.h1}</h1>
+
+  <div class="answer"><p>{page.answer}</p></div>
+  <p style="color:var(--color-dim); font-size:0.85rem;">Last updated: {comparisonUpdated}. Pillar is our app. Other feature claims come from each app's linked Google Play listing.</p>
+
+  <section class="prose-pillar">
+    <h2>Quick comparison</h2>
+    <p>Use this table as a shortlist, then read the fit notes below. A blank listing claim is not proof that a feature is absent; it only means the public listing did not mention it when checked.</p>
+  </section>
+  <FocusedCompareTable include={page.include} />
+
+  <section class="prose-pillar">
+    <h2>How to choose</h2>
+    <ul>{page.criteria.map((criterion: string) => <li>{criterion}</li>)}</ul>
+  </section>
+
+  <section class="prose-pillar">
+    <h2>Which app fits which need?</h2>
+    {page.picks.map((pick: { name: string; reason: string }) => {
+      const app = apps.find((candidate) => candidate.name === pick.name);
+      return (
+        <>
+          <h3>{pick.name}</h3>
+          <p>{pick.reason}</p>
+          {app && <p><a href={pick.name === 'Pillar' ? PLAY_URL : app.play} rel="noopener nofollow" target="_blank">Check {pick.name}'s Google Play listing →</a></p>}
+        </>
+      );
+    })}
+  </section>
+
+  <section class="prose-pillar">
+    <h2>Our verdict</h2>
+    <p>{page.decision}</p>
+    <p>Pillar is made for adults. Its companions are AI, not real people.</p>
+  </section>
+
+  <Cta text="Try Pillar: Indian AI Girlfriend" sub="An AI companion app with 100+ Indian companions." />
+  <Faq items={page.faqs} />
+
+  <section class="prose-pillar">
+    <h2>Related comparisons</h2>
+    <ul>{relatedPages.map((related) => <li><a href={`/${related.slug}`}>{related.h1}</a></li>)}</ul>
+    <p><a href="/best-ai-girlfriend-apps-india">See the main Indian AI girlfriend app comparison →</a></p>
+  </section>
+
+  <section class="prose-pillar">
+    <h2>More app alternatives</h2>
+    <p>{alternativePages.map((alternative, index) => <><a href={`/${alternative.slug}`}>{alternative.title.replace(/ \(2026\)$/, '')}</a>{index < alternativePages.length - 1 ? ' · ' : ''}</>)}</p>
+  </section>
+</Base>
