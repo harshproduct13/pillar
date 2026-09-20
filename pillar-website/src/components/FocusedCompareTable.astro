@@ -1,0 +1,37 @@
+---
+import data from '../data/competitors.json';
+import { PLAY_URL } from '../lib/site';
+
+interface Props { include: string[] }
+const { include } = Astro.props;
+const rows = include.map((name) => data.apps.find((app) => app.name === name)).filter(Boolean);
+const columns = data.columns.slice(0, 7);
+const languages: Record<string, string> = {
+  Pillar: '13 Indian languages',
+  Urvashi: 'Hindi, Hinglish, Bengali, Gujarati, Kannada, Malayalam, Marathi, Odia, Punjabi, Tamil, Telugu',
+  Meetra: 'Hindi, Bengali, Gujarati, Malayalam, Marathi, Punjabi, Tamil, Telugu, Urdu',
+  Saathiya: 'Hindi, Hinglish, Gujarati, Marathi, Tamil, Telugu',
+  DashTalk: 'Hindi, Hinglish, English',
+  TeriBandi: 'Hindi, Hinglish, English',
+  'Desi Avtar': 'Hindi, Hinglish',
+  HeartEcho: 'Hindi, Hinglish',
+};
+---
+<div style="overflow-x:auto; margin:1rem 0 0.4rem;">
+  <table class="cmp" style="min-width:760px;">
+    <thead>
+      <tr><th>App</th>{columns.map((column) => <th>{column}</th>)}</tr>
+    </thead>
+    <tbody>
+      {rows.map((row) => (
+        <tr>
+          <th><a href={row.name === 'Pillar' ? PLAY_URL : row.play} rel="noopener nofollow" target="_blank" style="color:var(--color-cream)">{row.name}</a></th>
+          {row.cells.slice(0, 7).map((cell, index) => <td class={cell.startsWith('✓') ? 'y' : ''}>{index === 0 ? languages[row.name] : cell.startsWith('✓') ? '✓' : cell}</td>)}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+<p style="color:var(--color-dim); font-size:0.82rem; margin-bottom:1.5rem;">
+  Source: each app's linked Google Play listing, checked September 2026. “—” means the listing does not mention the feature.
+</p>
