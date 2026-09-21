@@ -1,0 +1,67 @@
+---
+import Base from '../layouts/Base.astro';
+import Cta from '../components/Cta.astro';
+import { comparisonPages } from '../data/comparisonPages';
+import { SITE, itemList } from '../lib/site';
+
+const categoryGuides = comparisonPages.slice(0, 6);
+const alternativeGuides = comparisonPages.slice(6);
+const collectionPage = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'AI Girlfriend App Comparisons & Guides',
+  description: 'Pillar guides to comparing Indian AI girlfriend and companion apps by languages, photos, voice calls, memory, messages first, and games or scenarios.',
+  url: `${SITE}/guides`,
+  hasPart: comparisonPages.map((page) => ({
+    '@type': 'WebPage',
+    name: page.h1,
+    url: `${SITE}/${page.slug}`,
+  })),
+};
+---
+<Base
+  title="AI Girlfriend App Comparisons & Guides | Pillar"
+  description="Compare Indian AI girlfriend and companion apps by language, photos, voice calls, memory, messages first, games, and alternatives."
+  path="/guides"
+  jsonld={[collectionPage, itemList(comparisonPages.map((page) => page.h1))]}
+>
+  <p class="eyebrow">Comparisons &amp; guides · India · 2026</p>
+  <h1 style="font-family:var(--font-serif); font-size:clamp(1.9rem, 4.5vw, 2.8rem); line-height:1.15; margin:0.4rem 0 1rem;">AI girlfriend app comparisons and guides</h1>
+  <div class="answer">
+    <p>Compare Indian AI girlfriend and companion apps by the things that change the experience: Indian languages, photos, voice notes and calls, memory, messages first, games or scenarios, and the companions you can choose.</p>
+  </div>
+
+  <section class="prose-pillar">
+    <h2>Best apps and feature comparisons</h2>
+    <p>Start here when you know what kind of companion experience you want but have not chosen an app.</p>
+    <div class="guide-grid">
+      {categoryGuides.map((guide) => (
+        <a class="guide-card" href={`/${guide.slug}`}>
+          <span class="eyebrow">Comparison guide</span>
+          <strong>{guide.h1}</strong>
+          <span>{guide.description}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="prose-pillar">
+    <h2>Alternatives to Indian AI girlfriend apps</h2>
+    <p>Use these guides when you have tried or considered a particular app and want to compare other Indian companion choices.</p>
+    <div class="guide-grid">
+      {alternativeGuides.map((guide) => (
+        <a class="guide-card" href={`/${guide.slug}`}>
+          <span class="eyebrow">Alternatives guide</span>
+          <strong>{guide.h1}</strong>
+          <span>{guide.description}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="prose-pillar">
+    <h2>Talk with an Indian AI companion</h2>
+    <p>Pillar has more than one hundred Indian companions who speak thirteen Indian languages, send photos and voice notes, take calls, remember you, message first, and play games or situation scenarios.</p>
+  </section>
+  <Cta text="Try Pillar: Indian AI Girlfriend" sub="An AI companion app with 100+ Indian companions." />
+</Base>
