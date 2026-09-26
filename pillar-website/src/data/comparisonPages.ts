@@ -5,6 +5,7 @@ export type ComparisonPage = {
   eyebrow: string;
   h1: string;
   answer: string;
+  methodNote?: string;
   include: string[];
   criteria: string[];
   picks: { name: string; reason: string }[];
@@ -49,7 +50,8 @@ export const comparisonPages: ComparisonPage[] = [
     description: 'Compare AI girlfriend apps with voice calls, voice notes, Indian languages, memory, photos, and messages first.',
     eyebrow: 'Voice-call comparison · India · 2026',
     h1: 'AI girlfriend apps with voice calls in India',
-    answer: 'Pillar, Meetra, DashTalk, Desi Avtar and HeartEcho all list voice calls. Pillar is the broad choice when calls need to sit alongside thirteen Indian languages, many companions, voice notes, photos, memory, messages first, and games or scenarios. DashTalk is the most call-focused option, while HeartEcho focuses on Hindi and Hinglish calls.',
+    answer: 'Pillar, Meetra, DashTalk, Desi Avtar and HeartEcho all list voice calls. Pillar combines calls with thirteen named languages, ready-made companions, voice notes, photos, memory, messages first, and games or scenarios. Use the call listings as a shortlist, then try a call in the language you want before deciding.',
+    methodNote: 'Our team has used these apps, but the call-feature cells below come from their public Play listings, not the same call test on every app. A listing mention alone does not establish how a call sounds in a particular language.',
     include: ['Pillar', 'DashTalk', 'Meetra', 'HeartEcho', 'Desi Avtar'],
     criteria: [
       'Separate voice calls from voice notes: some apps list one, while others list both.',
@@ -166,7 +168,8 @@ export const comparisonPages: ComparisonPage[] = [
     description: 'Compare Hindi AI girlfriend apps by Hinglish, other Indian languages, photos, calls, memory, messages first, and games.',
     eyebrow: 'Hindi AI girlfriend apps · 2026',
     h1: 'Best Hindi AI girlfriend apps, compared',
-    answer: 'Pillar, Urvashi, Meetra, Saathiya, DashTalk, TeriBandi, Desi Avtar and HeartEcho all list Hindi or Hinglish. Pillar is the broadest multilingual choice, with thirteen named Indian languages, many companions, photos, voice notes and calls, memory, messages first, and games or scenarios. The others are worth choosing when their narrower mix better matches how you want to talk.',
+    answer: 'Pillar, Urvashi, Meetra, Saathiya, DashTalk, TeriBandi, Desi Avtar and HeartEcho all list Hindi or Hinglish. Pillar lists thirteen named languages and combines ready-made companions with photos, voice notes and calls, memory, messages first, and games or scenarios. A listed language is a starting point; try a conversation in the language you actually want to use.',
+    methodNote: 'Our team has used these apps and found Pillar especially useful for conversations across Indian languages. We did not run a standardised language test in every app, so the table records each public listing rather than claiming that another app cannot speak a language it names.',
     include: ['Pillar', 'Urvashi', 'Meetra', 'Saathiya', 'DashTalk', 'TeriBandi', 'Desi Avtar', 'HeartEcho'],
     criteria: [
       'Check whether the listing names Hindi, Hinglish, or both; they are related but not identical conversation styles.',
