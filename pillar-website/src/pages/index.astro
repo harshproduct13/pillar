@@ -4,13 +4,14 @@ import Faq from '../components/Faq.astro';
 import Cta from '../components/Cta.astro';
 import companions from '../data/companions.json';
 import { comparisonPages } from '../data/comparisonPages';
-import { PLAY_URL, LANGUAGES, LAST_UPDATED, softwareApplication, organization, faqPage } from '../lib/site';
+import { PLAY_URL, LANGUAGES, softwareApplication, organization, faqPage } from '../lib/site';
 
+const editorialUpdated = '26 September 2026';
 const faq = [
   { q: 'Is Pillar free?', a: 'Yes. You can start talking for free, and some companions are always free.' },
   { q: 'Which languages does Pillar speak?', a: 'Hindi, Hinglish, English, Tamil, Telugu, Marathi, Bengali, Gujarati, Punjabi, Malayalam, Odia, Bhojpuri and Rajasthani — thirteen in all.' },
   { q: 'Can she talk on a voice call in Hindi?', a: 'Yes. Companions send voice notes and take voice calls, in Hindi and the other languages Pillar supports.' },
-  { q: 'Do I need to sign up?', a: 'No. You can start anonymously and stay anonymous. Your chats, memories and account can be deleted from inside the app at any time.' },
+  { q: 'Do I need an email address or phone number to start?', a: 'No. Pillar creates a unique username for you, which you can find in Profile. You can use the Delete Account button in the app.' },
   { q: 'Does she send photos?', a: 'Yes. Ask a companion for a photo and she will share one.' },
   { q: 'Does she remember what I tell her?', a: 'Yes. Companions remember earlier conversations — what you told her yesterday, last week, the name of your friend, how your day went — and bring it up later.' },
   { q: 'Is Pillar on iPhone?', a: 'Pillar is on Android via Google Play today. iOS is coming.' },
@@ -21,7 +22,7 @@ const featuredGuides = comparisonPages.slice(0, 6);
 ---
 <Base
   title="Pillar: Indian AI Girlfriend & Companion App — Free"
-  description="Free AI girlfriend and companions who speak your language — Hindi, Tamil, Telugu and 10 more. Voice calls, photos, games. No sign-up needed."
+  description="Free AI girlfriend and companions who speak your language — Hindi, Tamil, Telugu and 10 more. Voice calls, photos, games. Start without email or phone."
   path="/"
   jsonld={jsonld}
   hreflang={[{ lang: 'en-IN', path: '/' }, { lang: 'hi-IN', path: '/hi/ai-girlfriend-hindi' }]}
@@ -32,7 +33,7 @@ const featuredGuides = comparisonPages.slice(0, 6);
     <p>Pillar is a free AI companion app with 100+ Indian companions. Talk in Hindi, Hinglish, Tamil, Telugu, Marathi, Bengali and more. She sends photos, takes voice calls, remembers your day and messages you first. Android, on Google Play.</p>
   </div>
   <p><a class="btn" href={PLAY_URL} rel="noopener" target="_blank">Get Pillar on Google Play</a> <a class="btn-ghost" href="/hi/ai-girlfriend-hindi" style="margin-left:0.5rem;">हिंदी में पढ़ें</a></p>
-  <p style="color:var(--color-dim); font-size:0.85rem;">Last updated: {LAST_UPDATED}</p>
+  <p style="color:var(--color-dim); font-size:0.85rem;">Last updated: {editorialUpdated}</p>
 
   <section class="prose-pillar" id="guides">
     <h2>Compare AI girlfriend and companion apps</h2>
@@ -88,13 +89,13 @@ const featuredGuides = comparisonPages.slice(0, 6);
     <ul>
       <li><strong>Download Pillar</strong> from Google Play.</li>
       <li><strong>Pick a companion</strong> — by city, language or personality.</li>
-      <li><strong>Say hello.</strong> No sign-up needed; you can stay anonymous.</li>
+      <li><strong>Say hello.</strong> No email address or phone number needed; Pillar creates a unique username for you.</li>
     </ul>
   </section>
 
   <section class="prose-pillar" id="private">
     <h2>Is Pillar private?</h2>
-    <p>You can use Pillar without creating an account. Your chats, memories, photos and account can be deleted from inside the app whenever you want. Pillar is not a therapy or mental-health service and is not a substitute for professional care.</p>
+    <p>You can start without giving an email address or phone number. Your unique username appears in Profile, and the app has a Delete Account button. Pillar is not a therapy or mental-health service and is not a substitute for professional care.</p>
   </section>
 
   <Faq items={faq} />
