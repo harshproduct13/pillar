@@ -15,7 +15,7 @@ const { page } = Astro.props;
 const apps = page.include.map((name: string) => data.apps.find((app) => app.name === name)).filter(Boolean);
 const relatedPages = page.related.map((slug: string) => comparisonPages.find((candidate) => candidate.slug === slug)).filter(Boolean);
 const alternativePages = comparisonPages.filter((candidate) => candidate.slug.endsWith('-alternatives') && candidate.slug !== page.slug);
-const comparisonUpdated = '20 September 2026';
+const comparisonUpdated = page.methodNote ? '26 September 2026' : '20 September 2026';
 ---
 <Base title={page.title} description={page.description} path={`/${page.slug}`} jsonld={[itemList(page.include), faqPage(page.faqs)]}>
   <p class="eyebrow">{page.eyebrow}</p>
@@ -23,6 +23,7 @@ const comparisonUpdated = '20 September 2026';
 
   <div class="answer"><p>{page.answer}</p></div>
   <p style="color:var(--color-dim); font-size:0.85rem;">Last updated: {comparisonUpdated}. Pillar is our app. Other feature claims come from each app's linked Google Play listing.</p>
+  {page.methodNote && <p class="prose-pillar">{page.methodNote}</p>}
 
   <section class="prose-pillar">
     <h2>Quick comparison</h2>
