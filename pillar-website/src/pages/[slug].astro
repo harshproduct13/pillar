@@ -19,7 +19,7 @@ const comparisonUpdated = page.methodNote ? '26 September 2026' : '20 September 
 ---
 <Base title={page.title} description={page.description} path={`/${page.slug}`} jsonld={[itemList(page.include), faqPage(page.faqs)]}>
   <p class="eyebrow">{page.eyebrow}</p>
-  <h1 style="font-family:var(--font-serif); font-size:clamp(1.9rem, 4.5vw, 2.8rem); line-height:1.15; margin:0.4rem 0 1rem;">{page.h1}</h1>
+  <h1 style="font-family:var(--font-sans); font-weight:700; letter-spacing:-0.02em; font-size:clamp(1.9rem, 4.5vw, 2.8rem); line-height:1.15; margin:0.4rem 0 1rem;">{page.h1}</h1>
 
   <div class="answer"><p>{page.answer}</p></div>
   <p style="color:var(--color-dim); font-size:0.85rem;">Last updated: {comparisonUpdated}. Pillar is our app. Other feature claims come from each app's linked Google Play listing.</p>
