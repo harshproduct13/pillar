@@ -2,21 +2,26 @@
 import { PLAY_URL } from '../lib/site';
 const { lang = 'en' } = Astro.props;
 const links = [
-  { href: '/guides', label: 'Comparisons & Guides' },
-  { href: '/hi/ai-girlfriend-hindi', label: 'हिंदी' },
+  { href: '/guides', label: 'Blog' },
+  { href: '/#start', label: 'How to Use' },
   { href: '/pricing', label: 'Pricing' },
-  { href: '/about', label: 'About' },
+  { href: '/#faq', label: 'FAQ' },
 ];
 ---
-<header style="border-bottom: 1px solid var(--color-line);">
-  <div class="container" style="display:flex; align-items:center; justify-content:space-between; gap:1rem; padding-block: 0.9rem; flex-wrap: wrap;">
-    <a href="/" style="display:flex; align-items:center; gap:0.6rem; text-decoration:none; color:var(--color-cream); font-weight:700;">
-      <img src="/Logo%20Emblem.png" alt="" width="28" height="28" style="border-radius:6px" />
-      <span>Pillar</span><span style="color:var(--color-dim); font-weight:500;">Indian AI Companion</span>
+<header style="position:sticky; top:0; z-index:50; background:rgba(15,15,13,0.85); backdrop-filter:blur(12px); border-bottom:1px solid var(--color-line);">
+  <div class="container" style="display:flex; align-items:center; justify-content:space-between; gap:1rem; padding-block:0.85rem;">
+    <a href="/" style="display:flex; align-items:center; gap:0.55rem; text-decoration:none; color:var(--color-cream); font-weight:700; font-size:1.05rem;">
+      <img src="/Logo%20Emblem.png" alt="Pillar" width="30" height="30" style="border-radius:8px" />
+      <span>Pillar</span>
     </a>
-    <nav aria-label="Main" style="display:flex; gap:1rem; flex-wrap:wrap; font-size:0.92rem;">
+    <nav aria-label="Main" style="display:flex; gap:1.6rem; font-size:0.95rem;" class="nav-links">
       {links.map((l) => <a href={l.href} style="color:var(--color-muted); text-decoration:none;">{l.label}</a>)}
     </nav>
-    <a class="btn" href={PLAY_URL} rel="noopener" target="_blank">Get it on Google Play</a>
+    <a class="btn" href={PLAY_URL} rel="noopener" target="_blank" style="padding:0.6rem 1.2rem;">Download the App</a>
   </div>
+  <style>
+    @media (max-width: 720px) {
+      .nav-links { display: none !important; }
+    }
+  </style>
 </header>

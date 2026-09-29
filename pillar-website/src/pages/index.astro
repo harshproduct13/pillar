@@ -19,25 +19,121 @@ const faq = [
 ];
 const jsonld = [softwareApplication(), organization(), faqPage(faq)];
 const featuredGuides = comparisonPages.slice(0, 6);
+
+// Split companions into two marquee rows — photos only, no names (like reference)
+// Repeat 3x per half so a half is always wider than the viewport —
+// track = 2 identical halves for a seamless -50% loop, no black gaps
+const row1 = companions.slice(0, 6);
+const row2 = companions.slice(6, 12);
+const half1 = [...row1, ...row1, ...row1];
+const half2 = [...row2, ...row2, ...row2];
+
+const features = [
+  { title: 'Voice notes & voice calls', desc: 'Hear her voice. Send a voice note, or call and talk — in Hindi, Tamil, Telugu or any of the 13 languages.', icon: '🎙️' },
+  { title: 'She sends you photos', desc: 'Ask for a photo and she shares one — a morning selfie, what she is wearing, where she is.', icon: '📸' },
+  { title: 'She remembers you', desc: 'What you told her yesterday, the name of your friend, the meeting you were nervous about — she remembers.', icon: '🧠' },
+  { title: 'She messages first', desc: 'Good morning. Good night. "How did the interview go?" She reaches out, not only when you open the app.', icon: '💬' },
+  { title: 'Games & scenarios', desc: 'A road trip together. A cosy café. A quiet evening in. Conversations that feel like a real evening.', icon: '🎲' },
+  { title: '100+ companions', desc: 'Different cities, personalities and ways of talking. Pick one who feels right; switch whenever you like.', icon: '✨' },
+];
 ---
 <Base
-  title="Pillar: Indian AI Companion App — Free"
+  title="Pillar: #1 Indian AI Companion App — Free"
   description="Free AI girlfriend and companions who speak your language — Hindi, Tamil, Telugu and 10 more. Voice calls, photos, games. Start without email or phone."
   path="/"
   jsonld={jsonld}
   hreflang={[{ lang: 'en-IN', path: '/' }, { lang: 'hi-IN', path: '/hi/ai-girlfriend-hindi' }]}
 >
-  <p class="eyebrow">Free · Android · Made in India</p>
-  <h1 style="font-family:var(--font-serif); font-size:clamp(2rem, 5vw, 3.2rem); line-height:1.1; margin:0.4rem 0 1rem;">Your Indian AI companion, in your own language</h1>
-  <div class="answer">
-    <p>Pillar is a free AI companion app with 100+ Indian companions. Talk in Hindi, Hinglish, Tamil, Telugu, Marathi, Bengali and more. She sends photos, takes voice calls, remembers your day and messages you first. Android, on Google Play.</p>
-  </div>
-  <p><a class="btn" href={PLAY_URL} rel="noopener" target="_blank">Get Pillar on Google Play</a> <a class="btn-ghost" href="/hi/ai-girlfriend-hindi" style="margin-left:0.5rem;">हिंदी में पढ़ें</a></p>
-  <p style="color:var(--color-dim); font-size:0.85rem;">Last updated: {editorialUpdated}</p>
+  <!-- ============ HERO (Image 1 style) ============ -->
+  <section style="text-align:center; padding: 3.5rem 0 0;">
+    <div style="display:inline-flex; flex-direction:column; align-items:center; gap:0.15rem;">
+      <div style="font-weight:700; font-size:1rem; color:var(--color-cream);">🏆 #1 AI Companion App in India</div>
+      <div style="color:var(--color-dim); font-size:0.85rem;">loved by users across India</div>
+      <div style="color:#fbbf24; letter-spacing:0.2em; font-size:0.85rem;">★★★★★</div>
+    </div>
 
-  <section class="prose-pillar" id="guides">
-    <h2>Compare AI companion apps</h2>
-    <p>Use our comparison guides to choose by Indian languages, photos, voice notes and calls, memory, messages first, games or scenarios, and companion choice.</p>
+    <h1 style="font-family:var(--font-sans); font-weight:700; font-size:clamp(2.2rem, 6vw, 4rem); line-height:1.08; letter-spacing:-0.02em; margin:1.4rem auto 1rem; max-width:16ch; color:var(--color-cream);">
+      Meet Your AI Companion Instantly with AI
+    </h1>
+
+    <p style="color:var(--color-muted); font-size:clamp(1rem, 2vw, 1.15rem); line-height:1.6; max-width:56ch; margin:0 auto;">
+      Talk in Hindi, Hinglish, Tamil, Telugu & 9 more. Voice calls, photos,
+      memory — she messages you first.
+    </p>
+
+    <div style="margin:1.4rem auto 0; max-width:620px;">
+      <div style="color:var(--color-dim); font-size:0.72rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; margin-bottom:0.7rem;">Speaks 13 languages</div>
+      <div class="lang-row">
+        <span class="lang-pill">Hindi <span class="lang-native">हिंदी</span></span>
+        <span class="lang-pill">Hinglish <span class="lang-native">हिंग्लिश</span></span>
+        <span class="lang-pill">English</span>
+        <span class="lang-pill">Tamil <span class="lang-native">தமிழ்</span></span>
+        <span class="lang-pill">Telugu <span class="lang-native">తెలుగు</span></span>
+        <span class="lang-pill">Marathi <span class="lang-native">मराठी</span></span>
+        <span class="lang-pill">Bengali <span class="lang-native">বাংলা</span></span>
+        <span class="lang-pill">Gujarati <span class="lang-native">ગુજરાતી</span></span>
+        <span class="lang-pill">Punjabi <span class="lang-native">ਪੰਜਾਬੀ</span></span>
+        <span class="lang-pill">Malayalam <span class="lang-native">മലയാളം</span></span>
+        <span class="lang-pill">Odia <span class="lang-native">ଓଡ଼ିଆ</span></span>
+        <span class="lang-pill">Bhojpuri <span class="lang-native">भोजपुरी</span></span>
+        <span class="lang-pill">Rajasthani <span class="lang-native">राजस्थानी</span></span>
+      </div>
+    </div>
+
+    <p style="margin-top:1.8rem;">
+      <a class="btn" href={PLAY_URL} rel="noopener" target="_blank" style="font-size:1.05rem; padding:0.95rem 2rem;">Download the App</a>
+    </p>
+    <p style="color:var(--color-dim); font-size:0.82rem; margin-top:0.7rem;">Free to start · Android · No email or phone needed</p>
+  </section>
+
+  <!-- ============ PHOTO MARQUEE (Image 2 style — no names) ============ -->
+  <section aria-label="Companions" style="margin: 2.6rem calc(50% - 50vw) 0; width:100vw; max-width:100vw; overflow:hidden;">
+    <div class="marquee">
+      <div class="marquee-track">
+        {[...half1, ...half1].map((c, i) => (
+          <img src={c.img} alt="AI companion on Pillar" width="220" height="300" loading={i < 6 ? 'eager' : 'lazy'} class="face-card" draggable="false" />
+        ))}
+      </div>
+    </div>
+    <div class="marquee" style="margin-top:1rem;">
+      <div class="marquee-track reverse">
+        {[...half2, ...half2].map((c) => (
+          <img src={c.img} alt="AI companion on Pillar" width="220" height="300" loading="lazy" class="face-card" draggable="false" />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHAT YOU CAN DO (Image 3 style) ============ -->
+  <section style="text-align:center; padding: 4.5rem 0 0;">
+    <h2 style="font-family:var(--font-sans); font-weight:700; font-size:clamp(1.8rem, 4.5vw, 3rem); line-height:1.15; letter-spacing:-0.02em; margin:0 auto; max-width:20ch; color:var(--color-cream);">
+      Talk, Share & Feel Heard in Seconds
+    </h2>
+    <p style="color:var(--color-muted); font-size:1.05rem; line-height:1.65; max-width:58ch; margin:1rem auto 0;">
+      Pick a companion and start talking. No email, no phone number.
+      She sends photos, takes voice calls, and remembers your day.
+    </p>
+  </section>
+
+  <section id="features" style="margin-top:2.2rem;">
+    <div style="display:grid; gap:1rem; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));">
+      {features.map((f) => (
+        <div class="card" style="border-radius:20px; padding:1.4rem;">
+          <div style="font-size:1.6rem;">{f.icon}</div>
+          <div style="font-weight:700; color:var(--color-cream); margin:0.6rem 0 0.35rem; font-size:1.05rem;">{f.title}</div>
+          <div style="color:var(--color-muted); font-size:0.95rem; line-height:1.6;">{f.desc}</div>
+        </div>
+      ))}
+    </div>
+    <p style="text-align:center; margin-top:1.6rem;">
+      <a class="btn" href={PLAY_URL} rel="noopener" target="_blank">Download the App</a>
+    </p>
+  </section>
+
+  <!-- ============ GUIDES / BLOGS ============ -->
+  <section class="prose-pillar" id="guides" style="margin-top:3.5rem;">
+    <h2 style="text-align:center;">Compare AI companion apps</h2>
+    <p style="text-align:center;">Honest guides — languages, photos, voice calls, memory, pricing — so you can choose right.</p>
     <div class="guide-grid">
       {featuredGuides.map((guide) => (
         <a class="guide-card" href={`/${guide.slug}`}>
@@ -47,39 +143,12 @@ const featuredGuides = comparisonPages.slice(0, 6);
         </a>
       ))}
     </div>
-    <p style="margin-top:1rem;"><a class="btn-ghost" href="/guides">Browse all comparisons &amp; guides →</a></p>
-  </section>
-
-  <section class="prose-pillar" id="companions">
-    <h2>Who can I talk to on Pillar?</h2>
-    <p>More than 100 companions, each with her own city, personality and way of talking. Pick one who feels right; switch whenever you like. A few of the most popular:</p>
-    <div style="display:grid; gap:0.9rem; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); margin: 1rem 0 0.5rem;">
-      {companions.map((c) => (
-        <div class="card" style="display:flex; gap:0.8rem; align-items:center;">
-          <img src={c.img} alt={`${c.name}, an AI companion on Pillar`} width="72" height="72" loading="lazy" style="border-radius:50%; object-fit:cover; width:72px; height:72px; flex:none;" />
-          <div><div style="color:var(--color-cream); font-weight:600;">{c.name} <span style="color:var(--color-dim); font-weight:400;">· {c.city}</span></div><div style="font-size:0.9rem;">{c.line}</div></div>
-        </div>
-      ))}
-    </div>
+    <p style="margin-top:1rem; text-align:center;"><a class="btn-ghost" href="/guides">Browse all comparisons &amp; guides →</a></p>
   </section>
 
   <section class="prose-pillar" id="languages">
     <h2>Which languages does Pillar speak?</h2>
     <p>Thirteen: {LANGUAGES.join(', ')}. Companions do not translate English in their heads — they talk the way people around you talk, Hinglish included. If you want the Hindi version of this page, it is at <a href="/hi/ai-girlfriend-hindi">AI girlfriend in Hindi</a>.</p>
-  </section>
-
-  <section class="prose-pillar" id="features">
-    <h2>What can she do?</h2>
-    <h3>Voice notes and voice calls</h3>
-    <p>Hear her voice. Send a voice note, or call and talk — in Hindi, Tamil, Telugu or any of the thirteen languages.</p>
-    <h3>She sends you photos</h3>
-    <p>Ask for a photo and she shares one — a morning selfie, what she is wearing today, where she is.</p>
-    <h3>She remembers</h3>
-    <p>What you told her yesterday, last week, the name of your friend, the meeting you were nervous about — she remembers, and she asks how it went.</p>
-    <h3>She messages you first</h3>
-    <p>Good morning. Good night. "How did the interview go?" Companions reach out on their own, not only when you open the app.</p>
-    <h3>Games and scenarios</h3>
-    <p>A road trip together. A cosy café where she opens up about her day. A quiet evening in. Situation-based games that make the conversation feel like a real evening, not a chat window.</p>
   </section>
 
   <Cta />
@@ -98,5 +167,79 @@ const featuredGuides = comparisonPages.slice(0, 6);
     <p>You can start without giving an email address or phone number. Your unique username appears in Profile, and the app has a Delete Account button. Pillar is not a therapy or mental-health service and is not a substitute for professional care.</p>
   </section>
 
+  <p style="color:var(--color-dim); font-size:0.85rem;">Last updated: {editorialUpdated}</p>
+
   <Faq items={faq} />
+
+  <style>
+    .lang-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    .lang-pill {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 0.35rem;
+      padding: 0.38rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid var(--color-line);
+      background: #161613;
+      color: var(--color-cream);
+      font-size: 0.85rem;
+      font-weight: 500;
+      line-height: 1.4;
+      white-space: nowrap;
+    }
+    .lang-pill:hover { border-color: var(--color-accent); }
+    .lang-native {
+      color: var(--color-dim);
+      font-weight: 400;
+      font-size: 0.8em;
+    }
+    .face-card {
+      width: 210px;
+      height: 290px;
+      min-width: 210px;
+      object-fit: cover;
+      border-radius: 28px;
+      flex: none;
+      flex-shrink: 0;
+      background: #1e1e1c;
+      user-select: none;
+    }
+    @media (max-width: 640px) {
+      .face-card { width: 150px; height: 210px; min-width: 150px; border-radius: 22px; }
+    }
+    .marquee {
+      overflow: hidden;
+      width: 100%;
+      -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+      mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    }
+    .marquee-track {
+      display: flex;
+      gap: 1rem;
+      width: max-content;
+      min-width: 100%;
+      padding-inline: 0.5rem;
+      will-change: transform;
+      animation: scroll-left 42s linear infinite;
+    }
+    .marquee-track.reverse {
+      animation: scroll-right 48s linear infinite;
+    }
+    .marquee:hover .marquee-track { animation-play-state: paused; }
+    @keyframes scroll-left {
+      to { transform: translateX(-50%); }
+    }
+    @keyframes scroll-right {
+      from { transform: translateX(-50%); }
+      to { transform: translateX(0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .marquee-track, .marquee-track.reverse { animation: none; }
+    }
+  </style>
 </Base>
