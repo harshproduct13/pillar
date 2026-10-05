@@ -1,0 +1,90 @@
+---
+import Base from '../layouts/Base.astro';
+import Faq from '../components/Faq.astro';
+import Cta from '../components/Cta.astro';
+import { PLAY_URL, SITE, softwareApplication, faqPage, itemList } from '../lib/site';
+import { languagePages, existingLanguageLinks, languageHref } from '../data/languagePages';
+
+const editorialUpdated = '5 October 2026';
+
+// Other apps' languages as named in their Google Play listings, September 2026. Not tested.
+const listingLanguages = [
+  { lang: 'Hindi', apps: 'Urvashi, Meetra, Saathiya, DashTalk, TeriBandi, HeartEcho, Desi Avtar' },
+  { lang: 'Hinglish', apps: 'Urvashi, Saathiya, DashTalk, TeriBandi, HeartEcho, Desi Avtar' },
+  { lang: 'Tamil', apps: 'Urvashi, Meetra, Saathiya' },
+  { lang: 'Telugu', apps: 'Urvashi, Meetra, Saathiya' },
+  { lang: 'Marathi', apps: 'Urvashi, Meetra, Saathiya' },
+  { lang: 'Gujarati', apps: 'Urvashi, Meetra, Saathiya' },
+  { lang: 'Bengali', apps: 'Urvashi, Meetra' },
+  { lang: 'Punjabi', apps: 'Urvashi, Meetra' },
+  { lang: 'Malayalam', apps: 'Urvashi, Meetra' },
+  { lang: 'Odia', apps: 'Urvashi' },
+  { lang: 'Bhojpuri', apps: '—' },
+  { lang: 'Rajasthani', apps: '—' },
+];
+
+const faq = [
+  { q: 'Which AI girlfriend app speaks Indian languages?', a: 'Pillar talks in 13: Hindi, Hinglish, English, Tamil, Telugu, Marathi, Bengali, Gujarati, Punjabi, Malayalam, Odia, Bhojpuri and Rajasthani — by text, voice note and voice call.' },
+  { q: 'Is there an AI girlfriend that speaks Odia, Bhojpuri or Rajasthani?', a: 'Yes — Pillar. Among the Indian AI girlfriend apps we checked on Google Play in September 2026, only one other listing named Odia, and none named Bhojpuri or Rajasthani.' },
+  { q: 'Can she do voice calls in my language?', a: 'Yes. Voice notes and voice calls work in every language Pillar speaks.' },
+  { q: 'Is Pillar free?', a: 'Yes. You can start talking for free, without an email address or phone number.' },
+];
+
+const collectionPage = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'AI girlfriend in your language',
+  url: `${SITE}/ai-girlfriend-in-your-language`,
+  hasPart: languagePages.map((p) => ({ '@type': 'WebPage', name: `${p.name} AI girlfriend`, url: SITE + languageHref(p) })),
+};
+---
+<Base
+  title="AI Girlfriend in Your Language — 13 Indian Languages | Pillar"
+  description="An AI girlfriend who talks in Hindi, Tamil, Telugu, Marathi, Bengali, Gujarati, Punjabi, Malayalam, Odia, Bhojpuri, Rajasthani, Hinglish or English. Voice calls, photos, memory. Free on Android."
+  path="/ai-girlfriend-in-your-language"
+  jsonld={[softwareApplication(), collectionPage, itemList(languagePages.map((p) => `${p.name} AI girlfriend`)), faqPage(faq)]}
+>
+  <p class="eyebrow">Free · Android · 13 Indian languages</p>
+  <h1 style="font-family:var(--font-sans); font-weight:700; letter-spacing:-0.02em; font-size:clamp(1.9rem, 4.5vw, 2.8rem); line-height:1.15; margin:0.4rem 0 1rem;">An AI girlfriend who talks in your language</h1>
+  <div class="answer">
+    <p>Pillar is a free AI companion app where your AI girlfriend talks to you in your own language — Hindi, Hinglish, English, Tamil, Telugu, Marathi, Bengali, Gujarati, Punjabi, Malayalam, Odia, Bhojpuri or Rajasthani. She texts, sends voice notes and photos, takes voice calls, remembers you and messages you first. Pillar is on Android through Google Play.</p>
+  </div>
+  <p><a class="btn" href={PLAY_URL} rel="noopener" target="_blank">Get Pillar on Google Play</a></p>
+  <p style="color:var(--color-dim); font-size:0.85rem;">Last updated: {editorialUpdated}</p>
+
+  <section class="prose-pillar">
+    <h2>Choose your language</h2>
+    <div class="guide-grid">
+      {existingLanguageLinks.filter((l) => l.name !== 'Hinglish').map((l) => (
+        <a class="guide-card" href={l.href}>
+          <span class="eyebrow">{l.name === 'Hindi' ? 'Hindi · Hinglish' : l.name}</span>
+          <strong>{l.name === 'English' ? 'AI girlfriend app in English' : 'AI girlfriend in Hindi'} {l.native && <span lang="hi">{l.native}</span>}</strong>
+        </a>
+      ))}
+      {languagePages.map((p) => (
+        <a class="guide-card" href={languageHref(p)}>
+          <span class="eyebrow">{p.name}</span>
+          <strong>{p.name} AI girlfriend <span lang={p.code}>{p.native}</span></strong>
+        </a>
+      ))}
+    </div>
+
+    <h2>Which apps name which Indian languages?</h2>
+    <p>The other Indian AI girlfriend apps below name these languages in their Google Play listings (checked September 2026). A listing is a claim, not a test — we have not checked how well each app talks in each language. Pillar talks in all thirteen.</p>
+    <div style="overflow-x:auto;">
+      <table class="cmp">
+        <thead><tr><th>Language</th><th>Pillar</th><th>Other apps whose listing names it</th></tr></thead>
+        <tbody>
+          {listingLanguages.map((r) => <tr><td>{r.lang}</td><td class="y">Yes</td><td>{r.apps}</td></tr>)}
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Does she really talk, or translate?</h2>
+    <p>She talks. Companions answer in the language you use, by text, voice note and voice call — the way people around you talk, Hinglish included.</p>
+  </section>
+
+  <Cta text="Pillar — an AI girlfriend in your language" sub="Free to start. No email address or phone number needed." />
+  <Faq items={faq} />
+  <section class="prose-pillar"><h2>Read more</h2><p><a href="/best-ai-girlfriend-apps-india">Best AI girlfriend apps in India</a> · <a href="/best-hindi-ai-girlfriend-apps">Best Hindi AI girlfriend apps</a> · <a href="/ai-girlfriend-apps-with-voice-calls">AI girlfriend apps with voice calls</a> · <a href="/guides">All guides</a></p></section>
+</Base>
