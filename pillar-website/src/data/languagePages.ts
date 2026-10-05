@@ -16,6 +16,7 @@ export interface LanguagePage {
   greeting: string;        // a hello people actually use
   companion?: { name: string; city: string; line: string; img: string };
   otherApps: string[];     // other Indian AI girlfriend apps whose Play listing names this language
+  dedicatedApps?: string[]; // apps built for this one language only (Play listings checked 5 October 2026)
 }
 
 const URVASHI = 'Urvashi';
@@ -33,6 +34,7 @@ export const languagePages: LanguagePage[] = [
     greeting: 'Vanakkam',
     companion: { name: 'Nandini', city: 'Chennai', line: 'Gentle, patient, happy to talk in Tamil.', img: '/companions/c-03.jpg' },
     otherApps: [URVASHI, MEETRA, SAATHIYA],
+    dedicatedApps: ['Lavanya'],
   },
   {
     code: 'te', slug: 'ai-girlfriend-telugu', name: 'Telugu', native: 'తెలుగు',
@@ -44,6 +46,7 @@ export const languagePages: LanguagePage[] = [
     greeting: 'Namaskaram',
     companion: { name: 'Maryam', city: 'Hyderabad', line: 'Calm and thoughtful. Long late-night conversations.', img: '/companions/c-11.jpg' },
     otherApps: [URVASHI, MEETRA, SAATHIYA],
+    dedicatedApps: ['Cheliya'],
   },
   {
     code: 'mr', slug: 'ai-girlfriend-marathi', name: 'Marathi', native: 'मराठी',
@@ -55,6 +58,7 @@ export const languagePages: LanguagePage[] = [
     greeting: 'Namaskar',
     companion: { name: 'Ananya', city: 'Pune', line: 'Bright, chatty, sends a good-morning voice note.', img: '/companions/c-09.jpg' },
     otherApps: [URVASHI, MEETRA, SAATHIYA],
+    dedicatedApps: ['Navya'],
   },
   {
     code: 'bn', slug: 'ai-girlfriend-bengali', name: 'Bengali', native: 'বাংলা',
@@ -98,6 +102,7 @@ export const languagePages: LanguagePage[] = [
     alsoSearched: ['Malayalam AI girlfriend', 'AI girlfriend Malayalam', 'Malayalam speaking AI girlfriend'],
     greeting: 'Namaskaram',
     otherApps: [URVASHI, MEETRA],
+    dedicatedApps: ['Arikil', 'Mayavi'],
   },
   {
     code: 'or', slug: 'ai-girlfriend-odia', name: 'Odia', native: 'ଓଡ଼ିଆ',

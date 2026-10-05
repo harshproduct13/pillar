@@ -72,9 +72,14 @@ const faq = [
 
     <h2>Which other apps have {aL} AI girlfriend?</h2>
     {page.otherApps.length > 0 ? (
-      <p>Going by their Google Play listings (checked September 2026), {listOthers(page.otherApps)} also {page.otherApps.length === 1 ? 'names' : 'name'} {L}. We have not tested how well each one handles {L}. Compare them: {page.otherApps.map((n, i) => (
-        <>{i > 0 && ' · '}<a href={alternativesPage[n]}>{n} alternatives</a></>
-      ))}.</p>
+      <>
+        <p>Going by their Google Play listings (checked September 2026), {listOthers(page.otherApps)} also {page.otherApps.length === 1 ? 'names' : 'name'} {L}. We have not tested how well each one handles {L}. Compare them: {page.otherApps.map((n, i) => (
+          <>{i > 0 && ' · '}<a href={alternativesPage[n]}>{n} alternatives</a></>
+        ))}.</p>
+        {page.dedicatedApps && page.dedicatedApps.length > 0 && (
+          <p>There {page.dedicatedApps.length === 1 ? 'is also an app' : 'are also apps'} built for {L} alone: {listOthers(page.dedicatedApps)} {page.dedicatedApps.length === 1 ? 'is an AI companion chat app' : 'are AI companion chat apps'} made only for {L} speakers (Google Play {page.dedicatedApps.length === 1 ? 'listing' : 'listings'}, checked October 2026). Pillar talks in {L} too, alongside twelve other languages, so you can switch language without switching app.</p>
+        )}
+      </>
     ) : (
       <p>We did not find another Indian AI girlfriend app whose Google Play listing names {L} (checked September 2026). Pillar talks in {L} alongside twelve other languages.</p>
     )}
