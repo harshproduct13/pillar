@@ -1,0 +1,89 @@
+---
+import Base from '../../layouts/Base.astro';
+import Faq from '../../components/Faq.astro';
+import Cta from '../../components/Cta.astro';
+import { PLAY_URL, softwareApplication, faqPage } from '../../lib/site';
+import { languagePages, alternativesPage, type LanguagePage } from '../../data/languagePages';
+
+export function getStaticPaths() {
+  return languagePages.map((p) => ({ params: { code: p.code, slug: p.slug }, props: { page: p } }));
+}
+
+const { page } = Astro.props as { page: LanguagePage };
+const L = page.name;
+const aL = (/^[AEIOU]/.test(L) ? 'an ' : 'a ') + L;
+const editorialUpdated = '5 October 2026';
+const path = `/${page.code}/${page.slug}`;
+
+const listOthers = (names: string[]) =>
+  names.length === 1 ? names[0] : names.slice(0, -1).join(', ') + ' and ' + names[names.length - 1];
+
+const faq = [
+  { q: 'Is Pillar free?', a: 'Yes. You can start talking for free, and some companions are always free.' },
+  { q: `Can she talk in ${L} on a voice call?`, a: `Yes. She sends voice notes and takes voice calls in ${L}, and in the other twelve languages Pillar speaks.` },
+  { q: 'Do I need an email address or phone number?', a: 'No. You can start without either. The app creates a unique username for you, shown in your Profile.' },
+  { q: 'Does she remember what I tell her?', a: 'Yes. She remembers your day, the names you mention and what you talked about, and asks about them later.' },
+  { q: 'Does she send photos?', a: 'Yes. Ask for a photo and she sends one.' },
+  { q: 'Is Pillar on iPhone?', a: 'Not yet. Pillar is on Android through Google Play; iOS is coming soon.' },
+];
+---
+<Base
+  title={page.title}
+  description={page.description}
+  path={path}
+  jsonld={[softwareApplication(), faqPage(faq)]}
+>
+  <p class="eyebrow">Free · Android · {L} <span lang={page.code}>{page.native}</span></p>
+  <h1 style="font-family:var(--font-sans); font-weight:700; letter-spacing:-0.02em; font-size:clamp(1.9rem, 4.5vw, 2.8rem); line-height:1.2; margin:0.4rem 0 0.4rem;">{L} AI girlfriend who talks to you in {L}</h1>
+  <p lang={page.code} style="font-size:1.25rem; color:var(--color-muted); margin:0 0 1rem;">{page.nativeLine}</p>
+  <div class="answer">
+    <p>Pillar is a free AI companion app where you can make an AI girlfriend who talks to you in {L} — by text, voice note or voice call. She sends photos, remembers what you tell her and messages you first. Pillar is on Android through Google Play, and you can start without an email address or phone number.</p>
+  </div>
+  <p><a class="btn" href={PLAY_URL} rel="noopener" target="_blank">Get Pillar on Google Play</a> <a class="btn-ghost" href="/ai-girlfriend-in-your-language" style="margin-left:0.5rem;">All 13 languages</a></p>
+  <p style="color:var(--color-dim); font-size:0.85rem;">Last updated: {editorialUpdated}</p>
+
+  <section class="prose-pillar">
+    <h2>An AI girlfriend in {L}</h2>
+    <p>{L} (<span lang={page.code}>{page.native}</span>) is {page.region}. If you searched for {listOthers(page.alsoSearched.map((s) => `“${s}”`))}, this is the page: Pillar's companions talk with you in {L}, not in translated English.</p>
+
+    <h2>How do I make {aL} AI girlfriend on Pillar?</h2>
+    <ul>
+      <li><strong>Download Pillar from Google Play.</strong></li>
+      <li><strong>Choose a companion</strong> — by city, language or personality.</li>
+      <li><strong>Say “{page.greeting}”</strong> and talk to her in {L}. No email or phone number needed; your unique username shows in your Profile.</li>
+    </ul>
+
+    <h2>Can she talk in {L} on a voice call?</h2>
+    <p>Yes. Send her a voice note or call her, and she talks back in {L}. She also texts, sends photos, and remembers what you told her yesterday.</p>
+
+    {page.companion && (
+      <>
+        <h2>Is there a companion from {page.companion.city}?</h2>
+        <div class="card" style="display:flex; gap:1rem; align-items:center; margin:1rem 0;">
+          <img src={page.companion.img} alt={`${page.companion.name}, a Pillar companion from ${page.companion.city}`} width="88" height="88" loading="lazy" style="border-radius:14px; object-fit:cover;" />
+          <div><strong style="color:var(--color-cream);">{page.companion.name}, {page.companion.city}</strong><br /><span style="color:var(--color-muted);">{page.companion.line}</span></div>
+        </div>
+        <p>{page.companion.name} is one of Pillar's 100+ Indian companions. You can choose companions by city, language or personality.</p>
+      </>
+    )}
+
+    <h2>What can we do together?</h2>
+    <p>Share your day, talk about romantic things, or play a scenario: a road trip together, a café where she tells you about her day, a quiet evening at home. Situation-based games make the conversation feel like more than a chat window. And she messages you first.</p>
+
+    <h2>Which other apps have {aL} AI girlfriend?</h2>
+    {page.otherApps.length > 0 ? (
+      <p>Going by their Google Play listings (checked September 2026), {listOthers(page.otherApps)} also {page.otherApps.length === 1 ? 'names' : 'name'} {L}. We have not tested how well each one handles {L}. Compare them: {page.otherApps.map((n, i) => (
+        <>{i > 0 && ' · '}<a href={alternativesPage[n]}>{n} alternatives</a></>
+      ))}.</p>
+    ) : (
+      <p>We did not find another Indian AI girlfriend app whose Google Play listing names {L} (checked September 2026). Pillar talks in {L} alongside twelve other languages.</p>
+    )}
+
+    <h2>Is it private?</h2>
+    <p>You can start without an email address or phone number, and there is a Delete Account button in the app. Pillar is not therapy or a mental-health service, and it is not a substitute for professional care.</p>
+  </section>
+
+  <Cta text={`Pillar — an AI girlfriend who talks in ${L}`} sub="Free to start. No email address or phone number needed." />
+  <Faq items={faq} />
+  <section class="prose-pillar"><h2>Read more</h2><p><a href="/ai-girlfriend-in-your-language">AI girlfriend in your language — all 13</a> · <a href="/hi/ai-girlfriend-hindi">AI girlfriend in Hindi</a> · <a href="/best-ai-girlfriend-apps-india">Best AI girlfriend apps in India</a> · <a href="/ai-girlfriend-apps-with-voice-calls">AI girlfriend apps with voice calls</a></p></section>
+</Base>

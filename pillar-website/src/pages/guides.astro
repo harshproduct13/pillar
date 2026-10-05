@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Cta from '../components/Cta.astro';
 import { comparisonPages } from '../data/comparisonPages';
+import { languagePages, languageHref } from '../data/languagePages';
 import { SITE, itemList } from '../lib/site';
 
 const categoryGuides = comparisonPages.slice(0, 6);
@@ -55,6 +56,17 @@ const collectionPage = {
           <strong>{guide.h1}</strong>
           <span>{guide.description}</span>
         </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="prose-pillar">
+    <h2>AI girlfriend in your language</h2>
+    <p>One page per Indian language Pillar speaks. <a href="/ai-girlfriend-in-your-language">See all thirteen</a>.</p>
+    <div class="guide-grid">
+      <a class="guide-card" href="/hi/ai-girlfriend-hindi"><span class="eyebrow">Language guide</span><strong>AI girlfriend in Hindi</strong></a>
+      {languagePages.map((p) => (
+        <a class="guide-card" href={languageHref(p)}><span class="eyebrow">Language guide</span><strong>{p.name} AI girlfriend</strong></a>
       ))}
     </div>
   </section>
