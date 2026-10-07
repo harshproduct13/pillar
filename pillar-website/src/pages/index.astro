@@ -66,19 +66,19 @@ const features = [
     <div style="margin:1.4rem auto 0; max-width:620px;">
       <div style="color:var(--color-dim); font-size:0.72rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; margin-bottom:0.7rem;"><a href="/ai-girlfriend-in-your-language" style="color:inherit; text-decoration:none;">Speaks 13 languages</a></div>
       <div class="lang-row">
-        <a class="lang-pill" href="/hi/ai-girlfriend-hindi" style="text-decoration:none; color:inherit;">Hindi <span class="lang-native">हिंदी</span></a>
-        <a class="lang-pill" href="/hi/ai-girlfriend-hindi" style="text-decoration:none; color:inherit;">Hinglish <span class="lang-native">हिंग्लिश</span></a>
-        <span class="lang-pill">English</span>
-        <a class="lang-pill" href="/ta/ai-girlfriend-tamil" style="text-decoration:none; color:inherit;">Tamil <span class="lang-native">தமிழ்</span></a>
-        <a class="lang-pill" href="/te/ai-girlfriend-telugu" style="text-decoration:none; color:inherit;">Telugu <span class="lang-native">తెలుగు</span></a>
-        <a class="lang-pill" href="/mr/ai-girlfriend-marathi" style="text-decoration:none; color:inherit;">Marathi <span class="lang-native">मराठी</span></a>
-        <a class="lang-pill" href="/bn/ai-girlfriend-bengali" style="text-decoration:none; color:inherit;">Bengali <span class="lang-native">বাংলা</span></a>
-        <a class="lang-pill" href="/gu/ai-girlfriend-gujarati" style="text-decoration:none; color:inherit;">Gujarati <span class="lang-native">ગુજરાતી</span></a>
-        <a class="lang-pill" href="/pa/ai-girlfriend-punjabi" style="text-decoration:none; color:inherit;">Punjabi <span class="lang-native">ਪੰਜਾਬੀ</span></a>
-        <a class="lang-pill" href="/ml/ai-girlfriend-malayalam" style="text-decoration:none; color:inherit;">Malayalam <span class="lang-native">മലയാളം</span></a>
-        <a class="lang-pill" href="/or/ai-girlfriend-odia" style="text-decoration:none; color:inherit;">Odia <span class="lang-native">ଓଡ଼ିଆ</span></a>
-        <a class="lang-pill" href="/bho/ai-girlfriend-bhojpuri" style="text-decoration:none; color:inherit;">Bhojpuri <span class="lang-native">भोजपुरी</span></a>
-        <a class="lang-pill" href="/raj/ai-girlfriend-rajasthani" style="text-decoration:none; color:inherit;">Rajasthani <span class="lang-native">राजस्थानी</span></a>
+        <a class="lang-pill" href="/hi/ai-girlfriend-hindi" style="text-decoration:none; color:inherit;">Hindi AI Girlfriend <span class="lang-native">हिंदी</span></a>
+        <a class="lang-pill" href="/hi/ai-girlfriend-hindi" style="text-decoration:none; color:inherit;">Hinglish AI Girlfriend <span class="lang-native">हिंग्लिश</span></a>
+        <span class="lang-pill">English AI Girlfriend</span>
+        <a class="lang-pill" href="/ta/ai-girlfriend-tamil" style="text-decoration:none; color:inherit;">Tamil AI Girlfriend <span class="lang-native">தமிழ்</span></a>
+        <a class="lang-pill" href="/te/ai-girlfriend-telugu" style="text-decoration:none; color:inherit;">Telugu AI Girlfriend <span class="lang-native">తెలుగు</span></a>
+        <a class="lang-pill" href="/mr/ai-girlfriend-marathi" style="text-decoration:none; color:inherit;">Marathi AI Girlfriend <span class="lang-native">मराठी</span></a>
+        <a class="lang-pill" href="/bn/ai-girlfriend-bengali" style="text-decoration:none; color:inherit;">Bengali AI Girlfriend <span class="lang-native">বাংলা</span></a>
+        <a class="lang-pill" href="/gu/ai-girlfriend-gujarati" style="text-decoration:none; color:inherit;">Gujarati AI Girlfriend <span class="lang-native">ગુજરાતી</span></a>
+        <a class="lang-pill" href="/pa/ai-girlfriend-punjabi" style="text-decoration:none; color:inherit;">Punjabi AI Girlfriend <span class="lang-native">ਪੰਜਾਬੀ</span></a>
+        <a class="lang-pill" href="/ml/ai-girlfriend-malayalam" style="text-decoration:none; color:inherit;">Malayalam AI Girlfriend <span class="lang-native">മലയാളം</span></a>
+        <a class="lang-pill" href="/or/ai-girlfriend-odia" style="text-decoration:none; color:inherit;">Odia AI Girlfriend <span class="lang-native">ଓଡ଼ିଆ</span></a>
+        <a class="lang-pill" href="/bho/ai-girlfriend-bhojpuri" style="text-decoration:none; color:inherit;">Bhojpuri AI Girlfriend <span class="lang-native">भोजपुरी</span></a>
+        <a class="lang-pill" href="/raj/ai-girlfriend-rajasthani" style="text-decoration:none; color:inherit;">Rajasthani AI Girlfriend <span class="lang-native">राजस्थानी</span></a>
       </div>
     </div>
 
@@ -199,6 +199,12 @@ const features = [
       color: var(--color-dim);
       font-weight: 400;
       font-size: 0.8em;
+    }
+    /* "<Language> AI Girlfriend" pills: drop the native script on phones so two fit per row */
+    @media (max-width: 480px) {
+      .lang-row { gap: 0.4rem; }
+      .lang-pill { padding: 0.34rem 0.65rem; font-size: 0.8rem; }
+      .lang-native { display: none; }
     }
     .face-card {
       width: 210px;
