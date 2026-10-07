@@ -8,10 +8,10 @@ const links = [
   { href: '/#faq', label: 'FAQ' },
 ];
 ---
-<header style="position:sticky; top:0; z-index:50; background:rgba(15,15,13,0.85); backdrop-filter:blur(12px); border-bottom:1px solid var(--color-line);">
+<header class="site-header" style="position:sticky; top:0; z-index:50; border-bottom:1px solid var(--color-line);">
   <div class="container" style="display:flex; align-items:center; justify-content:space-between; gap:1rem; padding-block:0.85rem;">
     <a href="/" style="display:flex; align-items:center; gap:0.55rem; text-decoration:none; color:var(--color-cream); font-weight:700; font-size:1.05rem;">
-      <img src="/Logo%20Emblem.png" alt="Pillar" width="30" height="30" style="border-radius:8px" />
+      <img src="/logo-64.webp" alt="" width="30" height="30" style="border-radius:8px" />
       <span>Pillar</span>
     </a>
     <nav aria-label="Main" style="display:flex; gap:1.6rem; font-size:0.95rem;" class="nav-links">
@@ -20,8 +20,11 @@ const links = [
     <a class="btn" href={PLAY_URL} rel="noopener" target="_blank" style="padding:0.6rem 1.2rem;">Download the App</a>
   </div>
   <style>
+    .site-header { background: rgba(15,15,13,0.85); backdrop-filter: blur(12px); }
     @media (max-width: 720px) {
       .nav-links { display: none !important; }
+      /* Blur on a sticky header repaints every scroll frame — costly on budget Android phones. */
+      .site-header { background: rgba(15,15,13,0.97); backdrop-filter: none; }
     }
   </style>
 </header>

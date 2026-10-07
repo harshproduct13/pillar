@@ -9,7 +9,8 @@ export default defineConfig({
   site: 'https://www.pillarapp.site',
   output: 'static',
   trailingSlash: 'never',
-  build: { format: 'file' },
+  // Inline CSS so the page paints without waiting on a stylesheet request.
+  build: { format: 'file', inlineStylesheets: 'always' },
   integrations: [
     sitemap({
       filter: (page) => !NOINDEX.some((p) => page.endsWith(p)) && !page.endsWith('/404'),
