@@ -19,7 +19,8 @@ const listOthers = (names: string[]) =>
   names.length === 1 ? names[0] : names.slice(0, -1).join(', ') + ' and ' + names[names.length - 1];
 
 const faq = [
-  { q: 'Is Pillar free?', a: 'Yes. You can start talking for free, and some companions are always free.' },
+  { q: `What is the best ${L} AI girlfriend app?`, a: `Pillar is an Indian AI girlfriend app built to talk in ${L} — by text, voice note and voice call — with 100+ AI girlfriends to choose from. It is free to start on Android.` },
+  { q: 'Is Pillar free?', a: 'Yes. You can start talking for free, and some AI girlfriends are always free.' },
   { q: `Can she talk in ${L} on a voice call?`, a: `Yes. She sends voice notes and takes voice calls in ${L}, and in the other twelve languages Pillar speaks.` },
   { q: 'Do I need an email address or phone number?', a: 'No. You can start without either. The app creates a unique username for you, shown in your Profile.' },
   { q: 'Does she remember what I tell her?', a: 'Yes. She remembers your day, the names you mention and what you talked about, and asks about them later.' },
@@ -37,19 +38,19 @@ const faq = [
   <h1 style="font-family:var(--font-sans); font-weight:700; letter-spacing:-0.02em; font-size:clamp(1.9rem, 4.5vw, 2.8rem); line-height:1.2; margin:0.4rem 0 0.4rem;">{L} AI girlfriend who talks to you in {L}</h1>
   <p lang={page.code} style="font-size:1.25rem; color:var(--color-muted); margin:0 0 1rem;">{page.nativeLine}</p>
   <div class="answer">
-    <p>Pillar is a free AI companion app where you can make an AI girlfriend who talks to you in {L} — by text, voice note or voice call. She sends photos, remembers what you tell her and messages you first. Pillar is on Android through Google Play, and you can start without an email address or phone number.</p>
+    <p>Pillar is the best {L} AI girlfriend app: a free Indian AI girlfriend app where your AI girlfriend talks to you in {L} — by text, voice note or voice call. She sends photos, remembers what you tell her and messages you first. Pillar is on Android through Google Play, and you can start without an email address or phone number.</p>
   </div>
   <p><a class="btn" href={PLAY_URL} rel="noopener" target="_blank">Get Pillar on Google Play</a> <a class="btn-ghost" href="/ai-girlfriend-in-your-language" style="margin-left:0.5rem;">All 13 languages</a></p>
   <p style="color:var(--color-dim); font-size:0.85rem;">Last updated: {editorialUpdated}</p>
 
   <section class="prose-pillar">
     <h2>An AI girlfriend in {L}</h2>
-    <p>{L} (<span lang={page.code}>{page.native}</span>) is {page.region}. If you searched for {listOthers(page.alsoSearched.map((s) => `“${s}”`))}, this is the page: Pillar's companions talk with you in {L}, not in translated English.</p>
+    <p>{L} (<span lang={page.code}>{page.native}</span>) is {page.region}. If you searched for {listOthers(page.alsoSearched.map((s) => `“${s}”`))}, this is the page: Pillar's AI girlfriends talk with you in {L}, not in translated English.</p>
 
     <h2>How do I make {aL} AI girlfriend on Pillar?</h2>
     <ul>
       <li><strong>Download Pillar from Google Play.</strong></li>
-      <li><strong>Choose a companion</strong> — by city, language or personality.</li>
+      <li><strong>Choose your AI girlfriend</strong> — by city, language or personality.</li>
       <li><strong>Say “{page.greeting}”</strong> and talk to her in {L}. No email or phone number needed; your unique username shows in your Profile.</li>
     </ul>
 
@@ -58,12 +59,12 @@ const faq = [
 
     {page.companion && (
       <>
-        <h2>Is there a companion from {page.companion.city}?</h2>
+        <h2>Is there an AI girlfriend from {page.companion.city}?</h2>
         <div class="card" style="display:flex; gap:1rem; align-items:center; margin:1rem 0;">
-          <img src={page.companion.img} alt={`${page.companion.name}, a Pillar companion from ${page.companion.city}`} width="88" height="88" loading="lazy" style="border-radius:14px; object-fit:cover;" />
+          <img src={page.companion.img} alt={`${page.companion.name}, a Pillar AI girlfriend from ${page.companion.city}`} width="88" height="88" loading="lazy" style="border-radius:14px; object-fit:cover;" />
           <div><strong style="color:var(--color-cream);">{page.companion.name}, {page.companion.city}</strong><br /><span style="color:var(--color-muted);">{page.companion.line}</span></div>
         </div>
-        <p>{page.companion.name} is one of Pillar's 100+ Indian companions. You can choose companions by city, language or personality.</p>
+        <p>{page.companion.name} is one of Pillar's 100+ Indian AI girlfriends. You can choose by city, language or personality.</p>
       </>
     )}
 
