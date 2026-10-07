@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import Faq from '../../components/Faq.astro';
 import Cta from '../../components/Cta.astro';
+import Reviews from '../../components/Reviews.astro';
 import { PLAY_URL, softwareApplication, faqPage } from '../../lib/site';
 
 const editorialUpdated = '26 September 2026';
@@ -47,6 +48,8 @@ const faq = [
     <h2>Kya ye private hai?</h2>
     <p>Email ya phone number diye bina shuru kar sakte hain. App mein Delete Account button hai. Pillar therapy ya mental-health service nahi hai, aur professional care ka substitute nahi hai.</p>
   </section>
+
+  <Reviews title="Users kya kehte hain" only={['Ab akela nhi lagta', 'Bohot maazedar baatien']} />
 
   <Cta text="Pillar — Hindi mein baat karne wali AI girlfriend" sub="Free. Email ya phone number zaroori nahi." />
   <Faq items={faq} title="Aksar pooche jaane wale sawaal" />

@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Faq from '../components/Faq.astro';
 import Cta from '../components/Cta.astro';
+import Reviews from '../components/Reviews.astro';
 import companions from '../data/companions.json';
 import { comparisonPages } from '../data/comparisonPages';
 import { PLAY_URL, LANGUAGES, softwareApplication, organization, faqPage } from '../lib/site';
@@ -131,6 +132,8 @@ const features = [
       <a class="btn" href={PLAY_URL} rel="noopener" target="_blank">Download the App</a>
     </p>
   </section>
+
+  <Reviews />
 
   <!-- ============ GUIDES / BLOGS ============ -->
   <section class="prose-pillar" id="guides" style="margin-top:3.5rem;">
