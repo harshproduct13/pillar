@@ -14,7 +14,13 @@ export function getStaticPaths() {
 const { page } = Astro.props;
 const apps = page.include.map((name: string) => data.apps.find((app) => app.name === name)).filter(Boolean);
 const relatedPages = page.related.map((slug: string) => comparisonPages.find((candidate) => candidate.slug === slug)).filter(Boolean);
-const alternativePages = comparisonPages.filter((candidate) => candidate.slug.endsWith('-alternatives') && candidate.slug !== page.slug);
+const isAlternative = (candidate) => candidate.slug.endsWith('-alternatives');
+// Link to alternatives for the apps compared on this page; fall back to all of them on feature pages.
+const alternativePages = (() => {
+  const others = comparisonPages.filter((candidate) => isAlternative(candidate) && candidate.slug !== page.slug);
+  const relevant = others.filter((candidate) => page.include.includes(candidate.name));
+  return relevant.length ? relevant : others;
+})();
 const comparisonUpdated = page.methodNote ? '26 September 2026' : '20 September 2026';
 ---
 <Base title={page.title} description={page.description} path={`/${page.slug}`} jsonld={[itemList(page.include), faqPage(page.faqs)]}>
@@ -24,6 +30,14 @@ const comparisonUpdated = page.methodNote ? '26 September 2026' : '20 September 
   <div class="answer"><p>{page.answer}</p></div>
   <p style="color:var(--color-dim); font-size:0.85rem;">Last updated: {comparisonUpdated}. Pillar is our app. Other feature claims come from each app's linked Google Play listing.</p>
   {page.methodNote && <p class="prose-pillar">{page.methodNote}</p>}
+  {page.about && (
+    <section class="prose-pillar">
+      <h2>What is {page.name}?</h2>
+      <p>{page.about}</p>
+      <h2>Why look for a {page.name} alternative?</h2>
+      <p>{page.why}</p>
+    </section>
+  )}
 
   <section class="prose-pillar">
     <h2>Quick comparison</h2>
@@ -67,7 +81,7 @@ const comparisonUpdated = page.methodNote ? '26 September 2026' : '20 September 
   </section>
 
   <section class="prose-pillar">
-    <h2>More app alternatives</h2>
+    <h2>{page.about ? 'Alternatives to the other apps here' : 'More app alternatives'}</h2>
     <p>{alternativePages.map((alternative, index) => <><a href={`/${alternative.slug}`}>{alternative.title.replace(/ \(2026\)$/, '')}</a>{index < alternativePages.length - 1 ? ' · ' : ''}</>)}</p>
   </section>
 </Base>

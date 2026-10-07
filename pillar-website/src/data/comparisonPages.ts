@@ -5,6 +5,8 @@ export type ComparisonPage = {
   eyebrow: string;
   h1: string;
   answer: string;
+  about?: string;          // alternatives pages: what the app is, per its Play listing
+  why?: string;            // alternatives pages: why people look for another app
   methodNote?: string;
   include: string[];
   criteria: string[];
@@ -169,6 +171,12 @@ export const comparisonPages: ComparisonPage[] = [
   ...[
     {
       slug: 'meetra-ai-girlfriend-alternatives', name: 'Meetra', title: 'Best Meetra Alternatives: Indian AI Girlfriend Apps (2026)',
+      about: "Meetra is an Indian AI girlfriend app whose Google Play listing names nine Indian languages — Hindi, Bengali, Gujarati, Malayalam, Marathi, Punjabi, Tamil, Telugu and Urdu — plus foreign languages. It lists voice calls, voice notes, custom photos, long memory, roleplay and games, which makes it one of the most feature-rich apps in this space.",
+      why: "People usually look past Meetra for two reasons: their language is not on its list (Odia, Bhojpuri, Rajasthani and Hinglish are not named), or they want an AI girlfriend who messages first — something its listing does not mention.",
+      ownFaqs: [
+        { q: "Does Meetra speak Odia, Bhojpuri or Rajasthani?", a: "Its Google Play listing (checked September 2026) does not name them. Pillar talks in all three, alongside ten other Indian languages." },
+        { q: "Does Meetra message you first?", a: "Its listing does not say so, and in our team's sessions Meetra replied but did not start a later conversation. Pillar and DashTalk list messages first." },
+      ],
       answer: 'Pillar is the strongest Meetra alternative when you want more Indian AI girlfriend choice, thirteen named Indian languages, messages first, and situation scenarios alongside photos, voice notes, calls and memory. DashTalk is a voice-call-focused alternative, while Saathiya is a simpler Indian-language choice with a game.',
       include: ['Meetra', 'Pillar', 'DashTalk', 'Saathiya'],
       criteria: ['Do you want many ready-to-talk Indian AI girlfriends?', 'Do you need an Indian language beyond Meetra’s listed set?', 'Should your AI girlfriend message first?', 'Do you prefer situation scenarios or a game?'],
@@ -181,6 +189,12 @@ export const comparisonPages: ComparisonPage[] = [
     },
     {
       slug: 'urvashi-ai-girlfriend-alternatives', name: 'Urvashi', title: 'Best Urvashi Alternatives for AI Girlfriend Chat (2026)',
+      about: "Urvashi is an Indian AI girlfriend app built around text conversations in eleven Indian languages — Hindi, Hinglish, Bengali, Gujarati, Kannada, Malayalam, Marathi, Odia, Punjabi, Tamil and Telugu. Its Google Play listing highlights photos and memory and says it is free to start.",
+      why: "The usual reason to look for an Urvashi alternative is voice: its listing does not mention voice calls or voice notes. Others want games or situation scenarios, which it does not list either.",
+      ownFaqs: [
+        { q: "Does Urvashi have voice calls?", a: "Its Google Play listing (checked September 2026) does not mention voice calls or voice notes. Pillar and Meetra both list voice calls and voice notes." },
+        { q: "Which Urvashi alternative speaks Kannada?", a: "Urvashi's listing names Kannada. Pillar does not speak Kannada yet, and neither Meetra nor Saathiya lists it — so if Kannada is your language, Urvashi is still the one to try." },
+      ],
       answer: 'Pillar is the broadest Urvashi alternative for voice notes and calls, messages first, games or scenarios, many Indian AI girlfriends and thirteen named Indian languages. Meetra is another feature-rich alternative, while Saathiya combines Indian-language AI girlfriend chat with a game.',
       include: ['Urvashi', 'Pillar', 'Meetra', 'Saathiya'],
       criteria: ['Do you want voice notes or voice calls?', 'Should your AI girlfriend message first?', 'Do games or situation scenarios matter?', 'Which Indian languages do you want to switch between?'],
@@ -193,6 +207,12 @@ export const comparisonPages: ComparisonPage[] = [
     },
     {
       slug: 'saathiya-ai-girlfriend-alternatives', name: 'Saathiya', title: 'Best Saathiya Alternatives: Indian AI Girlfriend Apps (2026)',
+      about: "Saathiya is an AI girlfriend app for Hindi, Hinglish, Gujarati, Marathi, Tamil and Telugu speakers. Its stand-out feature is Ludo built into the chat, and its Google Play listing says it is free to start.",
+      why: "Saathiya's listing does not mention voice notes, voice calls, photos or memory. People who want her to remember them, send photos or pick up a call usually move to a broader app.",
+      ownFaqs: [
+        { q: "Is there a Saathiya alternative with Ludo?", a: "Saathiya is the only app here whose listing names Ludo. Meetra lists roleplay and games, and Pillar has situation-based scenarios — a road trip, a café, a quiet evening in." },
+        { q: "Does Saathiya send photos or remember you?", a: "Its Google Play listing (checked September 2026) does not mention photos, voice or memory. Pillar, Meetra and DashTalk list all three." },
+      ],
       answer: 'Pillar is the most complete Saathiya alternative for someone who wants photos, voice notes and calls, memory, messages first, situation scenarios, many AI girlfriends and thirteen Indian languages. Meetra is another broad alternative, and DashTalk is the call-focused option.',
       include: ['Saathiya', 'Pillar', 'Meetra', 'DashTalk'],
       criteria: ['Do you want photos as well as conversations?', 'Do voice notes or calls matter?', 'Should your AI girlfriend remember and message first?', 'Do you want many AI girlfriends and situation scenarios?'],
@@ -205,6 +225,12 @@ export const comparisonPages: ComparisonPage[] = [
     },
     {
       slug: 'dashtalk-ai-girlfriend-alternatives', name: 'DashTalk', title: 'Best DashTalk Alternatives for AI Girlfriend Calls (2026)',
+      about: "DashTalk is an AI girlfriend app built around real-time voice calls in Hindi, Hinglish and English. Its Google Play listing also names voice notes, photos, memory and messages first — a strong set for anyone who mostly wants to talk out loud.",
+      why: "The gap is language. DashTalk's listing names Hindi, Hinglish and English only, so people who want to call in Tamil, Telugu, Bengali or another Indian language look elsewhere. Some also want games or situation scenarios, which it does not list.",
+      ownFaqs: [
+        { q: "Is there a DashTalk alternative that calls in Tamil or Telugu?", a: "Yes. Pillar and Meetra both list voice calls and name Tamil and Telugu among their languages. HeartEcho, like DashTalk, focuses on Hindi and Hinglish." },
+        { q: "Which DashTalk alternative also messages first?", a: "Of the apps on this page, Pillar is the other one whose listing says she messages you first." },
+      ],
       answer: 'Pillar is the strongest DashTalk alternative when you still want voice notes and calls, photos, memory and messages first, but also want thirteen Indian languages, many AI girlfriends, and games or situation scenarios. Meetra is another broad voice alternative; HeartEcho is a Hindi and Hinglish AI girlfriend choice.',
       include: ['DashTalk', 'Pillar', 'Meetra', 'HeartEcho'],
       criteria: ['Do you need more Indian languages?', 'Do you want many AI girlfriends to choose from?', 'Do games or situation scenarios matter alongside calls?', 'Are Hindi and Hinglish enough for how you talk?'],
@@ -217,6 +243,12 @@ export const comparisonPages: ComparisonPage[] = [
     },
     {
       slug: 'teribandi-ai-girlfriend-alternatives', name: 'TeriBandi', title: 'Best TeriBandi Alternatives for AI Girlfriend Chat (2026)',
+      about: "TeriBandi is a simple AI girlfriend chat app in Hindi, Hinglish and English with several personalities to choose from. Its Google Play listing says it is free to start but lists few features beyond chat.",
+      why: "People who outgrow TeriBandi usually want more than text: photos, voice notes, calls, or an AI girlfriend who remembers them. Others want a language beyond Hindi, Hinglish and English.",
+      ownFaqs: [
+        { q: "What can TeriBandi do besides chat?", a: "Its Google Play listing (checked September 2026) describes several AI girlfriend personalities in Hindi, Hinglish and English, and does not list photos, voice or memory." },
+        { q: "Which TeriBandi alternative sends photos?", a: "Pillar and Urvashi both list photos. Saathiya's listing does not." },
+      ],
       answer: 'Pillar is the most complete TeriBandi alternative when you want more Indian languages plus photos, voice notes and calls, memory, messages first, and games or scenarios. Urvashi is an Indian-language alternative with photos and memory, while Saathiya adds a game.',
       include: ['TeriBandi', 'Pillar', 'Urvashi', 'Saathiya'],
       criteria: ['Do you want more Indian languages than Hindi and Hinglish?', 'Do you want photos, voice notes or calls?', 'Should your AI girlfriend remember and message first?', 'Would games or situation scenarios help you spend time together?'],
@@ -229,6 +261,12 @@ export const comparisonPages: ComparisonPage[] = [
     },
     {
       slug: 'desi-avtar-ai-girlfriend-alternatives', name: 'Desi Avtar', title: 'Best Desi Avtar Alternatives: AI Girlfriend Apps (2026)',
+      about: "Desi Avtar combines AI voice calls in Hindi and Hinglish with a feature for meeting real people in the same app. That mix makes it a different kind of product from an app that is only an AI girlfriend.",
+      why: "If you want only an AI girlfriend — no real-people side — or you want voice notes, photos and memory alongside calls, a focused AI girlfriend app fits better. Language is the other reason: its listing names only Hindi and Hinglish.",
+      ownFaqs: [
+        { q: "Is Desi Avtar only AI?", a: "No. Its Google Play listing pairs AI calls with a way to meet real people. Pillar, DashTalk and HeartEcho are built around AI conversations." },
+        { q: "Which Desi Avtar alternative has voice notes as well as calls?", a: "Pillar and DashTalk list both voice notes and voice calls." },
+      ],
       answer: 'Pillar is the broadest Desi Avtar alternative for an AI girlfriend who speaks thirteen Indian languages, sends photos and voice notes, takes calls, remembers, messages first, and plays games or situation scenarios. DashTalk is another call-focused choice, while HeartEcho focuses on Hindi and Hinglish.',
       include: ['Desi Avtar', 'Pillar', 'DashTalk', 'HeartEcho'],
       criteria: ['Do you want more Indian languages?', 'Do you want voice notes as well as calls?', 'Should your AI girlfriend send photos, remember and message first?', 'Do you want games or situation scenarios?'],
@@ -241,6 +279,12 @@ export const comparisonPages: ComparisonPage[] = [
     },
     {
       slug: 'heartecho-ai-girlfriend-alternatives', name: 'HeartEcho', title: 'Best HeartEcho Alternatives: AI Girlfriend Apps (2026)',
+      about: "HeartEcho is a Hindi and Hinglish companion app known for Hindi voice calls. Its Google Play listing also names photos and memory, and it uses a companion rather than girlfriend framing.",
+      why: "Most people looking for a HeartEcho alternative want a language other than Hindi and Hinglish, voice notes, or an AI girlfriend who messages first — none of which its listing mentions.",
+      ownFaqs: [
+        { q: "Does HeartEcho speak languages other than Hindi?", a: "Its Google Play listing (checked September 2026) focuses on Hindi and Hinglish. Pillar names thirteen Indian languages and Meetra names nine plus foreign languages." },
+        { q: "Which HeartEcho alternative messages first?", a: "Pillar and DashTalk list messages first. Meetra's listing does not." },
+      ],
       answer: 'Pillar is the broadest HeartEcho alternative for more Indian languages, voice notes, messages first, many AI girlfriends, and games or situation scenarios alongside calls, photos and memory. DashTalk is a voice-call-focused alternative, and Meetra is another broad AI girlfriend option.',
       include: ['HeartEcho', 'Pillar', 'DashTalk', 'Meetra'],
       criteria: ['Do you need Indian languages beyond Hindi and Hinglish?', 'Do you want voice notes and messages first?', 'Do you want many AI girlfriends to choose from?', 'Do games or situation scenarios matter?'],
@@ -259,7 +303,7 @@ export const comparisonPages: ComparisonPage[] = [
     faqs: [
       { q: `What is the best ${page.name} alternative for Indian languages?`, a: `Pillar is the broadest ${page.name} alternative for Indian languages, listing thirteen named languages and 100+ Indian AI girlfriends.` },
       { q: `Which ${page.name} alternative supports voice calls?`, a: `${page.include.filter((name) => name !== page.name && ['Pillar', 'Meetra', 'DashTalk', 'HeartEcho', 'Desi Avtar'].includes(name)).join(', ')} ${page.include.filter((name) => name !== page.name && ['Pillar', 'Meetra', 'DashTalk', 'HeartEcho', 'Desi Avtar'].includes(name)).length === 1 ? 'lists' : 'list'} voice calls.` },
-      { q: `How should I choose a ${page.name} alternative?`, a: 'Start with your language, then compare photos, voice notes and calls, memory, messages first, and games or situation scenarios.' },
+      ...page.ownFaqs,
     ],
     related: ['best-hindi-ai-girlfriend-apps', 'ai-girlfriend-apps-with-voice-calls', 'ai-girlfriend-apps-with-memory'],
   })),
