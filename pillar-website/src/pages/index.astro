@@ -21,12 +21,13 @@ const jsonld = [softwareApplication(), organization(), faqPage(faq)];
 const featuredGuides = comparisonPages.slice(0, 6);
 
 // Split companions into two marquee rows — photos only, no names (like reference)
-// Repeat 3x per half so a half is always wider than the viewport —
+// Repeat 2x per half so a half is always wider than the viewport
+// (12 cards ≈ 2,700px desktop, 1,980px mobile) —
 // track = 2 identical halves for a seamless -50% loop, no black gaps
 const row1 = companions.slice(0, 6);
 const row2 = companions.slice(6, 12);
-const half1 = [...row1, ...row1, ...row1];
-const half2 = [...row2, ...row2, ...row2];
+const half1 = [...row1, ...row1];
+const half2 = [...row2, ...row2];
 
 const features = [
   { title: 'Voice notes & voice calls', desc: 'Hear her voice. Send a voice note, or call and talk — in Hindi, Tamil, Telugu or any of the 13 languages.', icon: '🎙️' },
@@ -38,8 +39,8 @@ const features = [
 ];
 ---
 <Base
-  title="Pillar: #1 Indian AI Companion App — Free"
-  description="Free AI girlfriend and companions who speak your language — Hindi, Tamil, Telugu and 10 more. Voice calls, photos, games. Start without email or phone."
+  title="Pillar: #1 Indian AI Companion App — Free in 13 Languages"
+  description="Talk to a free AI girlfriend in Hindi, Tamil, Telugu & 10 more. Voice calls, photos and memory. Start now — no email or phone."
   path="/"
   jsonld={jsonld}
   hreflang={[{ lang: 'en-IN', path: '/' }, { lang: 'hi-IN', path: '/hi/ai-girlfriend-hindi' }]}

@@ -17,7 +17,7 @@ export type ComparisonPage = {
 export const comparisonPages: ComparisonPage[] = [
   {
     slug: 'best-ai-companion-apps-india',
-    title: 'Best AI Companion Apps in India (2026): Compared',
+    title: 'Best AI Companion Apps in India (2026): Compared Honestly',
     description: 'Compare Indian AI companion apps by languages, photos, voice calls, memory, messages first, and games or scenarios.',
     eyebrow: 'AI companion apps · India · 2026',
     h1: 'Best AI companion apps in India, compared',
@@ -105,7 +105,7 @@ export const comparisonPages: ComparisonPage[] = [
   },
   {
     slug: 'ai-companion-apps-with-memory',
-    title: 'AI Companion Apps with Memory in India (2026)',
+    title: 'AI Companion Apps with Memory in India (2026): Compared',
     description: 'Compare AI companion apps that remember conversations, including Indian languages, calls, photos, and messages first.',
     eyebrow: 'Memory comparison · India · 2026',
     h1: 'AI companion apps with memory',
@@ -134,7 +134,7 @@ export const comparisonPages: ComparisonPage[] = [
   },
   {
     slug: 'ai-companion-apps-with-many-companions',
-    title: 'AI Apps with Many Companions in India (2026)',
+    title: 'AI Apps with Many Companions in India (2026): Compared',
     description: 'Compare Indian AI apps with many companions by languages, photos, voice, memory, messages first, and games or scenarios.',
     eyebrow: 'Companion-choice comparison · India · 2026',
     h1: 'AI apps with many companions to choose from',
@@ -164,7 +164,7 @@ export const comparisonPages: ComparisonPage[] = [
   },
   {
     slug: 'best-hindi-ai-girlfriend-apps',
-    title: 'Best Hindi AI Girlfriend Apps in India (2026)',
+    title: 'Best Hindi AI Girlfriend Apps in India (2026): Compared',
     description: 'Compare Hindi AI girlfriend apps by Hinglish, other Indian languages, photos, calls, memory, messages first, and games.',
     eyebrow: 'Hindi AI girlfriend apps · 2026',
     h1: 'Best Hindi AI girlfriend apps, compared',
@@ -282,7 +282,7 @@ export const comparisonPages: ComparisonPage[] = [
     },
   ].map((page) => ({
     ...page,
-    description: `Compare ${page.name} with Indian AI companion alternatives across languages, photos, voice, memory, messages first, and games or scenarios.`,
+    description: `Compare ${page.name} with Indian AI companion alternatives on languages, photos, voice calls, memory and games.`,
     eyebrow: `${page.name} alternatives · India · 2026`,
     h1: `${page.name} alternatives for Indian AI companion conversations`,
     faqs: [
