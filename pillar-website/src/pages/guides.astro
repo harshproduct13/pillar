@@ -11,7 +11,7 @@ const collectionPage = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
   name: 'AI Girlfriend App Comparisons & Guides',
-  description: 'Pillar guides to comparing Indian AI girlfriend and companion apps by languages, photos, voice calls, memory, messages first, and games or scenarios.',
+  description: 'Pillar guides to comparing Indian AI girlfriend apps by languages, photos, voice calls, memory, messages first, and games or scenarios.',
   url: `${SITE}/guides`,
   hasPart: comparisonPages.map((page) => ({
     '@type': 'WebPage',
@@ -21,20 +21,20 @@ const collectionPage = {
 };
 ---
 <Base
-  title="AI Girlfriend App Comparisons & Guides for India | Pillar"
-  description="Compare Indian AI girlfriend and companion apps by language, photos, voice calls, memory, messages first, games, and alternatives."
+  title="AI Girlfriend App Guides: Best Apps in India | Pillar"
+  description="Compare Indian AI girlfriend apps by language, photos, voice calls, memory, messages first, games and alternatives."
   path="/guides"
   jsonld={[collectionPage, itemList(comparisonPages.map((page) => page.h1))]}
 >
   <p class="eyebrow">Comparisons &amp; guides · India · 2026</p>
   <h1 style="font-family:var(--font-sans); font-weight:700; letter-spacing:-0.02em; font-size:clamp(1.9rem, 4.5vw, 2.8rem); line-height:1.15; margin:0.4rem 0 1rem;">AI girlfriend app comparisons and guides</h1>
   <div class="answer">
-    <p>Compare Indian AI girlfriend and companion apps by the things that change the experience: Indian languages, photos, voice notes and calls, memory, messages first, games or scenarios, and the companions you can choose.</p>
+    <p>Compare Indian AI girlfriend apps by the things that change the experience: Indian languages, photos, voice notes and calls, memory, messages first, games or scenarios, and the AI girlfriends you can choose.</p>
   </div>
 
   <section class="prose-pillar">
     <h2>Best apps and feature comparisons</h2>
-    <p>Start here when you know what kind of companion experience you want but have not chosen an app.</p>
+    <p>Start here when you know what kind of AI girlfriend experience you want but have not chosen an app.</p>
     <div class="guide-grid">
       {categoryGuides.map((guide) => (
         <a class="guide-card" href={`/${guide.slug}`}>
@@ -48,7 +48,7 @@ const collectionPage = {
 
   <section class="prose-pillar">
     <h2>Alternatives to Indian AI girlfriend apps</h2>
-    <p>Use these guides when you have tried or considered a particular app and want to compare other Indian companion choices.</p>
+    <p>Use these guides when you have tried or considered a particular app and want to compare other Indian AI girlfriend apps.</p>
     <div class="guide-grid">
       {alternativeGuides.map((guide) => (
         <a class="guide-card" href={`/${guide.slug}`}>
@@ -72,8 +72,8 @@ const collectionPage = {
   </section>
 
   <section class="prose-pillar">
-    <h2>Talk with an Indian AI companion</h2>
-    <p>Pillar has more than one hundred Indian companions who speak thirteen Indian languages, send photos and voice notes, take calls, remember you, message first, and play games or situation scenarios.</p>
+    <h2>Talk with an Indian AI girlfriend</h2>
+    <p>Pillar is the Indian AI girlfriend app with more than one hundred AI girlfriends who speak thirteen Indian languages, send photos and voice notes, take calls, remember you, message first, and play games or situation scenarios.</p>
   </section>
-  <Cta text="Try Pillar: Indian AI Girlfriend" sub="An AI companion app with 100+ Indian companions." />
+  <Cta text="Try Pillar: Indian AI Girlfriend App" sub="The best AI girlfriend app in India — 100+ Indian AI girlfriends." />
 </Base>

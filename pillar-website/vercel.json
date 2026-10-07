@@ -3,5 +3,10 @@
   "headers": [
     { "source": "/cancellation-refund", "headers": [{ "key": "X-Robots-Tag", "value": "noindex, follow" }] },
     { "source": "/shipping-exchange", "headers": [{ "key": "X-Robots-Tag", "value": "noindex, follow" }] }
+  ],
+  "redirects": [
+    { "source": "/best-ai-companion-apps-india", "destination": "/best-ai-girlfriend-apps-india", "permanent": true },
+    { "source": "/ai-companion-apps-with-memory", "destination": "/ai-girlfriend-apps-with-memory", "permanent": true },
+    { "source": "/ai-companion-apps-with-many-companions", "destination": "/ai-girlfriend-apps-with-many-girlfriends", "permanent": true }
   ]
 }
