@@ -1,0 +1,14 @@
+---
+// A Pillar card with one AI girlfriend and a download button. Mobile first: photo + text on one row,
+// full-width button underneath on phones; everything on one row from 560px up.
+interface Props { name: string; img: string; title: string; sub: string; button: string; href: string; compact?: boolean }
+const { name, img, title, sub, button, href, compact = false } = Astro.props;
+---
+<div class:list={['promo', { compact }]}>
+  <img src={img} alt={`${name}, an AI girlfriend on Pillar`} width="64" height="64" loading="lazy" />
+  <div class="promo-text">
+    <div class="promo-title">{title}</div>
+    <div class="promo-sub">{sub}</div>
+  </div>
+  <a class="btn promo-btn" href={href} rel="noopener" target="_blank">{button}</a>
+</div>
