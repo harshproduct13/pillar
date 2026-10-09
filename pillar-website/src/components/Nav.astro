@@ -1,8 +1,12 @@
 ---
 import { PLAY_URL } from '../lib/site';
 const { lang = 'en' } = Astro.props;
+// Free tools hub for the page's language section (/ta/... → /ta/tools), otherwise the English hub (D-61).
+const section = Astro.url.pathname.split('/')[1];
+const toolsHub = ['hi', 'ta', 'te', 'mr', 'ml', 'gu'].includes(section) ? `/${section}/tools` : '/tools';
 const links = [
   { href: '/guides', label: 'Blog' },
+  { href: toolsHub, label: 'Free Tools' },
   { href: '/#start', label: 'How to Use' },
   { href: '/pricing', label: 'Pricing' },
   { href: '/#faq', label: 'FAQ' },
