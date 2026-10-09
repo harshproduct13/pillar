@@ -1,0 +1,114 @@
+---
+// Shared shell for every free-tool page: breadcrumb, H1, the tool (slot), sections, Pillar card, FAQ,
+// related tools in the same language and this tool in the other languages.
+import Base from '../../layouts/Base.astro';
+import Faq from '../Faq.astro';
+import companions from '../../data/companions.json';
+import { SITE, playUrlFor } from '../../lib/site';
+import { allToolPages } from '../../data/tools';
+import { LANG_NAME, hubPath, toolPath, type ToolPage } from '../../data/tools/types';
+import { COMPANION_FOR, HUB, TOOL_LABEL, TOOL_ORDER } from '../../data/tools/meta';
+
+interface Props { page: ToolPage }
+const { page } = Astro.props;
+const path = toolPath(page);
+const hub = HUB[page.lang];
+const versions = allToolPages.filter((p) => p.tool === page.tool);
+const english = versions.find((p) => p.lang === 'en')!;
+const related = TOOL_ORDER.filter((t) => t !== page.tool)
+  .map((t) => allToolPages.find((p) => p.tool === t && p.lang === page.lang))
+  .filter(Boolean) as ToolPage[];
+const companion = companions.find((c) => c.name === COMPANION_FOR[page.lang])!;
+const play = playUrlFor(`${page.tool}-${page.lang}`);
+
+const jsonld = [
+  {
+    '@context': 'https://schema.org', '@type': 'WebApplication',
+    name: TOOL_LABEL[page.lang][page.tool], url: SITE + path, inLanguage: LANG_NAME[page.lang].hreflang,
+    applicationCategory: page.tool === 'kundli' ? 'LifestyleApplication' : 'EntertainmentApplication',
+    operatingSystem: 'Any', browserRequirements: 'Requires JavaScript', isAccessibleForFree: true,
+    publisher: { '@type': 'Organization', name: 'Pillar', url: SITE + '/' },
+  },
+  {
+    '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: hub.home, item: SITE + '/' },
+      { '@type': 'ListItem', position: 2, name: hub.tools, item: SITE + hubPath(page.lang) },
+      { '@type': 'ListItem', position: 3, name: TOOL_LABEL[page.lang][page.tool], item: SITE + path },
+    ],
+  },
+];
+---
+<Base
+  title={page.title}
+  description={page.description}
+  path={path}
+  lang={page.lang}
+  jsonld={jsonld}
+  hreflang={versions.map((p) => ({ lang: LANG_NAME[p.lang].hreflang, path: toolPath(p) }))}
+  xDefault={toolPath(english)}
+>
+  <nav aria-label="Breadcrumb" class="crumbs"><a href="/">{hub.home}</a> › <a href={hubPath(page.lang)}>{hub.tools}</a> › <span>{TOOL_LABEL[page.lang][page.tool]}</span></nav>
+  <p class="eyebrow">{page.eyebrow}</p>
+  <h1 class="tool-h1">{page.h1}</h1>
+  <div class="answer"><p set:html={page.intro} /></div>
+
+  <slot />
+
+  <p class="disclaimer">{page.disclaimer}</p>
+
+  <section class="prose-pillar">
+    {page.sections.map((s) => (<><h2>{s.h2}</h2><Fragment set:html={s.html} /></>))}
+  </section>
+
+  <div class="card pillar-card">
+    <img src={companion.img} alt={companion.name} width="72" height="72" loading="lazy" />
+    <div style="flex:1; min-width:200px;">
+      <div style="font-weight:600; color:var(--color-cream);">{page.cta.text}</div>
+      <div style="color:var(--color-dim); font-size:0.9rem;">{page.cta.sub}</div>
+    </div>
+    <a class="btn" href={play} rel="noopener" target="_blank">{page.cta.button}</a>
+  </div>
+
+  <Faq items={page.faq} title={page.ui.faqTitle} />
+
+  <section class="prose-pillar">
+    <h2>{hub.related}</h2>
+    <div class="guide-grid">
+      {related.map((r) => (
+        <a class="guide-card" href={toolPath(r)}><strong>{TOOL_LABEL[r.lang][r.tool]}</strong><span>{r.description}</span></a>
+      ))}
+    </div>
+    <h2>{hub.langSwitch}</h2>
+    <p class="lang-links">{versions.filter((v) => v.lang !== page.lang).map((v) => <a href={toolPath(v)} lang={v.lang}>{LANG_NAME[v.lang].native}</a>)}</p>
+    <p><a href={hubPath(page.lang)}>{hub.tools} →</a></p>
+  </section>
+
+  <style is:global>
+    .crumbs { font-size: 0.85rem; color: var(--color-dim); margin-bottom: 0.8rem; }
+    .crumbs a { color: var(--color-muted); text-decoration: underline; text-underline-offset: 3px; }
+    .tool-h1 { font-weight: 700; letter-spacing: -0.02em; font-size: clamp(1.8rem, 4.5vw, 2.6rem); line-height: 1.2; margin: 0.4rem 0 1rem; }
+    .disclaimer { color: var(--color-dim); font-size: 0.85rem; margin-top: 0.8rem; }
+    .pillar-card { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin: 2.2rem 0; }
+    .pillar-card img { border-radius: 50%; object-fit: cover; }
+    .lang-links { display: flex; flex-wrap: wrap; gap: 0.6rem 1.1rem; }
+    /* Tool widgets */
+    .tool { border: 1px solid var(--color-line); border-radius: 18px; padding: 1.2rem; background: #13130f; margin: 1.2rem 0; }
+    .tool form { display: grid; gap: 0.9rem; }
+    .tool .row { display: grid; gap: 0.9rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .tool label { display: grid; gap: 0.35rem; font-size: 0.9rem; color: var(--color-muted); }
+    .tool input, .tool select { background: #0f0f0d; border: 1px solid var(--color-line); color: var(--color-cream); border-radius: 12px; padding: 0.75rem 0.85rem; font: inherit; font-size: 1rem; width: 100%; }
+    .tool input:focus, .tool select:focus { outline: 2px solid var(--color-accent); outline-offset: 1px; }
+    .tool button.btn { border: 0; cursor: pointer; font: inherit; font-weight: 600; justify-self: start; }
+    .tool .result { margin-top: 1.2rem; }
+    .tool .result[hidden] { display: none; }
+    .tool .big { font-size: clamp(1.8rem, 6vw, 2.8rem); font-weight: 700; color: var(--color-cream); line-height: 1.15; margin: 0.2rem 0 0.6rem; }
+    .tool .muted { color: var(--color-muted); }
+    .tool .steps { color: var(--color-muted); font-size: 0.92rem; line-height: 1.7; }
+    .tool .share { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1rem; }
+    .tool .share button, .tool .share a { font-size: 0.9rem; }
+    .tool s { color: var(--color-dim); }
+    .tool .err { color: #fca5a5; font-size: 0.9rem; }
+    .tool table.cmp { margin-top: 0.8rem; }
+  </style>
+</Base>

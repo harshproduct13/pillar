@@ -1,0 +1,106 @@
+---
+// Kundli matching. Ashtakoot (36 gunas) for en/hi/mr/gu/te; ten poruthams for ta/ml.
+// Birth mode needs date (+ time if known); name mode uses the namakshar table and is labelled approximate.
+import type { ToolPage } from '../../data/tools/types';
+interface Props { page: ToolPage; system: 'ashtakoot' | 'porutham' }
+const { page, system } = Astro.props;
+const u = page.ui;
+const person = (who: 'g' | 'b', title: string) => ({ who, title });
+const people = [person('g', u.girl), person('b', u.boy)];
+---
+<div class="tool" data-tool="kundli" data-ui={JSON.stringify(u)} data-lang={page.lang} data-system={system}>
+  <form>
+    <div class="row" role="radiogroup" aria-label={u.modeLabel}>
+      <label style="display:flex;align-items:center;gap:0.5rem;"><input type="radio" name="mode" value="birth" checked style="width:auto" /> {u.modeBirth}</label>
+      <label style="display:flex;align-items:center;gap:0.5rem;"><input type="radio" name="mode" value="name" style="width:auto" /> {u.modeName}</label>
+    </div>
+    <div class="row">
+      {people.map((p) => (
+        <fieldset style="border:1px solid var(--color-line);border-radius:14px;padding:0.9rem;display:grid;gap:0.7rem;">
+          <legend style="padding:0 0.4rem;color:var(--color-cream);font-weight:600;">{p.title}</legend>
+          <label>{u.name}<input name={`${p.who}n`} autocomplete="off" maxlength="40" /></label>
+          <label data-birth>{u.date}<input name={`${p.who}d`} type="date" /></label>
+          <label data-birth>{u.time}<input name={`${p.who}t`} type="time" /><span style="font-size:0.8rem;color:var(--color-dim)">{u.timeHelp}</span></label>
+        </fieldset>
+      ))}
+    </div>
+    <button class="btn" type="submit">{u.button}</button>
+  </form>
+  <div class="result" hidden aria-live="polite"></div>
+</div>
+
+<script>
+  import { ashtakoot, poruthams, star, sign, type Moon } from '../../lib/tools/kundli/match';
+  import { moonFromName } from '../../lib/tools/kundli/namakshar';
+  import { NAKSHATRA, RASHI } from '../../lib/tools/kundli/data';
+  import { escapeHtml } from '../../lib/tools/text';
+  import { whatsappHref } from '../../lib/tools/share';
+
+  for (const box of document.querySelectorAll<HTMLElement>('[data-tool="kundli"]')) {
+    const u = JSON.parse(box.dataset.ui!);
+    const lang = box.dataset.lang!, system = box.dataset.system!;
+    const form = box.querySelector('form')!;
+    const out = box.querySelector<HTMLElement>('.result')!;
+    const syncMode = () => {
+      const byName = (form.elements.namedItem('mode') as RadioNodeList).value === 'name';
+      box.querySelectorAll<HTMLElement>('[data-birth]').forEach((el) => (el.hidden = byName));
+    };
+    form.addEventListener('change', syncMode);
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const fd = new FormData(form);
+      const byName = fd.get('mode') === 'name';
+      const get = (k: string) => String(fd.get(k) || '').trim();
+      out.hidden = false;
+      let girl: Moon | null, boy: Moon | null;
+      if (byName) {
+        girl = moonFromName(get('gn')); boy = moonFromName(get('bn'));
+        if (!girl || !boy) { out.innerHTML = `<p class="err">${escapeHtml(u.errName)}</p>`; return; }
+      } else {
+        if (!get('gd') || !get('bd')) { out.innerHTML = `<p class="err">${escapeHtml(u.errDate)}</p>`; return; }
+        out.innerHTML = `<p class="muted">…</p>`;
+        const { moonAtBirth } = await import('../../lib/tools/kundli/moon');
+        girl = moonAtBirth(get('gd'), get('gt') || null); boy = moonAtBirth(get('bd'), get('bt') || null);
+      }
+      const nk = NAKSHATRA[lang] || NAKSHATRA.en, rs = RASHI[lang] || RASHI.en;
+      const who = (title: string, nm: string, m: Moon) =>
+        `<div><strong>${escapeHtml(nm || title)}</strong><div class="muted">${escapeHtml(u.star)}: ${escapeHtml(nk[star(m)])} · ${escapeHtml(u.rashi)}: ${escapeHtml(rs[sign(m)])}</div></div>`;
+      const notes: string[] = [];
+      if (byName) notes.push(u.approxName);
+      else if (!get('gt') || !get('bt')) notes.push(u.approxTime);
+
+      let body = '', headline = '';
+      const a = ashtakoot(girl, boy);
+      if (system === 'porutham') {
+        const p = poruthams(girl, boy);
+        const v = (x: string) => u['v_' + x];
+        body = `<table class="cmp"><thead><tr><th>${escapeHtml(u.colPorutham)}</th><th>${escapeHtml(u.colResult)}</th></tr></thead><tbody>${
+          p.items.map((i) => `<tr><td>${escapeHtml(u['p_' + i.key])}</td><td class="${i.verdict === 'good' ? 'y' : ''}">${escapeHtml(v(i.verdict))}</td></tr>`).join('')
+        }</tbody></table>`;
+        headline = u.poruthamTotal.replace('{n}', String(p.score));
+        if (!p.rajjuOk) notes.push(u.rajjuWarn);
+        if (!p.vedhaOk) notes.push(u.vedhaWarn);
+        notes.push(u.alsoGuna.replace('{n}', String(a.total)));
+      } else {
+        body = `<table class="cmp"><thead><tr><th>${escapeHtml(u.colKoota)}</th><th>${escapeHtml(u.colPoints)}</th></tr></thead><tbody>${
+          a.kootas.map((k) => `<tr><td>${escapeHtml(u['k_' + k.key])}</td><td class="${k.got === k.max ? 'y' : ''}">${k.got} / ${k.max}</td></tr>`).join('')
+        }</tbody></table>`;
+        headline = `${a.total} / 36`;
+        if (a.nadiDosha) notes.push(u.nadiWarn);
+        if (a.bhakootDosha) notes.push(u.bhakootWarn);
+      }
+      const t = a.total;
+      const band = system === 'porutham' ? '' : t >= 33 ? u.band3 : t >= 25 ? u.band2 : t >= 18 ? u.band1 : u.band0;
+      const shareText = u.shareText.replace('{s}', headline) + ' ' + location.origin + location.pathname;
+      out.innerHTML = `
+        <div class="row">${who(u.girl, get('gn'), girl)}${who(u.boy, get('bn'), boy)}</div>
+        <p class="big" style="margin-top:1rem">${escapeHtml(headline)}</p>
+        ${band ? `<p>${escapeHtml(band)}</p>` : ''}
+        ${body}
+        ${notes.map((n) => `<p class="muted" style="font-size:0.9rem;margin-top:0.6rem">${escapeHtml(n)}</p>`).join('')}
+        <div class="share"><a class="btn" href="${whatsappHref(shareText)}" target="_blank" rel="noopener">${escapeHtml(u.shareWa)}</a></div>`;
+      out.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  }
+</script>

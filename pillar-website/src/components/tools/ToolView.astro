@@ -1,0 +1,21 @@
+---
+import ToolLayout from './ToolLayout.astro';
+import FlamesTool from './FlamesTool.astro';
+import LoveTool from './LoveTool.astro';
+import NameTool from './NameTool.astro';
+import KundliTool from './KundliTool.astro';
+import PickupLines from './PickupLines.astro';
+import { KUNDLI_SYSTEM } from '../../data/tools/kundli';
+import { NAMES } from '../../data/tools/name';
+import { LINES } from '../../data/tools/pickupLines';
+import type { ToolPage } from '../../data/tools/types';
+interface Props { page: ToolPage }
+const { page } = Astro.props;
+---
+<ToolLayout page={page}>
+  {page.tool === 'flames' && <FlamesTool page={page} />}
+  {page.tool === 'love' && <LoveTool page={page} />}
+  {page.tool === 'name' && <NameTool page={page} names={NAMES[page.lang]} />}
+  {page.tool === 'kundli' && <KundliTool page={page} system={KUNDLI_SYSTEM[page.lang]} />}
+  {page.tool === 'pickup' && <PickupLines page={page} groups={LINES[page.lang]} />}
+</ToolLayout>

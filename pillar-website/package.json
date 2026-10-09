@@ -7,12 +7,14 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "astro check",
+    "test:tools": "esbuild tests/engine.test.ts --bundle --platform=node --format=esm --outfile=node_modules/.cache/engine.test.mjs --log-level=warning && node node_modules/.cache/engine.test.mjs && esbuild tests/content.test.ts --bundle --platform=node --format=esm --outfile=node_modules/.cache/content.test.mjs --log-level=error --loader:.astro=empty && node node_modules/.cache/content.test.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.6.0",
     "@tailwindcss/vite": "^4.2.2",
     "astro": "^7.3.3",
+    "astronomy-engine": "^2.1.19",
     "tailwindcss": "^4.2.2"
   }
 }

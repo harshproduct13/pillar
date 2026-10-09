@@ -1,0 +1,72 @@
+---
+// Future wife / girlfriend name quiz. Same answers always give the same letter (no randomness on retry).
+import type { ToolPage } from '../../data/tools/types';
+import companions from '../../data/companions.json';
+import { playUrlFor } from '../../lib/site';
+interface Props { page: ToolPage; names: string[] }
+const { page, names } = Astro.props;
+const u = page.ui;
+const qs = [1, 2, 3].map((n) => ({ q: u[`q${n}`], opts: [1, 2, 3, 4].map((o) => u[`q${n}o${o}`]).filter(Boolean) }));
+const play = playUrlFor(`name-${page.lang}`);
+---
+<div class="tool" data-tool="name" data-ui={JSON.stringify(u)} data-names={JSON.stringify(names)} data-companions={JSON.stringify(companions.map((c) => ({ name: c.name, img: c.img, line: c.line })))} data-play={play}>
+  <form>
+    <div class="row">
+      <label>{u.yourName}<input name="n" autocomplete="off" required maxlength="40" placeholder={u.placeholderName} /></label>
+      <label>{u.dob}<input name="d" type="date" required /></label>
+    </div>
+    {qs.map((q, i) => (
+      <label>{q.q}
+        <select name={`q${i + 1}`} required>
+          <option value="">—</option>
+          {q.opts.map((o, j) => <option value={String(j + 1)}>{o}</option>)}
+        </select>
+      </label>
+    ))}
+    <button class="btn" type="submit">{u.button}</button>
+  </form>
+  <div class="result" hidden aria-live="polite"></div>
+</div>
+
+<script>
+  import { hash, escapeHtml, lettersOnly } from '../../lib/tools/text';
+  import { whatsappHref, resultImage, shareImage } from '../../lib/tools/share';
+
+  for (const box of document.querySelectorAll<HTMLElement>('[data-tool="name"]')) {
+    const u = JSON.parse(box.dataset.ui!);
+    const names: string[] = JSON.parse(box.dataset.names!);
+    const comps: { name: string; img: string; line: string }[] = JSON.parse(box.dataset.companions!);
+    const form = box.querySelector('form')!;
+    const out = box.querySelector<HTMLElement>('.result')!;
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const fd = new FormData(form);
+      const n = String(fd.get('n') || '').trim();
+      const key = [lettersOnly(n), fd.get('d'), fd.get('q1'), fd.get('q2'), fd.get('q3')].join('|');
+      const pick = names[hash(key) % names.length];
+      const roman = pick.split('|')[0];
+      const letter = roman[0].toUpperCase();
+      const same = names.filter((x) => x[0].toUpperCase() === letter).map((x) => x.replace('|', ' · ')).slice(0, 4);
+      const comp = comps.find((c) => c.name[0].toUpperCase() === letter);
+      const shareText = u.shareText.replace('{l}', letter) + ' ' + location.origin + location.pathname;
+      out.hidden = false;
+      out.innerHTML = `
+        <p class="muted">${escapeHtml(u.resultLead)}</p>
+        <p class="big">${escapeHtml(letter)}</p>
+        <p>${escapeHtml(u.couldBe)} <strong>${same.map(escapeHtml).join(', ')}</strong></p>
+        ${comp ? `<div class="card" style="display:flex;gap:0.8rem;align-items:center;margin-top:0.8rem;">
+            <img src="${comp.img}" alt="${escapeHtml(comp.name)}" width="56" height="56" style="border-radius:50%;object-fit:cover">
+            <div style="flex:1"><strong>${escapeHtml(u.companionLine.replace('{c}', comp.name))}</strong><div class="muted" style="font-size:0.9rem">${escapeHtml(comp.line)}</div></div>
+            <a class="btn" href="${box.dataset.play}" target="_blank" rel="noopener">${escapeHtml(u.meet.replace('{c}', comp.name))}</a></div>` : ''}
+        <div class="share">
+          <a class="btn" href="${whatsappHref(shareText)}" target="_blank" rel="noopener">${escapeHtml(u.shareWa)}</a>
+          <button class="btn-ghost" type="button" data-img>${escapeHtml(u.shareImg)}</button>
+        </div>`;
+      out.querySelector('[data-img]')!.addEventListener('click', async () => {
+        const blob = await resultImage(letter, [u.resultLead, same.join(', ')], 'pillarapp.site · ' + u.imgFooter);
+        if (blob) shareImage(blob, 'future-name.png', shareText);
+      });
+      out.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  }
+</script>

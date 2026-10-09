@@ -1,0 +1,28 @@
+---
+import Base from '../../layouts/Base.astro';
+import { SITE } from '../../lib/site';
+import { toolPagesIn } from '../../data/tools';
+import { LANGS, LANG_NAME, hubPath, toolPath, type Lang } from '../../data/tools/types';
+import { HUB, TOOL_BLURB, TOOL_LABEL, TOOL_ORDER } from '../../data/tools/meta';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const h = HUB[lang];
+const pages = TOOL_ORDER.map((t) => toolPagesIn(lang).find((p) => p.tool === t)!).filter(Boolean);
+const jsonld = [{
+  '@context': 'https://schema.org', '@type': 'ItemList', name: h.h1,
+  itemListElement: pages.map((p, i) => ({ '@type': 'ListItem', position: i + 1, name: TOOL_LABEL[lang][p.tool], url: SITE + toolPath(p) })),
+}];
+---
+<Base title={h.title} description={h.description} path={hubPath(lang)} lang={lang} jsonld={jsonld}
+  hreflang={LANGS.map((l) => ({ lang: LANG_NAME[l].hreflang, path: hubPath(l) }))} xDefault={hubPath('en')}>
+  <p class="eyebrow">Pillar</p>
+  <h1 style="font-weight:700; letter-spacing:-0.02em; font-size:clamp(1.9rem,4.5vw,2.8rem); line-height:1.2; margin:0.4rem 0 1rem;">{h.h1}</h1>
+  <div class="answer"><p>{h.intro}</p></div>
+  <div class="guide-grid">
+    {pages.map((p) => (<a class="guide-card" href={toolPath(p)}><strong>{TOOL_LABEL[lang][p.tool]}</strong><span>{TOOL_BLURB[lang][p.tool]}</span></a>))}
+  </div>
+  <section class="prose-pillar">
+    <h2>{h.otherLangs}</h2>
+    <p style="display:flex;flex-wrap:wrap;gap:0.6rem 1.1rem;">{LANGS.filter((l) => l !== lang).map((l) => <a href={hubPath(l)} lang={l}>{LANG_NAME[l].native}</a>)}</p>
+  </section>
+</Base>

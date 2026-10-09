@@ -1,0 +1,84 @@
+---
+// Pick up lines: the list is the content (server-rendered so Google reads every line); the picker and
+// copy/WhatsApp buttons are a small layer on top. All lines are original and respectful (D-45).
+import type { ToolPage } from '../../data/tools/types';
+export interface LineGroup { id: string; title: string; intro?: string; lines: { t: string; m?: string }[] }
+interface Props { page: ToolPage; groups: LineGroup[] }
+const { page, groups } = Astro.props;
+const u = page.ui;
+const total = groups.reduce((s, g) => s + g.lines.length, 0);
+---
+<div class="tool" data-tool="pickup" data-ui={JSON.stringify(u)}>
+  <p class="muted" style="margin:0 0 0.8rem;">{u.pickerLead.replace('{n}', String(total))}</p>
+  <div class="row" style="align-items:end;">
+    <label>{u.category}
+      <select name="cat">
+        <option value="">{u.allCategories}</option>
+        {groups.map((g) => <option value={g.id}>{g.title}</option>)}
+      </select>
+    </label>
+    <button class="btn" type="button" data-pick>{u.button}</button>
+  </div>
+  <div class="result" hidden aria-live="polite"></div>
+</div>
+
+<nav class="prose-pillar" aria-label={u.contents}>
+  <p><strong>{u.contents}:</strong> {groups.map((g, i) => <><a href={`#${g.id}`}>{g.title}</a>{i < groups.length - 1 ? ' · ' : ''}</>)}</p>
+</nav>
+
+{groups.map((g) => (
+  <section class="prose-pillar lines" id={g.id}>
+    <h2>{g.title}</h2>
+    {g.intro && <p>{g.intro}</p>}
+    <ol>
+      {g.lines.map((l) => (
+        <li data-cat={g.id}>
+          <span class="line-t">{l.t}</span>
+          {l.m && <span class="line-m">{l.m}</span>}
+          <span class="line-actions"><button type="button" data-copy>{u.copy}</button></span>
+        </li>
+      ))}
+    </ol>
+  </section>
+))}
+
+<style>
+  .lines ol { padding-left: 1.4rem; display: grid; gap: 0.7rem; }
+  .lines li { color: var(--color-cream); line-height: 1.55; }
+  .line-t { display: block; }
+  .line-m { display: block; color: var(--color-dim); font-size: 0.9rem; }
+  .line-actions button { background: none; border: 0; color: var(--color-accent); cursor: pointer; padding: 0; font: inherit; font-size: 0.85rem; }
+</style>
+
+<script>
+  import { escapeHtml } from '../../lib/tools/text';
+  import { whatsappHref } from '../../lib/tools/share';
+
+  for (const box of document.querySelectorAll<HTMLElement>('[data-tool="pickup"]')) {
+    const u = JSON.parse(box.dataset.ui!);
+    const out = box.querySelector<HTMLElement>('.result')!;
+    const sel = box.querySelector<HTMLSelectElement>('select')!;
+    let last = -1;
+    box.querySelector('[data-pick]')!.addEventListener('click', () => {
+      const items = Array.from(document.querySelectorAll<HTMLElement>('.lines li')).filter((li) => !sel.value || li.dataset.cat === sel.value);
+      if (!items.length) return;
+      let i = Math.floor(Math.random() * items.length);
+      if (items.length > 1 && i === last) i = (i + 1) % items.length;
+      last = i;
+      const t = items[i].querySelector('.line-t')!.textContent!;
+      const m = items[i].querySelector('.line-m')?.textContent || '';
+      out.hidden = false;
+      out.innerHTML = `<p class="big" style="font-size:clamp(1.3rem,4.5vw,1.9rem)">${escapeHtml(t)}</p>${m ? `<p class="muted">${escapeHtml(m)}</p>` : ''}
+        <div class="share"><a class="btn" href="${whatsappHref(t)}" target="_blank" rel="noopener">${escapeHtml(u.shareWa)}</a>
+        <button class="btn-ghost" type="button" data-copy-pick>${escapeHtml(u.copy)}</button></div>`;
+      out.querySelector('[data-copy-pick]')!.addEventListener('click', (e) => copy(t, e.currentTarget as HTMLElement));
+    });
+  }
+
+  function copy(text: string, btn: HTMLElement) {
+    const done = () => { const old = btn.textContent; btn.textContent = '✓'; setTimeout(() => (btn.textContent = old), 1200); };
+    if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, done); else done();
+  }
+  document.querySelectorAll<HTMLElement>('.lines [data-copy]').forEach((b) =>
+    b.addEventListener('click', () => copy(b.closest('li')!.querySelector('.line-t')!.textContent!, b)));
+</script>
