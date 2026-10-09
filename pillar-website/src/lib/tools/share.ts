@@ -53,3 +53,9 @@ export async function shareImage(blob: Blob, filename: string, text: string): Pr
   a.click();
   setTimeout(() => URL.revokeObjectURL(a.href), 5000);
 }
+
+// Adds the page's "in the result" Pillar card (a <template id="result-promo"> rendered by ToolLayout) under a result.
+export function appendPromo(out: HTMLElement): void {
+  const t = document.getElementById('result-promo') as HTMLTemplateElement | null;
+  if (t) out.appendChild(t.content.cloneNode(true));
+}

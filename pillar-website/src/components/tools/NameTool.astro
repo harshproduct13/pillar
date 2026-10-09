@@ -30,7 +30,7 @@ const play = playUrlFor(`name-${page.lang}`);
 
 <script>
   import { hash, escapeHtml, lettersOnly } from '../../lib/tools/text';
-  import { whatsappHref, resultImage, shareImage } from '../../lib/tools/share';
+  import { whatsappHref, resultImage, shareImage, appendPromo } from '../../lib/tools/share';
 
   for (const box of document.querySelectorAll<HTMLElement>('[data-tool="name"]')) {
     const u = JSON.parse(box.dataset.ui!);
@@ -62,6 +62,7 @@ const play = playUrlFor(`name-${page.lang}`);
           <a class="btn" href="${whatsappHref(shareText)}" target="_blank" rel="noopener">${escapeHtml(u.shareWa)}</a>
           <button class="btn-ghost" type="button" data-img>${escapeHtml(u.shareImg)}</button>
         </div>`;
+      if (!comp) appendPromo(out); // the result already introduces a matching AI girlfriend
       out.querySelector('[data-img]')!.addEventListener('click', async () => {
         const blob = await resultImage(letter, [u.resultLead, same.join(', ')], 'pillarapp.site · ' + u.imgFooter);
         if (blob) shareImage(blob, 'future-name.png', shareText);

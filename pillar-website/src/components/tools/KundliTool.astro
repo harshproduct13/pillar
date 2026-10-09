@@ -34,7 +34,7 @@ const people = [person('g', u.girl), person('b', u.boy)];
   import { moonFromName } from '../../lib/tools/kundli/namakshar';
   import { NAKSHATRA, RASHI } from '../../lib/tools/kundli/data';
   import { escapeHtml } from '../../lib/tools/text';
-  import { whatsappHref } from '../../lib/tools/share';
+  import { whatsappHref, appendPromo } from '../../lib/tools/share';
 
   for (const box of document.querySelectorAll<HTMLElement>('[data-tool="kundli"]')) {
     const u = JSON.parse(box.dataset.ui!);
@@ -100,6 +100,7 @@ const people = [person('g', u.girl), person('b', u.boy)];
         ${body}
         ${notes.map((n) => `<p class="muted" style="font-size:0.9rem;margin-top:0.6rem">${escapeHtml(n)}</p>`).join('')}
         <div class="share"><a class="btn" href="${whatsappHref(shareText)}" target="_blank" rel="noopener">${escapeHtml(u.shareWa)}</a></div>`;
+      appendPromo(out);
       out.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     });
   }

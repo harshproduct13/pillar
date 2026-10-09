@@ -1,12 +1,16 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { SITE } from '../../lib/site';
+import PromoCard from './PromoCard.astro';
+import companions from '../../data/companions.json';
+import { SITE, playUrlFor } from '../../lib/site';
 import { toolPagesIn } from '../../data/tools';
 import { LANGS, LANG_NAME, hubPath, toolPath, type Lang } from '../../data/tools/types';
-import { HUB, TOOL_BLURB, TOOL_LABEL, TOOL_ORDER } from '../../data/tools/meta';
+import { COMPANION_FOR, HUB, PROMO, TOOL_BLURB, TOOL_LABEL, TOOL_ORDER } from '../../data/tools/meta';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const h = HUB[lang];
+const own = companions.find((c) => c.name === COMPANION_FOR[lang])!;
+const promo = PROMO[lang];
 const pages = TOOL_ORDER.map((t) => toolPagesIn(lang).find((p) => p.tool === t)!).filter(Boolean);
 const jsonld = [{
   '@context': 'https://schema.org', '@type': 'ItemList', name: h.h1,
@@ -21,6 +25,7 @@ const jsonld = [{
   <div class="guide-grid">
     {pages.map((p) => (<a class="guide-card" href={toolPath(p)}><strong>{TOOL_LABEL[lang][p.tool]}</strong><span>{TOOL_BLURB[lang][p.tool]}</span></a>))}
   </div>
+  <PromoCard name={own.name} img={own.img} title={promo.below.replace('{c}', own.name)} sub={promo.sub} button={promo.button} href={playUrlFor(`hub-${lang}`)} />
   <section class="prose-pillar">
     <h2>{h.otherLangs}</h2>
     <p style="display:flex;flex-wrap:wrap;gap:0.6rem 1.1rem;">{LANGS.filter((l) => l !== lang).map((l) => <a href={hubPath(l)} lang={l}>{LANG_NAME[l].native}</a>)}</p>

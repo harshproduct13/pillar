@@ -3,11 +3,13 @@
 // related tools in the same language and this tool in the other languages.
 import Base from '../../layouts/Base.astro';
 import Faq from '../Faq.astro';
+import PromoCard from './PromoCard.astro';
 import companions from '../../data/companions.json';
 import { SITE, playUrlFor } from '../../lib/site';
 import { allToolPages } from '../../data/tools';
 import { LANG_NAME, hubPath, toolPath, type ToolPage } from '../../data/tools/types';
-import { COMPANION_FOR, HUB, TOOL_LABEL, TOOL_ORDER } from '../../data/tools/meta';
+import { COMPANION_FOR, HUB, PROMO, TOOL_LABEL, TOOL_ORDER } from '../../data/tools/meta';
+import { hash } from '../../lib/tools/text';
 
 interface Props { page: ToolPage }
 const { page } = Astro.props;
@@ -18,8 +20,16 @@ const english = versions.find((p) => p.lang === 'en')!;
 const related = TOOL_ORDER.filter((t) => t !== page.tool)
   .map((t) => allToolPages.find((p) => p.tool === t && p.lang === page.lang))
   .filter(Boolean) as ToolPage[];
-const companion = companions.find((c) => c.name === COMPANION_FOR[page.lang])!;
-const play = playUrlFor(`${page.tool}-${page.lang}`);
+// Four different AI girlfriends per page: three from a rotation (offset per page, so neighbouring pages show
+// different faces) plus the language's own one at the bottom, whose copy names her. Each placement has its own Play tag.
+const own = companions.find((c) => c.name === COMPANION_FOR[page.lang])!;
+const others = companions.filter((c) => c.name !== own.name);
+const off = hash(page.lang + page.tool) % others.length;
+const rot = others.slice(off).concat(others.slice(0, off));
+const [below, inResult, mid, bottom] = [rot[0], rot[1], rot[2], own];
+const promo = PROMO[page.lang];
+const tag = (where: string) => playUrlFor(`${page.tool}-${page.lang}-${where}`);
+const midAfter = Math.min(1, page.sections.length - 1);
 
 const jsonld = [
   {
@@ -55,20 +65,22 @@ const jsonld = [
 
   <slot />
 
+  <template id="result-promo"><PromoCard name={inResult.name} img={inResult.img} title={promo.result.replace('{c}', inResult.name)} sub={promo.sub} button={promo.button} href={tag('result')} compact /></template>
+
+  <PromoCard name={below.name} img={below.img} title={promo.below.replace('{c}', below.name)} sub={promo.sub} button={promo.button} href={tag('below')} />
+
   <p class="disclaimer">{page.disclaimer}</p>
 
   <section class="prose-pillar">
-    {page.sections.map((s) => (<><h2>{s.h2}</h2><Fragment set:html={s.html} /></>))}
+    {page.sections.map((s, i) => (
+      <>
+        <h2>{s.h2}</h2><Fragment set:html={s.html} />
+        {i === midAfter && <PromoCard name={mid.name} img={mid.img} title={promo.mid.replace('{c}', mid.name)} sub={promo.sub} button={promo.button} href={tag('mid')} />}
+      </>
+    ))}
   </section>
 
-  <div class="card pillar-card">
-    <img src={companion.img} alt={companion.name} width="72" height="72" loading="lazy" />
-    <div style="flex:1; min-width:200px;">
-      <div style="font-weight:600; color:var(--color-cream);">{page.cta.text}</div>
-      <div style="color:var(--color-dim); font-size:0.9rem;">{page.cta.sub}</div>
-    </div>
-    <a class="btn" href={play} rel="noopener" target="_blank">{page.cta.button}</a>
-  </div>
+  <PromoCard name={bottom.name} img={bottom.img} title={page.cta.text} sub={page.cta.sub} button={page.cta.button} href={tag('bottom')} />
 
   <Faq items={page.faq} title={page.ui.faqTitle} />
 
@@ -89,8 +101,6 @@ const jsonld = [
     .crumbs a { color: var(--color-muted); text-decoration: underline; text-underline-offset: 3px; }
     .tool-h1 { font-weight: 700; letter-spacing: -0.02em; font-size: clamp(1.8rem, 4.5vw, 2.6rem); line-height: 1.2; margin: 0.4rem 0 1rem; }
     .disclaimer { color: var(--color-dim); font-size: 0.85rem; margin-top: 0.8rem; }
-    .pillar-card { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin: 2.2rem 0; }
-    .pillar-card img { border-radius: 50%; object-fit: cover; }
     .lang-links { display: flex; flex-wrap: wrap; gap: 0.6rem 1.1rem; }
     /* Tool widgets */
     .tool { border: 1px solid var(--color-line); border-radius: 18px; padding: 1.2rem; background: #13130f; margin: 1.2rem 0; }

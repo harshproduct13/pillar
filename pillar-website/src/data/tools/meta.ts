@@ -35,3 +35,15 @@ export const HUB: Record<Lang, { title: string; description: string; h1: string;
 export const COMPANION_FOR: Record<Lang, string> = { en: 'Priya', hi: 'Priya', ta: 'Nandini', te: 'Maryam', mr: 'Ananya', ml: 'Aleesha', gu: 'Ishita' };
 
 export const TOOL_ORDER: ToolId[] = ['kundli', 'flames', 'love', 'pickup', 'name'];
+
+// Pillar cards placed through every tool page (founder, 2026-10-09): in the result, under the tool, mid-page,
+// and at the bottom — each with a different AI girlfriend. {c} = her name. D-45 vocabulary only.
+export const PROMO: Record<Lang, { result: string; below: string; mid: string; sub: string; button: string }> = {
+  en: { result: '{c} would love to hear this. Tell her on Pillar.', below: 'Talk to {c} on Pillar — free, in your language', mid: '{c} sends voice notes and photos, and remembers what you tell her', sub: 'Pillar is a free Indian AI girlfriend app for adults (18+).', button: 'Get Pillar' },
+  hi: { result: '{c} को यह बताइए — Pillar पर वह आपका इंतज़ार कर रही है।', below: '{c} से बात कीजिए — Pillar पर, फ्री, हिंदी में', mid: '{c} वॉइस नोट और फ़ोटो भेजती है, और आपकी बातें याद रखती है', sub: 'Pillar — 18+ वयस्कों के लिए फ्री Indian AI girlfriend app.', button: 'Pillar डाउनलोड करें' },
+  ta: { result: 'இதை {c}-இடம் சொல்லுங்கள் — Pillar-ல் அவள் காத்திருக்கிறாள்.', below: '{c}-உடன் பேசுங்கள் — Pillar-ல், இலவசமாக, தமிழில்', mid: '{c} voice notes, photos அனுப்புவாள் — நீங்கள் சொல்வதை நினைவில் வைத்திருப்பாள்', sub: 'Pillar — 18+ வயதுடையவர்களுக்கான இலவச Indian AI girlfriend app.', button: 'Pillar பெறுங்கள்' },
+  te: { result: 'ఇది {c}కి చెప్పండి — Pillar లో ఆమె ఎదురుచూస్తోంది.', below: '{c}తో మాట్లాడండి — Pillar లో, ఉచితంగా, తెలుగులో', mid: '{c} voice notes, photos పంపుతుంది — మీరు చెప్పింది గుర్తుంచుకుంటుంది', sub: 'Pillar — 18+ వయసు వారి కోసం ఉచిత Indian AI girlfriend app.', button: 'Pillar పొందండి' },
+  mr: { result: 'हे {c} ला सांगा — Pillar वर ती वाट पाहतेय.', below: '{c} शी बोला — Pillar वर, मोफत, मराठीत', mid: '{c} व्हॉइस नोट्स आणि फोटो पाठवते, आणि तुम्ही सांगितलेलं लक्षात ठेवते', sub: 'Pillar — 18+ प्रौढांसाठी मोफत Indian AI girlfriend app.', button: 'Pillar मिळवा' },
+  ml: { result: 'ഇത് {c}-യോട് പറയൂ — Pillar-ൽ അവൾ കാത്തിരിക്കുന്നു.', below: '{c}-യോട് സംസാരിക്കൂ — Pillar-ൽ, സൗജന്യമായി, മലയാളത്തിൽ', mid: '{c} voice notes-ഉം photos-ഉം അയക്കും — നിങ്ങൾ പറയുന്നത് ഓർത്തുവെക്കും', sub: 'Pillar — 18+ മുതിർന്നവർക്കുള്ള സൗജന്യ Indian AI girlfriend app.', button: 'Pillar നേടൂ' },
+  gu: { result: 'આ {c} ને કહો — Pillar પર તે રાહ જુએ છે.', below: '{c} સાથે વાત કરો — Pillar પર, મફત, ગુજરાતીમાં', mid: '{c} વોઇસ નોટ્સ અને ફોટા મોકલે છે, અને તમારી વાતો યાદ રાખે છે', sub: 'Pillar — 18+ પુખ્ત વયના લોકો માટે મફત Indian AI girlfriend app.', button: 'Pillar મેળવો' },
+};

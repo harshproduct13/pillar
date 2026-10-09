@@ -18,7 +18,7 @@ const u = page.ui;
 <script>
   import { flames } from '../../lib/tools/flames';
   import { escapeHtml } from '../../lib/tools/text';
-  import { whatsappHref, resultImage, shareImage } from '../../lib/tools/share';
+  import { whatsappHref, resultImage, shareImage, appendPromo } from '../../lib/tools/share';
 
   for (const box of document.querySelectorAll<HTMLElement>('[data-tool="flames"]')) {
     const u = JSON.parse(box.dataset.ui!);
@@ -49,6 +49,7 @@ const u = page.ui;
           <a class="btn" href="${whatsappHref(shareText)}" target="_blank" rel="noopener">${escapeHtml(u.shareWa)}</a>
           <button class="btn-ghost" type="button" data-img>${escapeHtml(u.shareImg)}</button>
         </div>`;
+      appendPromo(out);
       out.querySelector('[data-img]')!.addEventListener('click', async () => {
         const blob = await resultImage(word, [`${a} + ${b}`, line], 'pillarapp.site · FLAMES');
         if (blob) shareImage(blob, 'flames-result.png', shareText);
