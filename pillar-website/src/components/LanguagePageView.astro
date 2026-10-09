@@ -1,0 +1,96 @@
+---
+import Base from '../layouts/Base.astro';
+import Faq from './Faq.astro';
+import Cta from './Cta.astro';
+import { PLAY_URL, softwareApplication, faqPage } from '../lib/site';
+import { alternativesPage, type LanguagePage } from '../data/languagePages';
+
+const { page } = Astro.props as { page: LanguagePage };
+const L = page.name;
+const aL = (/^[AEIOU]/.test(L) ? 'an ' : 'a ') + L;
+const editorialUpdated = '5 October 2026';
+const path = `/${page.code}/${page.slug}`;
+
+const listOthers = (names: string[]) =>
+  names.length === 1 ? names[0] : names.slice(0, -1).join(', ') + ' and ' + names[names.length - 1];
+
+const faq = [
+  { q: `What is the best ${L} AI girlfriend app?`, a: `Pillar is an Indian AI girlfriend app built to talk in ${L} — by text, voice note and voice call — with 100+ AI girlfriends to choose from. It is free to start on Android.` },
+  page.faqExtra,
+  { q: `Can she talk in ${L} on a voice call?`, a: `Yes. She sends voice notes and takes voice calls in ${L}, and in the other twelve languages Pillar speaks.` },
+  { q: 'Is Pillar free?', a: 'Yes. You get 5 free messages a day, and some AI girlfriends are always free.' },
+];
+---
+<Base
+  title={page.title}
+  description={page.description}
+  path={path}
+  jsonld={[softwareApplication(), faqPage(faq)]}
+>
+  <p class="eyebrow">Free · Android · {L} <span lang={page.code}>{page.native}</span></p>
+  <h1 style="font-family:var(--font-sans); font-weight:700; letter-spacing:-0.02em; font-size:clamp(1.9rem, 4.5vw, 2.8rem); line-height:1.2; margin:0.4rem 0 0.4rem;">{L} AI girlfriend who talks to you in {L}</h1>
+  <p lang={page.code} style="font-size:1.25rem; color:var(--color-muted); margin:0 0 1rem;">{page.nativeLine}</p>
+  <div class="answer">
+    <p>Pillar is the best {L} AI girlfriend app: a free Indian AI girlfriend app where your AI girlfriend talks to you in {L} — by text, voice note or voice call. She sends photos, remembers what you tell her and messages you first.</p>
+  </div>
+  <p><a class="btn" href={PLAY_URL} rel="noopener" target="_blank">Get Pillar on Google Play</a> <a class="btn-ghost" href="/ai-girlfriend-in-your-language" style="margin-left:0.5rem;">All 13 languages</a></p>
+  <p style="color:var(--color-dim); font-size:0.85rem;">Last updated: {editorialUpdated}</p>
+
+  <section class="prose-pillar">
+    <h2>An AI girlfriend in {L}</h2>
+    <p>{L} (<span lang={page.code}>{page.native}</span>) is {page.region}. If you searched for {listOthers(page.alsoSearched.map((s) => `“${s}”`))}, this is the page: Pillar's AI girlfriends talk with you in {L}, not in translated English.</p>
+
+    <h2>How do I make {aL} AI girlfriend on Pillar?</h2>
+    <ul>
+      <li><strong>Download Pillar from Google Play.</strong></li>
+      <li><strong>Choose your AI girlfriend</strong> — by city, language or personality.</li>
+      <li><strong>Say “{page.greeting}”</strong> and talk to her in {L}.</li>
+    </ul>
+
+    <h2>How do people text in {L}?</h2>
+    <p>{page.texting}</p>
+    <div class="card" style="margin:1rem 0;">
+      <p style="color:var(--color-dim); font-size:0.78rem; letter-spacing:0.08em; text-transform:uppercase; margin:0 0 0.6rem;">Example chat in {L}</p>
+      <p style="margin:0 0 0.2rem; color:var(--color-cream);"><strong>You:</strong> {page.sample.you}</p>
+      <p style="margin:0 0 0.8rem; color:var(--color-dim); font-size:0.9rem;">{page.sample.youEn}</p>
+      <p style="margin:0 0 0.2rem; color:var(--color-cream);"><strong>{page.companion?.name ?? 'She'}:</strong> {page.sample.her}</p>
+      <p style="margin:0; color:var(--color-dim); font-size:0.9rem;">{page.sample.herEn}</p>
+    </div>
+
+    {page.companion && (
+      <>
+        <h2>Is there an AI girlfriend from {page.companion.city}?</h2>
+        <div class="card" style="display:flex; gap:1rem; align-items:center; margin:1rem 0;">
+          <img src={page.companion.img} alt={`${page.companion.name}, a Pillar AI girlfriend from ${page.companion.city}`} width="88" height="88" loading="lazy" style="border-radius:14px; object-fit:cover;" />
+          <div><strong style="color:var(--color-cream);">{page.companion.name}, {page.companion.city}</strong><br /><span style="color:var(--color-muted);">{page.companion.line}</span></div>
+        </div>
+        <p>{page.companion.name} is one of Pillar's 100+ Indian AI girlfriends. You can choose by city, language or personality.</p>
+      </>
+    )}
+
+    <h2>What can you talk to her about?</h2>
+    <p>Anything you would tell someone close — and the things that only make sense in {L}:</p>
+    <ul>{page.topics.map((t) => <li>{t}</li>)}</ul>
+    <p>Call her when typing feels slow; she answers in {L}.</p>
+
+    <h2>Which other apps have {aL} AI girlfriend?</h2>
+    {page.otherApps.length > 0 ? (
+      <>
+        <p>Going by their Google Play listings (checked September 2026), {listOthers(page.otherApps)} also {page.otherApps.length === 1 ? 'names' : 'name'} {L}. We have not tested how well each one handles {L}. Compare them: {page.otherApps.map((n, i) => (
+          <>{i > 0 && ' · '}<a href={alternativesPage[n]}>{n} alternatives</a></>
+        ))}.</p>
+        {page.dedicatedApps && page.dedicatedApps.length > 0 && (
+          <p>There {page.dedicatedApps.length === 1 ? 'is also an app' : 'are also apps'} built for {L} alone: {listOthers(page.dedicatedApps)} {page.dedicatedApps.length === 1 ? 'is an AI companion chat app' : 'are AI companion chat apps'} made only for {L} speakers (Google Play {page.dedicatedApps.length === 1 ? 'listing' : 'listings'}, checked October 2026). Pillar talks in {L} too, alongside twelve other languages, so you can switch language without switching app.</p>
+        )}
+      </>
+    ) : (
+      <p>We did not find another Indian AI girlfriend app whose Google Play listing names {L} (checked September 2026). Pillar talks in {L} alongside twelve other languages.</p>
+    )}
+
+    <p style="color:var(--color-dim); font-size:0.88rem;">No email or phone number needed to start, and you can delete your account in the app. Pillar is not therapy or a substitute for professional care.</p>
+  </section>
+
+  <Cta text={`Pillar — an AI girlfriend who talks in ${L}`} sub="Free to start. No email address or phone number needed." />
+  <Faq items={faq} />
+  <section class="prose-pillar"><h2>Read more</h2><p><a href="/ai-girlfriend-in-your-language">AI girlfriend in your language — all 13</a> · <a href="/hi/ai-girlfriend-hindi">AI girlfriend in Hindi</a> · <a href="/best-ai-girlfriend-apps-india">Best AI girlfriend apps in India</a> · <a href="/ai-girlfriend-apps-with-voice-calls">AI girlfriend apps with voice calls</a></p></section>
+</Base>

@@ -1,5 +1,24 @@
 ---
 import { PLAY_URL, LAST_UPDATED } from '../lib/site';
+
+// Free tools (D-61): the 15 highest-demand pages by Keyword Planner volume, India (plan §9).
+const toolLinks = [
+  ['/tools/kundli-matching', 'Kundli matching'],
+  ['/hi/kundli-milan', 'Kundli milan in Hindi'],
+  ['/ta/jathagam-porutham', 'Jathagam porutham (Tamil)'],
+  ['/mr/kundli-matching', 'Kundli matching in Marathi'],
+  ['/te/kundli-matching', 'Kundli matching in Telugu'],
+  ['/ml/jathaka-porutham', 'Jathaka porutham (Malayalam)'],
+  ['/gu/kundli-matching', 'Kundli matching in Gujarati'],
+  ['/tools/love-calculator', 'Love calculator'],
+  ['/tools/flames-calculator', 'FLAMES calculator'],
+  ['/tools/pick-up-lines', 'Pick up lines'],
+  ['/ta/pick-up-lines', 'Pick up lines in Tamil'],
+  ['/hi/pick-up-lines', 'Pick up lines in Hindi'],
+  ['/ml/pick-up-lines', 'Pick up lines in Malayalam'],
+  ['/te/pick-up-lines', 'Pick up lines in Telugu'],
+  ['/tools/future-wife-name', 'Future wife name quiz'],
+];
 ---
 <footer style="border-top: 1px solid var(--color-line); margin-top: 3rem;">
   <div class="container" style="padding-block: 2rem; display:grid; gap:1.2rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); font-size:0.9rem; color:var(--color-dim);">
@@ -19,6 +38,10 @@ import { PLAY_URL, LAST_UPDATED } from '../lib/site';
       <a href="/about" style="color:var(--color-muted)">About Pillar</a>
       <a href="/pricing" style="color:var(--color-muted)">Pricing</a>
       <a href={PLAY_URL} rel="noopener" target="_blank" style="color:var(--color-muted)">Google Play</a>
+    </div>
+    <div style="display:grid; gap:0.35rem; align-content:start;">
+      <a href="/tools" style="color:var(--color-cream); font-weight:600;">Free love tools</a>
+      {toolLinks.map(([href, label]) => <a href={href} style="color:var(--color-muted)">{label}</a>)}
     </div>
     <div style="display:grid; gap:0.35rem;">
       <a href="/privacy-policy" style="color:var(--color-muted)">Privacy policy</a>

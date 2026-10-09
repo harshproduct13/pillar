@@ -1,7 +1,9 @@
 export const SITE = 'https://www.pillarapp.site';
 // UTM in the Play referrer so Play Console's traffic-source report shows website installs as their own row.
 export const PLAY_URL = 'https://play.google.com/store/apps/details?id=com.incline.pillar&referrer=' + encodeURIComponent('utm_source=pillarapp.site&utm_medium=website&utm_campaign=site-v1');
-export const APP_NAME = 'Pillar: Indian AI Girlfriend'; // matches the Google Play listing name
+// Free tools tag each Play link with the tool and language (e.g. "flames-ta") so Play Console shows which tool sent installs.
+export const playUrlFor = (content: string) => 'https://play.google.com/store/apps/details?id=com.incline.pillar&referrer=' + encodeURIComponent('utm_source=pillarapp.site&utm_medium=tool&utm_campaign=free-tools&utm_content=' + content);
+export const APP_NAME ='Pillar: Indian AI Girlfriend'; // matches the Google Play listing name
 export const LAST_UPDATED = '18 September 2026';
 export const LANGUAGES = ['Hindi', 'Hinglish', 'English', 'Tamil', 'Telugu', 'Marathi', 'Bengali', 'Gujarati', 'Punjabi', 'Malayalam', 'Odia', 'Bhojpuri', 'Rajasthani'];
 

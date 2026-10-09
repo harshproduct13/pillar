@@ -1,0 +1,66 @@
+---
+import type { ToolPage } from '../../data/tools/types';
+interface Props { page: ToolPage }
+const { page } = Astro.props;
+const u = page.ui;
+---
+<div class="tool" data-tool="love" data-ui={JSON.stringify(u)}>
+  <form>
+    <div class="row">
+      <label>{u.nameA}<input name="a" autocomplete="off" required maxlength="40" placeholder={u.placeholderA} /></label>
+      <label>{u.nameB}<input name="b" autocomplete="off" required maxlength="40" placeholder={u.placeholderB} /></label>
+    </div>
+    <details>
+      <summary class="muted">{u.dobToggle}</summary>
+      <div class="row" style="margin-top:0.8rem;">
+        <label>{u.dobA}<input name="da" type="date" /></label>
+        <label>{u.dobB}<input name="db" type="date" /></label>
+      </div>
+    </details>
+    <button class="btn" type="submit">{u.button}</button>
+  </form>
+  <div class="result" hidden aria-live="polite"></div>
+</div>
+
+<script>
+  import { love } from '../../lib/tools/love';
+  import { escapeHtml } from '../../lib/tools/text';
+  import { whatsappHref, resultImage, shareImage } from '../../lib/tools/share';
+
+  for (const box of document.querySelectorAll<HTMLElement>('[data-tool="love"]')) {
+    const u = JSON.parse(box.dataset.ui!);
+    const form = box.querySelector('form')!;
+    const out = box.querySelector<HTMLElement>('.result')!;
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const fd = new FormData(form);
+      const a = String(fd.get('a') || '').trim(), b = String(fd.get('b') || '').trim();
+      const da = String(fd.get('da') || ''), db = String(fd.get('db') || '');
+      const r = love(a, b, da && db ? da : undefined, da && db ? db : undefined);
+      const band = r.percent >= 80 ? u.band4 : r.percent >= 60 ? u.band3 : r.percent >= 40 ? u.band2 : r.percent >= 20 ? u.band1 : u.band0;
+      const shareText = u.shareText.replace('{a}', a).replace('{b}', b).replace('{p}', String(r.percent)) + ' ' + location.origin + location.pathname;
+      let working = '';
+      if (r.method === 'loves' && r.counts && r.rows) {
+        working = `<p>${r.counts.map((c) => `${c.letter} = ${c.n}`).join(' · ')}</p><p>${r.rows.map((row) => row.join(' ')).join('<br>')}</p>`;
+      } else {
+        working = `<p>${escapeHtml(u.letterMethod)}</p>`;
+      }
+      if (r.birthdayScore !== undefined) working += `<p>${escapeHtml(u.birthdayLine.replace('{n}', String(r.nameScore)).replace('{d}', String(r.birthdayScore)))}</p>`;
+      out.hidden = false;
+      out.innerHTML = `
+        <p class="muted">${escapeHtml(a)} ❤ ${escapeHtml(b)}</p>
+        <p class="big">${r.percent}%</p>
+        <p>${escapeHtml(band)}</p>
+        <details><summary>${escapeHtml(u.howTitle)}</summary><div class="steps">${working}</div></details>
+        <div class="share">
+          <a class="btn" href="${whatsappHref(shareText)}" target="_blank" rel="noopener">${escapeHtml(u.shareWa)}</a>
+          <button class="btn-ghost" type="button" data-img>${escapeHtml(u.shareImg)}</button>
+        </div>`;
+      out.querySelector('[data-img]')!.addEventListener('click', async () => {
+        const blob = await resultImage(`${r.percent}%`, [`${a} ❤ ${b}`, band], 'pillarapp.site · Love Calculator');
+        if (blob) shareImage(blob, 'love-result.png', shareText);
+      });
+      out.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  }
+</script>

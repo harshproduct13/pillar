@@ -1,0 +1,59 @@
+---
+import type { ToolPage } from '../../data/tools/types';
+interface Props { page: ToolPage }
+const { page } = Astro.props;
+const u = page.ui;
+---
+<div class="tool" data-tool="flames" data-ui={JSON.stringify(u)}>
+  <form>
+    <div class="row">
+      <label>{u.nameA}<input name="a" autocomplete="off" required maxlength="40" placeholder={u.placeholderA} /></label>
+      <label>{u.nameB}<input name="b" autocomplete="off" required maxlength="40" placeholder={u.placeholderB} /></label>
+    </div>
+    <button class="btn" type="submit">{u.button}</button>
+  </form>
+  <div class="result" hidden aria-live="polite"></div>
+</div>
+
+<script>
+  import { flames } from '../../lib/tools/flames';
+  import { escapeHtml } from '../../lib/tools/text';
+  import { whatsappHref, resultImage, shareImage } from '../../lib/tools/share';
+
+  for (const box of document.querySelectorAll<HTMLElement>('[data-tool="flames"]')) {
+    const u = JSON.parse(box.dataset.ui!);
+    const form = box.querySelector('form')!;
+    const out = box.querySelector<HTMLElement>('.result')!;
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const fd = new FormData(form);
+      const a = String(fd.get('a') || '').trim(), b = String(fd.get('b') || '').trim();
+      const r = flames(a, b);
+      out.hidden = false;
+      if (!r.result) { out.innerHTML = `<p class="err">${escapeHtml(u.sameLetters)}</p>`; return; }
+      const word = u['r' + r.result], line = u['r' + r.result + 'Line'];
+      const struck = (letters: string[], s: boolean[]) => letters.map((ch, i) => (s[i] ? `<s>${escapeHtml(ch)}</s>` : escapeHtml(ch))).join(' ');
+      const shareText = u.shareText.replace('{a}', a).replace('{b}', b).replace('{r}', word) + ' ' + location.origin + location.pathname;
+      out.innerHTML = `
+        <p class="muted">${escapeHtml(a)} + ${escapeHtml(b)}</p>
+        <p class="big">${escapeHtml(word)}</p>
+        <p>${escapeHtml(line)}</p>
+        <details><summary>${escapeHtml(u.howTitle)}</summary>
+          <div class="steps">
+            <p>${struck(r.a, r.struckA)}<br>${struck(r.b, r.struckB)}</p>
+            <p>${escapeHtml(u.lettersLeft.replace('{n}', String(r.remaining)))}</p>
+            <p>${r.rounds.map((x) => `${escapeHtml(u.strike)} <strong>${x.removed}</strong> → ${x.left.join(' ')}`).join('<br>')}</p>
+          </div>
+        </details>
+        <div class="share">
+          <a class="btn" href="${whatsappHref(shareText)}" target="_blank" rel="noopener">${escapeHtml(u.shareWa)}</a>
+          <button class="btn-ghost" type="button" data-img>${escapeHtml(u.shareImg)}</button>
+        </div>`;
+      out.querySelector('[data-img]')!.addEventListener('click', async () => {
+        const blob = await resultImage(word, [`${a} + ${b}`, line], 'pillarapp.site · FLAMES');
+        if (blob) shareImage(blob, 'flames-result.png', shareText);
+      });
+      out.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  }
+</script>

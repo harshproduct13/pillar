@@ -1,0 +1,11 @@
+---
+// English free-tool pages: /tools/<slug> (D-61).
+import ToolView from '../../components/tools/ToolView.astro';
+import { allToolPages } from '../../data/tools';
+
+export function getStaticPaths() {
+  return allToolPages.filter((p) => p.lang === 'en').map((p) => ({ params: { slug: p.slug }, props: { page: p } }));
+}
+const { page } = Astro.props;
+---
+<ToolView page={page} />
