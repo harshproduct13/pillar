@@ -18,7 +18,7 @@ const play = playUrlFor(`name-${page.lang}`);
     {qs.map((q, i) => (
       <label>{q.q}
         <select name={`q${i + 1}`} required>
-          <option value="">—</option>
+          <option value="">-</option>
           {q.opts.map((o, j) => <option value={String(j + 1)}>{o}</option>)}
         </select>
       </label>

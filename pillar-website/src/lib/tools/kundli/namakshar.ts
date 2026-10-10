@@ -8,7 +8,7 @@ const TABLE = [
   'मा मी मू मे', 'मो टा टी टू', 'टे टो पा पी', 'पू ष ण ठ', 'पे पो रा री', 'रू रे रो ता', 'ती तू ते तो', 'ना नी नू ने', 'नो या यी यू',
   'ये यो भा भी', 'भू धा फा ढा', 'भे भो जा जी', 'खी खू खे खो', 'गा गी गू गे', 'गो सा सी सू', 'से सो दा दी', 'दू थ झ ञ', 'दे दो चा ची',
 ];
-// Extra syllables some almanacs list (Abhijit, between Uttara Ashadha and Shravana) — folded into Shravana.
+// Extra syllables some almanacs list (Abhijit, between Uttara Ashadha and Shravana). Folded into Shravana.
 const EXTRA: Record<string, [number, number]> = { 'जू': [21, 0], 'जे': [21, 1], 'जो': [21, 2], 'खा': [21, 3] };
 
 const MATRA: Record<string, string> = { 'ा': 'a', 'ि': 'i', 'ी': 'i', 'ु': 'u', 'ू': 'u', 'े': 'e', 'ै': 'e', 'ो': 'o', 'ौ': 'o', 'ॅ': 'e', 'ॉ': 'o' };

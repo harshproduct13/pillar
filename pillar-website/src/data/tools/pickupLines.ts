@@ -7,10 +7,10 @@ import { MR_LINES as MR } from './lang/mr';
 import { ML_LINES as ML } from './lang/ml';
 import { GU_LINES as GU } from './lang/gu';
 
-// Original lines written for Pillar. Respectful only — no suggestive lines (D-45).
+// Original lines written for Pillar. Respectful only: no suggestive lines (D-45).
 const EN: LineGroup[] = [
   { id: 'funny', title: 'Funny pick up lines', lines: [
-    { t: 'Are you a Wi-Fi signal? Because I\'m feeling a strong connection — and it\'s not even password protected.' },
+    { t: 'Are you a Wi-Fi signal? Because I\'m feeling a strong connection, and it\'s not even password protected.' },
     { t: 'Is your name Google? Because you have everything I\'ve been searching for. Including the restaurant I couldn\'t remember.' },
     { t: 'Do you believe in love at first sight, or should I walk past again? I\'ve got all day.' },
     { t: 'Are you a parking ticket? Because you\'ve got "fine" written all over you. Sorry. I had to.' },
@@ -32,7 +32,7 @@ const EN: LineGroup[] = [
     { t: 'Do you like stars? Because I just found the one I want to wish on.' },
     { t: 'I was going to say something clever, but then you smiled and I forgot my own name.' },
     { t: 'Are you a sunrise? Because you just made my whole day brighter.' },
-    { t: 'You\'re like a good book — I\'m already looking forward to the next chapter.' },
+    { t: 'You\'re like a good book: I\'m already looking forward to the next chapter.' },
     { t: 'If smiles were currency, you\'d be the richest person in this room.' },
     { t: 'You\'re the kind of person who makes Mondays feel like Fridays.' },
     { t: 'I don\'t usually believe in luck, but meeting you is making me reconsider.' },
@@ -48,7 +48,7 @@ const EN: LineGroup[] = [
     { t: 'You look like someone with great taste in music. Prove me right?' },
     { t: 'Something tells me you\'re the best part of this party. Want to make it official and leave the snacks to everyone else?' },
     { t: 'I\'ve been trying to think of the perfect opening line. Turns out "hi, I\'m Arjun" is all I\'ve got. Hi, I\'m Arjun.' },
-    { t: 'I think you dropped something — my attention. It\'s been on you all evening.' },
+    { t: 'I think you dropped something: my attention. It\'s been on you all evening.' },
     { t: 'You must be tired of hearing it, so I\'ll just say: your vibe is calm, and I like calm.' },
     { t: 'I usually plan everything, but I didn\'t plan on liking you this much.' },
     { t: 'Are you a good playlist? Because I could listen to you all the way home.' },
@@ -72,11 +72,11 @@ const EN: LineGroup[] = [
   ]},
   { id: 'desi', title: 'Desi pick up lines', lines: [
     { t: 'Are you Maggi? Because I\'d wait two minutes for you. Actually, five. Actually, any amount.' },
-    { t: 'You must be a cricket match, because I can\'t stop checking the score — and the score is: you, winning.' },
+    { t: 'You must be a cricket match, because I can\'t stop checking the score, and the score is: you, winning.' },
     { t: 'Are you the monsoon? Because you made this whole city feel new.' },
     { t: 'Is your name Paneer Tikka? Because you\'re the first thing I look for at every party.' },
     { t: 'Are you an auto-rickshaw at 11 p.m.? Because I\'d say yes to wherever you\'re going.' },
-    { t: 'You\'re like a Sunday afternoon — I could spend all of it with you and still want more.' },
+    { t: 'You\'re like a Sunday afternoon: I could spend all of it with you and still want more.' },
     { t: 'Are you Diwali? Because everything lights up when you walk in.' },
     { t: 'If you were a Bollywood song, you\'d be the one everyone dances to at the sangeet.' },
     { t: 'Are you the last train home? Because I don\'t want to miss you.' },
@@ -85,13 +85,13 @@ const EN: LineGroup[] = [
     { t: 'Are you a mango in May? Because everyone\'s been waiting for you.' },
     { t: 'You\'re cuter than a puppy in a dhaba. And that dog was really cute.' },
   ]},
-  { id: 'instagram', title: 'Instagram & DM openers', intro: 'Reply to something she posted — it\'s the easiest opener there is.', lines: [
+  { id: 'instagram', title: 'Instagram & DM openers', intro: 'Reply to something she posted: it\'s the easiest opener there is.', lines: [
     { t: 'That trek photo looks unreal. Was the view worth the climb, or did the camera lie?' },
     { t: 'Okay, your coffee art is better than most cafés I\'ve been to. Who taught you?' },
     { t: 'You posted that song and now it\'s been stuck in my head for a day. I\'m holding you responsible.' },
     { t: 'Your story just convinced me to try that place. Is the biryani really that good?' },
-    { t: 'I see you\'re a dog person. Name and breed, please — this is important.' },
-    { t: 'That sunset in your story — where was that? I need it for my bucket list.' },
+    { t: 'I see you\'re a dog person. Name and breed, please. This is important.' },
+    { t: 'That sunset in your story, where was that? I need it for my bucket list.' },
     { t: 'Your book recommendations are always good. What are you reading now?' },
     { t: 'You went to that concert?! I\'ve been jealous for three days. Tell me everything.' },
     { t: 'I\'m going to need the recipe for whatever that was in your story.' },
@@ -100,12 +100,12 @@ const EN: LineGroup[] = [
     { t: 'You have the best "outfit of the day" posts. Do you take requests for life advice too?' },
   ]},
   { id: 'dating-app', title: 'Dating app openers (Tinder, Bumble, Hinge)', intro: 'Pick something from her profile and make it a question.', lines: [
-    { t: 'Your profile says you love travel. Mountains or beaches — and choose carefully, this decides everything.' },
+    { t: 'Your profile says you love travel. Mountains or beaches? And choose carefully, this decides everything.' },
     { t: 'Two truths and a lie: I can cook, I\'ve never seen Sholay, and I\'ve already thought of our first date. Your guess?' },
     { t: 'Quick: biryani or pizza? I\'m planning something.' },
     { t: 'I swiped right on your dog, but I\'m staying for your sense of humour.' },
     { t: 'You said you\'re looking for someone who can make you laugh. I\'ve brought a 40-slide presentation.' },
-    { t: 'Your third photo — is that Ladakh? Because I\'ve been planning that trip for two years and need a reason to finally go.' },
+    { t: 'Your third photo, is that Ladakh? Because I\'ve been planning that trip for two years and need a reason to finally go.' },
     { t: 'What\'s the most underrated food in your city? I\'m collecting answers. And people.' },
     { t: 'On a scale of 1 to "Monday morning", how\'s your week going?' },
     { t: 'You look like you give great restaurant recommendations. I\'m starving and lost.' },
@@ -122,7 +122,7 @@ const EN: LineGroup[] = [
     { t: 'Can we skip to the part where we\'re old and still laughing at the same jokes?' },
     { t: 'You\'re the calm in my busy day.' },
     { t: 'I\'d choose you, in a hundred lifetimes, in any version of the world.' },
-    { t: 'If you ever feel like nobody\'s thinking of you right now — I am.' },
+    { t: 'If you ever feel like nobody\'s thinking of you right now, I am.' },
     { t: 'You\'re my favourite "good morning" and my favourite "good night".' },
   ]},
 ];

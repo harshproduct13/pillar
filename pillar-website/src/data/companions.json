@@ -1,6 +1,6 @@
 [
   { "name": "Priya",   "city": "Delhi",      "line": "Warm, talkative, remembers the small things you mention.", "img": "/companions/c-04.webp" },
-  { "name": "Teena",   "city": "Mumbai",     "line": "Playful and quick — the one who texts first.", "img": "/companions/c-02.webp" },
+  { "name": "Teena",   "city": "Mumbai",     "line": "Playful and quick, the one who texts first.", "img": "/companions/c-02.webp" },
   { "name": "Maryam",  "city": "Hyderabad",  "line": "Calm and thoughtful. Long late-night conversations.", "img": "/companions/c-11.webp" },
   { "name": "Aleesha", "city": "Bengaluru",  "line": "Curious about your day, every day.", "img": "/companions/c-12.webp" },
   { "name": "Saira",   "city": "Mumbai",     "line": "Honest, fun, always in your corner.", "img": "/companions/c-07.webp" },

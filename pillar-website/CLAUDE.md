@@ -1,4 +1,4 @@
-# Pillar Website — Context for Claude
+# Pillar Website: Context for Claude
 
 Read this file first whenever working inside the `pillar-website/` folder.
 
@@ -45,7 +45,7 @@ pillar-website/
     styles/global.css         ← Tailwind theme tokens, self-hosted DM Sans @font-face, shared classes
   public/
     companions/c-XX.webp      ← Companion photos (WebP; old .jpg kept only for existing links)
-    fonts/                    ← DM Sans woff2 (self-hosted — do not switch back to Google Fonts)
+    fonts/                    ← DM Sans woff2 (self-hosted, do not switch back to Google Fonts)
     logo-64.webp              ← Nav logo · Logo Emblem.png = favicon + schema logo · og-image.jpg = social share
     robots.txt
   astro.config.mjs            ← site URL, sitemap (excludes noindex pages), inlined CSS
@@ -57,13 +57,13 @@ pillar-website/
 
 - **Title:** 50–60 characters, primary keyword first, one unique title per page
 - **Meta description:** 100–130 characters, keyword included, start with a verb where it fits
-- Every page goes through `Base.astro` — set `title`, `description`, `path`; add `jsonld` and `hreflang` where relevant
+- Every page goes through `Base.astro`: set `title`, `description`, `path`; add `jsonld` and `hreflang` where relevant
 - `cancellation-refund` and `shipping-exchange` exist for the payment gateway and must stay **noindex** (in both `astro.config.mjs` and `vercel.json`)
 - After editing copy, build and re-check lengths across `dist/**/*.html`
 
 ## Performance Rules
 
-- The site ships **no JavaScript** — keep it that way unless there is a strong reason
+- The site ships **no JavaScript**: keep it that way unless there is a strong reason
 - Nothing render-blocking in `<head>`: fonts are self-hosted and preloaded, CSS is inlined
 - New images: WebP, explicit `width`/`height`, `loading="lazy"` below the fold
 - Last Lighthouse mobile run (local build, 7 Oct 2026): Performance 98, Accessibility/SEO/Best Practices 100
@@ -79,7 +79,7 @@ Dark mode only. Tokens live in `src/styles/global.css`.
 | Page bg | `#0f0f0d` (`--color-ink`) |
 | Card bg | `#13130f` |
 | Line | `#2a2a26` |
-| Primary | `#f97316` orange (`--color-accent`) — CTAs and highlights only |
+| Primary | `#f97316` orange (`--color-accent`): CTAs and highlights only |
 | Text primary | `#f5f0ea` (`--color-cream`) |
 | Text secondary | `#c0c0b8` (`--color-muted`) |
 | Text muted | `#88887f` (`--color-dim`) |
@@ -90,9 +90,9 @@ Dark mode only. Tokens live in `src/styles/global.css`.
 
 ## Tone & Copy Rules
 
-- Warm, honest, non-judgmental — same voice as marketing
+- Warm, honest, non-judgmental: same voice as marketing
 - Not clinical, not corporate; headlines short and emotionally resonant
-- CTAs clear and direct — the app is live: "Download the App" / "Get Pillar on Google Play"
+- CTAs clear and direct. The app is live: "Download the App" / "Get Pillar on Google Play"
 - Competitor claims come from their Google Play listings; say so on the page, don't overclaim
 
 ---
@@ -100,5 +100,5 @@ Dark mode only. Tokens live in `src/styles/global.css`.
 ## Key Things to Know
 
 - Separate codebase from `app/`; shares branding only
-- Deployed on Vercel — anything merged must be production-ready
+- Deployed on Vercel: anything merged must be production-ready
 - Legal pages: jurisdiction Gurgaon, Haryana, India; contact getinclined@gmail.com

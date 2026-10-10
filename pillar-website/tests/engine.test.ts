@@ -9,7 +9,7 @@ import { NAKSHATRA_EN } from '../src/lib/tools/kundli/data';
 let fail = 0;
 const eq = (name: string, got: any, want: any) => { const ok = JSON.stringify(got) === JSON.stringify(want); if (!ok) fail++; console.log(ok ? 'ok  ' : 'FAIL', name, ok ? '' : `got ${JSON.stringify(got)} want ${JSON.stringify(want)}`); };
 
-// FLAMES: classic worked example — "Rahul" + "Priya": r,a,h,u,l / p,r,i,y,a → strike r,a → 3+3 = 6 left.
+// FLAMES: classic worked example: "Rahul" + "Priya": r,a,h,u,l / p,r,i,y,a → strike r,a → 3+3 = 6 left.
 const f = flames('Rahul', 'Priya');
 eq('flames remaining', f.remaining, 6);
 // 6 letters: F L A M E S → remove 6th (S), then count 6 from E: L A M E F? standard result for 6 is "E" (Enemies)? compute by hand below.
