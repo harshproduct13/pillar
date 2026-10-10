@@ -17,7 +17,7 @@ const faq = [
   { q: 'Which app like Replika has voice calls in Hindi?', a: 'DashTalk, Pillar and Meetra.' },
 ];
 ---
-<Base title="Apps Like Replika in India (2026): Companions Compared" description="Apps like Replika for India — companions who speak Hindi and Indian languages, take voice calls and remember you. Compared." path="/apps-like-replika-india" jsonld={[itemList(order), faqPage(faq)]}>
+<Base title="Apps Like Replika in India (2026): Companions Compared" description="Apps like Replika for India: companions who speak Hindi and Indian languages, take voice calls and remember you. Compared." path="/apps-like-replika-india" jsonld={[itemList(order), faqPage(faq)]}>
   <p class="eyebrow">Alternatives · India · 2026</p>
   <h1 style="font-family:var(--font-sans); font-weight:700; letter-spacing:-0.02em; font-size:clamp(1.9rem, 4.5vw, 2.8rem); line-height:1.15; margin:0.4rem 0 1rem;">Apps like Replika for Indian users (2026)</h1>
   <div class="answer">
@@ -38,14 +38,14 @@ const faq = [
   <section class="prose-pillar">
     {apps.map((a) => (
       <>
-        <h2>{a.name} — best if you want {a.bestFor}</h2>
+        <h2>{a.name}: best if you want {a.bestFor}</h2>
         <p>{a.name === 'Pillar' ? 'Choose from more than 100 ready-made Indian AI girlfriends, then return to the same conversation. Pillar offers memory, calls, photos and messages first in thirteen named languages. You can begin without giving an email address or phone number; your generated username appears in Profile.' : `Languages on its listing: ${a.cells[0]}.`} <strong>Consideration:</strong> {a.limit}</p>
         {a.play && <p><a href={a.play} rel="noopener nofollow" target="_blank">{a.name} on Google Play →</a></p>}
       </>
     ))}
   </section>
 
-  <Cta text="Try Pillar — like Replika, in your language" />
+  <Cta text="Try Pillar: like Replika, in your language" />
   <Faq items={faq} />
   <section class="prose-pillar"><h2>Related</h2><p><a href="/best-ai-girlfriend-apps-india">Best AI girlfriend apps in India</a> · <a href="/ai-girlfriend-apps-with-memory">AI girlfriend apps with memory</a> · <a href="/character-ai-alternatives-india">Character AI alternatives for India</a> · <a href="/hi/ai-girlfriend-hindi">AI girlfriend in Hindi</a></p></section>
 </Base>

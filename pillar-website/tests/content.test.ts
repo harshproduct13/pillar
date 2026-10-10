@@ -2,6 +2,8 @@ import { allToolPages } from '../src/data/tools';
 import { LINES } from '../src/data/tools/pickupLines';
 import { NAMES } from '../src/data/tools/name';
 import { LANGS } from '../src/data/tools/types';
+import { readdirSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
 let issues = 0;
 const warn = (m: string) => { issues++; console.log('WARN', m); };
 const len = (s: string) => [...s].length;
@@ -20,7 +22,7 @@ for (const p of allToolPages) {
     console.log(`  ${id} lines ${count}`);
     if (n && +n > count) warn(`${id} title says ${n}+ but has ${count}`);
     for (const g of LINES[p.lang]) for (const l of g.lines) {
-      if (p.lang !== 'en' && /[^\x00-\x7F’'"“”—–…👀❤🔥]/.test(l.t)) warn(`${id} non-ASCII in roman line: ${l.t}`);
+      if (p.lang !== 'en' && /[^\x00-\x7F’'"“”–…👀❤🔥]/.test(l.t)) warn(`${id} non-ASCII in roman line: ${l.t}`);
       const lt = (l.t + ' ' + (l.m || '')).toLowerCase();
       // 'hot' is a verb in Marathi/Gujarati romanisation; 'out of bed in the morning' is checked and fine.
       const words = ['sexy', 'kiss', 'dirty', 'body', ...(['mr', 'gu'].includes(p.lang) ? [] : ['hot']), ...(lt.includes('out of bed') ? [] : ['bed'])];
@@ -45,5 +47,10 @@ for (const p of allToolPages) for (const k of need[p.tool]) if (!(k in p.ui)) wa
 for (const p of allToolPages.filter((x) => x.tool === 'kundli')) {
   const keys = ['ta', 'ml'].includes(p.lang) ? ['colPorutham','p_dinam','p_rajju','v_good','poruthamTotal','rajjuWarn','vedhaWarn','alsoGuna'] : ['colKoota','k_varna','k_nadi','band0','band3','nadiWarn','bhakootWarn'];
   for (const k of keys) if (!(k in p.ui)) warn(`${p.lang} kundli missing ${k}`);
+}
+// House style: no em dashes anywhere in site source (use a comma, colon, full stop or brackets).
+const walk = (d: string): string[] => readdirSync(d, { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? walk(join(d, e.name)) : [join(d, e.name)]));
+for (const f of walk('src').filter((f) => /\.(astro|ts|json|css|md)$/.test(f))) {
+  readFileSync(f, 'utf8').split('\n').forEach((line, i) => { if (/\u2014|&mdash;|&#8212;/.test(line)) warn(`${f}:${i + 1} em dash`); });
 }
 console.log(issues ? `${issues} issues` : 'content ok');

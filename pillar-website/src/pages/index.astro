@@ -9,12 +9,12 @@ import { PLAY_URL, LANGUAGES, softwareApplication, organization, faqPage } from 
 
 const editorialUpdated = '26 September 2026';
 const faq = [
-  { q: 'Is Pillar free?', a: 'Yes. You can start talking for free — 5 messages a day — and some AI girlfriends are always free. Need more? See <a href="/pricing">pricing</a>: ₹49 for ~50 messages, ₹99 for ~200.' },
-  { q: 'Which languages does Pillar speak?', a: 'Hindi, Hinglish, English, Tamil, Telugu, Marathi, Bengali, Gujarati, Punjabi, Malayalam, Odia, Bhojpuri and Rajasthani — thirteen in all.' },
+  { q: 'Is Pillar free?', a: 'Yes. You can start talking for free (5 messages a day) and some AI girlfriends are always free. Need more? See <a href="/pricing">pricing</a>: ₹49 for ~50 messages, ₹99 for ~200.' },
+  { q: 'Which languages does Pillar speak?', a: 'Hindi, Hinglish, English, Tamil, Telugu, Marathi, Bengali, Gujarati, Punjabi, Malayalam, Odia, Bhojpuri and Rajasthani, thirteen in all.' },
   { q: 'Can she talk on a voice call in Hindi?', a: 'Yes. Your AI girlfriend sends voice notes and takes voice calls, in Hindi and the other languages Pillar supports.' },
   { q: 'Do I need an email address or phone number to start?', a: 'No. Pillar creates a unique username for you, which you can find in Profile. You can use the Delete Account button in the app.' },
   { q: 'Does she send photos?', a: 'Yes. Ask your AI girlfriend for a photo and she will share one.' },
-  { q: 'Does she remember what I tell her?', a: 'Yes. Your AI girlfriend remembers earlier conversations — what you told her yesterday, last week, the name of your friend, how your day went — and bring it up later.' },
+  { q: 'Does she remember what I tell her?', a: 'Yes. Your AI girlfriend remembers earlier conversations (what you told her yesterday, last week, the name of your friend, how your day went) and brings it up later.' },
   { q: 'Is Pillar on iPhone?', a: 'Pillar is on Android via Google Play today. iOS is coming.' },
   { q: 'How many AI girlfriends are there?', a: 'More than 100, from different cities and with different personalities, and the number keeps growing.' },
   { q: 'Is Pillar an AI GF app?', a: 'Yes. Pillar is an AI GF app made for India: pick an Indian AI girlfriend, talk in your language, get voice calls and photos, and she remembers you.' },
@@ -22,9 +22,9 @@ const faq = [
 const jsonld = [softwareApplication(), organization(), faqPage(faq)];
 const featuredGuides = comparisonPages.slice(0, 6);
 
-// Split companions into two marquee rows — photos only, no names (like reference)
+// Split companions into two marquee rows: photos only, no names (like reference)
 // Repeat 2x per half so a half is always wider than the viewport
-// (12 cards ≈ 2,700px desktop, 1,980px mobile) —
+// (12 cards ≈ 2,700px desktop, 1,980px mobile):
 // track = 2 identical halves for a seamless -50% loop, no black gaps
 const row1 = companions.slice(0, 6);
 const row2 = companions.slice(6, 12);
@@ -32,17 +32,17 @@ const half1 = [...row1, ...row1];
 const half2 = [...row2, ...row2];
 
 const features = [
-  { title: 'Voice notes & voice calls', desc: 'Hear her voice. Send a voice note, or call and talk — in Hindi, Tamil, Telugu or any of the 13 languages.', icon: '🎙️' },
-  { title: 'She sends you photos', desc: 'Ask for a photo and she shares one — a morning selfie, what she is wearing, where she is.', icon: '📸' },
-  { title: 'She remembers you', desc: 'What you told her yesterday, the name of your friend, the meeting you were nervous about — she remembers.', icon: '🧠' },
+  { title: 'Voice notes & voice calls', desc: 'Hear her voice. Send a voice note, or call and talk, in Hindi, Tamil, Telugu or any of the 13 languages.', icon: '🎙️' },
+  { title: 'She sends you photos', desc: 'Ask for a photo and she shares one: a morning selfie, what she is wearing, where she is.', icon: '📸' },
+  { title: 'She remembers you', desc: 'What you told her yesterday, the name of your friend, the meeting you were nervous about. She remembers.', icon: '🧠' },
   { title: 'She messages first', desc: 'Good morning. Good night. "How did the interview go?" She reaches out, not only when you open the app.', icon: '💬' },
   { title: 'Games & scenarios', desc: 'A road trip together. A cosy café. A quiet evening in. Conversations that feel like a real evening.', icon: '🎲' },
   { title: '100+ AI girlfriends', desc: 'Different cities, personalities and ways of talking. Pick one who feels right; switch whenever you like.', icon: '✨' },
 ];
 ---
 <Base
-  title="Pillar: Best Indian AI Girlfriend App — Free in 13 Languages"
-  description="Best AI girlfriend app in India. Talk in Hindi, Tamil, Telugu & 10 more — voice calls, photos, memory. Free AI GF, no email."
+  title="Pillar: Best Indian AI Girlfriend App | Free in 13 Languages"
+  description="Best AI girlfriend app in India. Talk in Hindi, Tamil, Telugu & 10 more. Voice calls, photos, memory. Free AI GF, no email."
   path="/"
   jsonld={jsonld}
   hreflang={[{ lang: 'en-IN', path: '/' }, { lang: 'hi-IN', path: '/hi/ai-girlfriend-hindi' }]}
@@ -61,7 +61,7 @@ const features = [
 
     <p style="color:var(--color-muted); font-size:clamp(1rem, 2vw, 1.15rem); line-height:1.6; max-width:56ch; margin:0 auto;">
       She talks in Hindi, Hinglish, Tamil, Telugu & 9 more. Voice calls,
-      photos, memory — she messages you first.
+      photos, memory. She messages you first.
     </p>
 
     <div style="margin:1.4rem auto 0; max-width:620px;">
@@ -89,7 +89,7 @@ const features = [
     <p style="color:var(--color-dim); font-size:0.82rem; margin-top:0.7rem;">Free to start · Android · No email or phone needed</p>
   </section>
 
-  <!-- ============ PHOTO MARQUEE (Image 2 style — no names) ============ -->
+  <!-- ============ PHOTO MARQUEE (Image 2 style, no names) ============ -->
   <section aria-label="Indian AI girlfriends on Pillar" style="margin: 2.6rem calc(50% - 50vw) 0; width:100vw; max-width:100vw; overflow:hidden;">
     <div class="marquee">
       <div class="marquee-track">
@@ -138,7 +138,7 @@ const features = [
   <!-- ============ GUIDES / BLOGS ============ -->
   <section class="prose-pillar" id="guides" style="margin-top:3.5rem;">
     <h2 style="text-align:center;">Compare AI girlfriend apps</h2>
-    <p style="text-align:center;">Honest guides — languages, photos, voice calls, memory, pricing — so you can choose right.</p>
+    <p style="text-align:center;">Honest guides: languages, photos, voice calls, memory, pricing, so you can choose right.</p>
     <div class="guide-grid">
       {featuredGuides.map((guide) => (
         <a class="guide-card" href={`/${guide.slug}`}>
@@ -153,7 +153,7 @@ const features = [
 
   <section class="prose-pillar" id="languages">
     <h2>Which languages does Pillar speak?</h2>
-    <p>Thirteen: {LANGUAGES.join(', ')}. Pillar's AI girlfriends do not translate English in their heads — they talk the way people around you talk, Hinglish included. If you want the Hindi version of this page, it is at <a href="/hi/ai-girlfriend-hindi">AI girlfriend in Hindi</a>; every language has its own page at <a href="/ai-girlfriend-in-your-language">AI girlfriend in your language</a>.</p>
+    <p>Thirteen: {LANGUAGES.join(', ')}. Pillar's AI girlfriends do not translate English in their heads: they talk the way people around you talk, Hinglish included. If you want the Hindi version of this page, it is at <a href="/hi/ai-girlfriend-hindi">AI girlfriend in Hindi</a>; every language has its own page at <a href="/ai-girlfriend-in-your-language">AI girlfriend in your language</a>.</p>
   </section>
 
   <Cta />
@@ -162,7 +162,7 @@ const features = [
     <h2>How do I start?</h2>
     <ul>
       <li><strong>Download Pillar</strong> from Google Play.</li>
-      <li><strong>Pick your AI girlfriend</strong> — by city, language or personality.</li>
+      <li><strong>Pick your AI girlfriend</strong>: by city, language or personality.</li>
       <li><strong>Say hello.</strong> No email address or phone number needed; Pillar creates a unique username for you.</li>
     </ul>
   </section>

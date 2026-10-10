@@ -1,7 +1,7 @@
 ---
 import data from '../data/competitors.json';
 interface Props { include: string[]; caption?: string }
-const { include, caption = "As stated on each app's Google Play listing, checked September 2026. '—' = not mentioned on the listing." } = Astro.props;
+const { include, caption = "As stated on each app's Google Play listing, checked September 2026. '-' = not mentioned on the listing." } = Astro.props;
 const all = [...data.apps, ...data.global];
 const rows = include.map((n) => all.find((a) => a.name === n)).filter(Boolean);
 ---

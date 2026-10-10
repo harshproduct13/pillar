@@ -5,17 +5,17 @@ import Cta from '../components/Cta.astro';
 import { PLAY_URL, softwareApplication, organization, faqPage } from '../lib/site';
 
 const faq = [
-  { q: 'Is Pillar free?', a: 'Yes. The free tier gives you 5 messages a day with a limited set of AI girlfriends — no payment needed, no sign-up needed.' },
-  { q: 'What do I get for ₹49?', a: 'About 50 messages (49 coins) plus all premium AI girlfriends unlocked. It is a one-time pack you buy inside the app — pay once, use the coins until they run out.' },
-  { q: 'What do I get for ₹99?', a: 'About 200 messages plus all premium AI girlfriends unlocked. Same deal: a one-time pack, best value per message — roughly half the price of the ₹49 pack.' },
-  { q: 'Do coins expire?', a: 'No. Coins stay in your account until you use them. There is no subscription and no auto-renewal — you top up only when you want more messages.' },
+  { q: 'Is Pillar free?', a: 'Yes. The free tier gives you 5 messages a day with a limited set of AI girlfriends. No payment needed, no sign-up needed.' },
+  { q: 'What do I get for ₹49?', a: 'About 50 messages (49 coins) plus all premium AI girlfriends unlocked. It is a one-time pack you buy inside the app: pay once, use the coins until they run out.' },
+  { q: 'What do I get for ₹99?', a: 'About 200 messages plus all premium AI girlfriends unlocked. Same deal: a one-time pack, best value per message: roughly half the price of the ₹49 pack.' },
+  { q: 'Do coins expire?', a: 'No. Coins stay in your account until you use them. There is no subscription and no auto-renewal; you top up only when you want more messages.' },
   { q: 'How do I pay?', a: 'Inside the Pillar app via UPI and other supported methods. Paid features unlock immediately after payment.' },
   { q: 'Can I get a refund?', a: 'Payments are generally non-refundable once the pack is active, except where required by law. See our <a href="/cancellation-refund">cancellation & refund policy</a> for the exceptions (duplicate charges, verified technical issues, and the like).' },
 ];
 const jsonld = [softwareApplication(), organization(), faqPage(faq)];
 ---
 <Base
-  title="Pillar: Best AI Girlfriend App Pricing — Free, ₹49 & ₹99"
+  title="Pillar: Best AI Girlfriend App Pricing | Free, ₹49 & ₹99"
   description="AI girlfriend app pricing: Pillar is free to start with 5 messages a day. ₹49 gets ~50 messages, ₹99 gets ~200. No subscription."
   path="/pricing"
   jsonld={jsonld}
@@ -23,7 +23,7 @@ const jsonld = [softwareApplication(), organization(), faqPage(faq)];
   <p class="eyebrow">Pricing · One-time packs · No subscription</p>
   <h1 style="font-family:var(--font-sans); font-weight:700; letter-spacing:-0.02em; font-size:clamp(2rem, 5vw, 3rem); line-height:1.1; margin:0.4rem 0 1rem;">Start free. Pay only for more talking.</h1>
   <div class="answer">
-    <p>Pillar is free to start — 5 messages a day, every day. When you want longer conversations or premium AI girlfriends, grab a one-time coin pack inside the app. No subscription, no auto-renewal, coins never expire.</p>
+    <p>Pillar is free to start: 5 messages a day, every day. When you want longer conversations or premium AI girlfriends, grab a one-time coin pack inside the app. No subscription, no auto-renewal, coins never expire.</p>
   </div>
 
   <section aria-label="Pricing plans" style="display:grid; gap:1rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin: 1.5rem 0 0.5rem;">
@@ -78,7 +78,7 @@ const jsonld = [softwareApplication(), organization(), faqPage(faq)];
         <thead><tr><th></th><th>Free · ₹0</th><th>Starter · ₹49</th><th>Plus · ₹99</th></tr></thead>
         <tbody>
           <tr><td>Messages</td><td>5 per day</td><td class="y">~50 (49 coins)</td><td class="y">~200</td></tr>
-          <tr><td>Premium AI girlfriends</td><td>—</td><td class="y">All unlocked</td><td class="y">All unlocked</td></tr>
+          <tr><td>Premium AI girlfriends</td><td>-</td><td class="y">All unlocked</td><td class="y">All unlocked</td></tr>
           <tr><td>Free AI girlfriends</td><td class="y">Limited set</td><td class="y">Included</td><td class="y">Included</td></tr>
           <tr><td>Voice notes &amp; calls</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes</td></tr>
           <tr><td>Photos &amp; games</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes</td></tr>
@@ -94,7 +94,7 @@ const jsonld = [softwareApplication(), organization(), faqPage(faq)];
     <ul>
       <li><strong>1 coin ≈ 1 message.</strong> The ₹49 pack gives 49 coins, good for about 50 messages.</li>
       <li><strong>One-time purchase.</strong> Buy inside the Pillar app with UPI. No subscription, no auto-renewal.</li>
-      <li><strong>Coins never expire.</strong> Talk today, next week, next month — your balance waits for you.</li>
+      <li><strong>Coins never expire.</strong> Talk today, next week, next month: your balance waits for you.</li>
       <li><strong>Premium unlock comes with any paid pack.</strong> Both ₹49 and ₹99 open up every premium AI girlfriend.</li>
     </ul>
   </section>

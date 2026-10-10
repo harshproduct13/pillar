@@ -12,7 +12,7 @@ const apps = order.map((n) => all.find((a) => a.name === n));
 const editorialUpdated = '26 September 2026';
 const faq = [
   { q: 'Is there a free alternative to Character AI in India?', a: 'Yes. Pillar, Meetra, Saathiya, DashTalk and Talkie can all be started for free.' },
-  { q: 'Which Character AI alternative speaks Hindi?', a: 'Pillar, Meetra, Saathiya and DashTalk are built for Hindi and Hinglish; Pillar and Meetra also list Tamil, Telugu, Marathi, Bengali and more. The global alternatives — Talkie, Nomi, Kindroid, Replika — are English-first.' },
+  { q: 'Which Character AI alternative speaks Hindi?', a: 'Pillar, Meetra, Saathiya and DashTalk are built for Hindi and Hinglish; Pillar and Meetra also list Tamil, Telugu, Marathi, Bengali and more. The global alternatives (Talkie, Nomi, Kindroid, Replika) are English-first.' },
   { q: 'Which alternative has voice calls?', a: 'DashTalk, Meetra, Pillar, Nomi, Kindroid and Replika list voice calls.' },
   { q: 'Which alternatives mention memory?', a: 'Pillar, Meetra, Nomi and Kindroid describe memory features. Try the same companion over several conversations to see whether the experience fits you.' },
 ];
@@ -38,7 +38,7 @@ const faq = [
   <section class="prose-pillar">
     {apps.map((a) => (
       <>
-        <h2>{a.name} — best if you want {a.bestFor}</h2>
+        <h2>{a.name}: best if you want {a.bestFor}</h2>
         <p>{a.name === 'Pillar' ? 'Pillar offers more than 100 ready-made AI girlfriends from Indian cities, thirteen languages, voice notes and calls, photos, memory, games, and AI girlfriends who can message first. You can begin without giving an email address or phone number; your generated username appears in Profile.' : `Languages on its listing: ${a.cells[0]}.`} <strong>Consideration:</strong> {a.limit}</p>
         {a.play && <p><a href={a.play} rel="noopener nofollow" target="_blank">{a.name} on Google Play →</a></p>}
       </>
@@ -55,7 +55,7 @@ const faq = [
     </ul>
   </section>
 
-  <Cta text="Try Pillar — the Indian-language alternative" />
+  <Cta text="Try Pillar: the Indian-language alternative" />
   <Faq items={faq} />
   <section class="prose-pillar"><h2>Related</h2><p><a href="/best-ai-girlfriend-apps-india">Best AI girlfriend apps in India</a> · <a href="/ai-girlfriend-apps-with-many-girlfriends">Apps with many AI girlfriends</a> · <a href="/apps-like-replika-india">Apps like Replika for Indian users</a> · <a href="/hi/ai-girlfriend-hindi">AI girlfriend in Hindi</a></p></section>
 </Base>
